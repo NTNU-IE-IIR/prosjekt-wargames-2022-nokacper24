@@ -1,3 +1,3 @@
 # Wargames
-This is programming project in IDATA2001 atm NTNU  
+This is a programming project in IDATA2001 at NTNU.
 This readme file is to be updated.
