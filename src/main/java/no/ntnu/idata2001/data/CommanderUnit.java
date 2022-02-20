@@ -1,7 +1,7 @@
 package no.ntnu.idata2001.data;
 
 /**
- * Class representing an CommanderUnit.
+ * Class representing a CommanderUnit.
  *
  * @author Kacper L. Nowicki
  * @version 20.02.2022

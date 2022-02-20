@@ -1,7 +1,7 @@
 package no.ntnu.idata2001.data;
 
 /**
- * This abstract class represents a single unit in the Wargames app.
+ * Abstract class representing a single unit in the Wargames app.
  *
  * @author Kacper L. Nowicki
  * @version 20.02.2022

@@ -1,7 +1,7 @@
 package no.ntnu.idata2001.data;
 
 /**
- * Class representing an CavalryUnit.
+ * Class representing a CavalryUnit.
  *
  * @author Kacper L. Nowicki
  * @version 20.02.2022
