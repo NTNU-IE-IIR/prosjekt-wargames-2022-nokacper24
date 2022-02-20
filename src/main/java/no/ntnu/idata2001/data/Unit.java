@@ -80,8 +80,8 @@ public abstract class Unit {
    * @param opponent unit to be attacked
    */
   public void attack(Unit opponent) {
-    opponent.health = opponent.health - (this.attack + this.getAttackBonus())
-        + (opponent.armor + opponent.getResistBonus());
+    opponent.setHealth(opponent.health - (this.attack + this.getAttackBonus())
+        + (opponent.armor + opponent.getResistBonus()));
   }
 
   /**
