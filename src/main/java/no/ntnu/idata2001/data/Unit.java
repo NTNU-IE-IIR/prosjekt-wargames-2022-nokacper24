@@ -1,4 +1,4 @@
-package no.ntnu.idata2001;
+package no.ntnu.idata2001.data;
 
 /**
  * This abstract class represents a single unit in the Wargames app.
