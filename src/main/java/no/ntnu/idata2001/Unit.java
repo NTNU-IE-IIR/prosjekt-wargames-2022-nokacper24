@@ -63,11 +63,12 @@ public abstract class Unit {
 
   /**
    * Sets health of the unit.
+   * If parameter is negative, health is set to 0.
    *
    * @param health to be set
    */
   public void setHealth(int health) {
-    this.health = health;
+    this.health = health < 0 ? 0 : health;
   }
 
   /**
