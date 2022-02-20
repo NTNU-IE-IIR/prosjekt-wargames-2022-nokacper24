@@ -85,4 +85,14 @@ public abstract class Unit {
    */
   abstract int getResistBonus();
 
+  /**
+   * Returns unit's fields in a string.
+   *
+   * @return name, health, attack and armor of the unit
+   */
+  public String toString() {
+    return this.name + "\n Health " + this.health
+        + "\n Attack " + this.attack + "\n Armor " + this.armor;
+  }
+
 }
