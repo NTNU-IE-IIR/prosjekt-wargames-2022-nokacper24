@@ -22,6 +22,7 @@ public abstract class Unit {
    * @param armor  Base defence value
    */
   protected Unit(String name, int health, int attack, int armor) {
+    // TODO exceptions
     this.name = name;
     this.health = health;
     this.attack = attack;
@@ -80,6 +81,7 @@ public abstract class Unit {
    * @param opponent unit to be attacked
    */
   public void attack(Unit opponent) {
+    // TODO dot notation or get methods?
     opponent.setHealth(opponent.health - (this.attack + this.getAttackBonus())
         + (opponent.armor + opponent.getResistBonus()));
   }

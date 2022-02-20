@@ -15,7 +15,7 @@ public class Army {
 
   private final String name;
   private List<Unit> units;
-  private final Random random = new Random();
+  private final Random random = new Random(); // TODO check if this is correct
 
   /**
    * Constructor of the Army with no units.
@@ -104,7 +104,7 @@ public class Army {
       int index = random.nextInt(units.size());
       return units.get(index);
     } else {
-      //throw new EmptyCollectionException("Army collection is empty");
+      // TODO exception? throw new EmptyCollectionException("Army collection is empty");
       return null;
     }
   }
@@ -116,6 +116,7 @@ public class Army {
    */
   @Override
   public String toString() {
+    // TODO do it differently??
     return this.name + "\nSize: " + this.units.size();
   }
 
