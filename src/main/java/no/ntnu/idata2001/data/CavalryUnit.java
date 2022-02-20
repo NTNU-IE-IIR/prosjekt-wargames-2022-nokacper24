@@ -8,7 +8,7 @@ package no.ntnu.idata2001.data;
  */
 public class CavalryUnit extends Unit {
 
-  private int[] attackBonus = {6, 2}; //Initial and default attack bonus
+  private final int[] attackBonus = {6, 2}; //Initial and default attack bonus
   private boolean firstAttack = true;
   private final int resistBonus = 1;
 

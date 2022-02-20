@@ -9,7 +9,7 @@ package no.ntnu.idata2001.data;
 public class RangedUnit extends Unit {
 
   private final int attackBonus = 3;
-  private int[] resistBonus = {6, 4, 2}; // Starting resistance bonus, third value is the default
+  private final int[] resistBonus = {6, 4, 2}; // Starting resistance bonus, third value is the default
   private int timesHit = 0; // How many times unit got hit
 
   /**
