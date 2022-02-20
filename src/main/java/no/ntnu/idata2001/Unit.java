@@ -62,6 +62,15 @@ public abstract class Unit {
   }
 
   /**
+   * Sets health of the unit.
+   *
+   * @param health to be set
+   */
+  public void setHealth(int health) {
+    this.health = health;
+  }
+
+  /**
    * Calculates and sets health of the unit attacked by this unit.
    *
    * @param opponent unit to be attacked
