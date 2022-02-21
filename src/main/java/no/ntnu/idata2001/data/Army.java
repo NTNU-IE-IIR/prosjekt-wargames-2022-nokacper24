@@ -118,7 +118,6 @@ public class Army {
    */
   @Override
   public String toString() {
-    // TODO do it differently??
     return this.name + "\nSize: " + this.units.size();
   }
 
