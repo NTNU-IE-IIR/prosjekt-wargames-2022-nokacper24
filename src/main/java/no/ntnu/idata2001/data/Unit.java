@@ -81,9 +81,9 @@ public abstract class Unit {
    * @param opponent unit to be attacked
    */
   public void attack(Unit opponent) {
-    // TODO dot notation or get methods?
-    int newHealth = opponent.health - (this.attack + this.getAttackBonus())
-        + (opponent.armor + opponent.getResistBonus());
+    int newHealth = opponent.getHealth() - (this.attack + this.getAttackBonus())
+        + (opponent.getArmor() + opponent.getResistBonus());
+
     opponent.setHealth(newHealth);
   }
 
