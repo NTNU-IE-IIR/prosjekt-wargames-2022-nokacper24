@@ -22,7 +22,7 @@ public abstract class Unit {
    * @param armor  Base defence value
    */
   protected Unit(String name, int health, int attack, int armor) {
-    // TODO exceptions
+    // TODO exceptions illegal arguments
     this.name = name;
     this.health = health;
     this.attack = attack;
