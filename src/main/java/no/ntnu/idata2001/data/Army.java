@@ -15,7 +15,7 @@ public class Army {
 
   private final String name;
   private List<Unit> units;
-  private final Random random = new Random(); // TODO check if this is correct
+  private final Random random;
 
   /**
    * Constructor of the Army with no units.
@@ -25,6 +25,7 @@ public class Army {
   public Army(String name) {
     this.name = name;
     this.units = new ArrayList<>();
+    this.random = new Random();
   }
 
   /**
@@ -36,6 +37,7 @@ public class Army {
   public Army(String name, List<Unit> units) {
     this.name = name;
     this.units = units;
+    this.random = new Random();
   }
 
   /**
