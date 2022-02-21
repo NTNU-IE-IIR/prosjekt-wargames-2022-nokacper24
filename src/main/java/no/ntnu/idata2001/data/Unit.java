@@ -76,6 +76,16 @@ public abstract class Unit {
   }
 
   /**
+   * Returns whether unit is alive or not.
+   * True if health is greater than 0.
+   *
+   * @return true if alive, false if not
+   */
+  public boolean isAlive() {
+    return this.health > 0;
+  }
+
+  /**
    * Calculates and sets health of the unit attacked by this unit.
    *
    * @param opponent unit to be attacked
