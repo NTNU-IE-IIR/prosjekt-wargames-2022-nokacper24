@@ -26,6 +26,24 @@ public class Battle {
   }
 
   /**
+   * Returns armyOne
+   *
+   * @return armyOne
+   */
+  public Army getArmyOne(){
+    return armyOne;
+  }
+
+  /**
+   * Returns armyTwo
+   *
+   * @return armyTwo
+   */
+  public Army getArmyTwo(){
+    return armyTwo;
+  }
+
+  /**
    * Simulates a battle between the armies.
    *
    * @return winning army
