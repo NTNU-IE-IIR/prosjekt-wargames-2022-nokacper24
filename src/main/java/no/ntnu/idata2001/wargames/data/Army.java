@@ -112,9 +112,9 @@ public class Army {
   }
 
   /**
-   * Returns the name and size of the army in form of a string.
+   * Returns the name and size of the army as a String.
    *
-   * @return name and size of army
+   * @return Text with name and size of army
    */
   @Override
   public String toString() {
