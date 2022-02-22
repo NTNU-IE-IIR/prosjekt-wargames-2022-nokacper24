@@ -86,7 +86,7 @@ public abstract class Unit {
   }
 
   /**
-   * Calculates and sets health of the unit attacked by this unit.
+   * Calculates and sets health of the unit attacked by this unit. TODO rethink this method
    *
    * @param opponent unit to be attacked
    */
