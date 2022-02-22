@@ -1,4 +1,4 @@
-package no.ntnu.idata2001.data;
+package no.ntnu.idata2001.wargames.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -1,18 +1,18 @@
-package no.ntnu.idata2001.data;
+package no.ntnu.idata2001.wargames.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import no.ntnu.idata2001.wargames.data.CavalryUnit;
+import no.ntnu.idata2001.wargames.data.CommanderUnit;
 import org.junit.jupiter.api.Test;
 
-class CavalryUnitTest {
+class CommanderUnitTest {
 
-  public CavalryUnitTest() {
+  public CommanderUnitTest() {
   }
 
   @Test
   void testCreationOfInstance() {
-    CavalryUnit unit = new CavalryUnit("ExampleName", 100, 12, 5);
+    CommanderUnit unit = new CommanderUnit("ExampleName", 100, 12, 5);
 
     assertEquals("ExampleName", unit.getName());
     assertEquals(100, unit.getHealth());
@@ -22,17 +22,16 @@ class CavalryUnitTest {
 
   @Test
   void testGetResistBonus() {
-    CavalryUnit unit = new CavalryUnit("ExampleName", 100, 12, 5);
+    CommanderUnit unit = new CommanderUnit("ExampleName", 100, 12, 5);
     assertEquals(1, unit.getResistBonus()); // always 1
     assertEquals(1, unit.getResistBonus());
   }
 
   @Test
   void testGetAttackBonus() {
-    CavalryUnit unit = new CavalryUnit("ExampleName", 100, 12, 5);
-    assertEquals(6, unit.getAttackBonus()); // first attack 6
+    CommanderUnit unit = new CommanderUnit("ExampleName", 100, 12, 5);
+    assertEquals(6, unit.getAttackBonus()); // first 6
     assertEquals(2, unit.getAttackBonus()); // later only 2
     assertEquals(2, unit.getAttackBonus());
   }
-
 }
