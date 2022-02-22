@@ -1,4 +1,4 @@
-package no.ntnu.idata2001.data;
+package no.ntnu.idata2001.wargames.data;
 
 /**
  * Class representing a CommanderUnit.

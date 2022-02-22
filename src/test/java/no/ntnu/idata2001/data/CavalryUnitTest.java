@@ -2,6 +2,7 @@ package no.ntnu.idata2001.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import no.ntnu.idata2001.wargames.data.CavalryUnit;
 import org.junit.jupiter.api.Test;
 
 class CavalryUnitTest {

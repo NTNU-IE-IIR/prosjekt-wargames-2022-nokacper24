@@ -6,7 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.List;
+import no.ntnu.idata2001.wargames.data.Army;
+import no.ntnu.idata2001.wargames.data.CavalryUnit;
+import no.ntnu.idata2001.wargames.data.CommanderUnit;
+import no.ntnu.idata2001.wargames.data.InfantryUnit;
+import no.ntnu.idata2001.wargames.data.RangedUnit;
+import no.ntnu.idata2001.wargames.data.Unit;
 import org.junit.jupiter.api.Test;
 
 class ArmyTest {

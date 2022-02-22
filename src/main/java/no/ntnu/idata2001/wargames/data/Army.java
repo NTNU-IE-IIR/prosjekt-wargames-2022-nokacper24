@@ -1,4 +1,4 @@
-package no.ntnu.idata2001.data;
+package no.ntnu.idata2001.wargames.data;
 
 import java.util.ArrayList;
 import java.util.List;

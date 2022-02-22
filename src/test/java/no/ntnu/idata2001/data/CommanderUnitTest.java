@@ -2,6 +2,7 @@ package no.ntnu.idata2001.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import no.ntnu.idata2001.wargames.data.CommanderUnit;
 import org.junit.jupiter.api.Test;
 
 class CommanderUnitTest {
