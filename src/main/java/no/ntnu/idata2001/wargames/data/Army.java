@@ -123,6 +123,7 @@ public class Army {
 
   /**
    * Test if two objects are equal.
+   *
    * @param other object to be compared to this
    * @return true if objects are equal
    */
@@ -130,15 +131,15 @@ public class Army {
   public boolean equals(Object other) {
     if (other instanceof Army) {
       Army otherArmy = (Army) other;
-      return this.name.equals(otherArmy.getName()) &&
-          this.units.equals(otherArmy.getAllUnits());
+      return this.name.equals(otherArmy.getName())
+          && this.units.equals(otherArmy.getAllUnits());
     } else {
       return false;
     }
   }
 
   /**
-   * Returns a hashCode of the object
+   * Returns a hashCode of the object.
    *
    * @return a hashcode for Army
    */
