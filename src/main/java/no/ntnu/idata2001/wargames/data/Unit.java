@@ -95,15 +95,36 @@ public abstract class Unit {
   }
 
   /**
-   * Calculates and sets health of the unit attacked by this unit. TODO rethink this method
+   * Attacks given unit.
    *
    * @param opponent unit to be attacked
    */
   public void attack(Unit opponent) {
-    int newHealth = opponent.getHealth() - (this.attack + this.getAttackBonus())
-        + (opponent.getArmor() + opponent.getResistBonus());
+    int attackDamage = this.attack + this.getAttackBonus();
+    opponent.takeDamage(attackDamage);
+  }
 
-    opponent.setHealth(newHealth);
+  /**
+   * Reduce unit's health, consider armor and resistBonus.
+   *
+   * @param attackDamage to take
+   */
+  public void takeDamage(int attackDamage) {
+    int damageToTake = attackDamage - this.armor - this.getResistBonus();
+
+    if (damageToTake > 0) {
+      this.reduceHealthBy(damageToTake);
+    }
+  }
+
+  /**
+   * Reduces unit's health by given amount.
+   *
+   * @param healthPoints to be reduced
+   */
+  public void reduceHealthBy(int healthPoints) {
+    int newHealth = this.health - healthPoints;
+    this.setHealth(newHealth);
   }
 
   /**
