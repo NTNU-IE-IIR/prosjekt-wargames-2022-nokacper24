@@ -52,38 +52,29 @@ public class Battle {
     Army winningArmy;
 
     while (this.isInProgress()) {
-      this.oneAttackTwo();
+      this.armyAttackArmyB(this.armyOne, this.armyTwo);
       if (this.isInProgress()) { // make sure armyTwo still has units
-        this.twoAttackOne();
+        this.armyAttackArmyB(this.armyTwo, this.armyOne);
       }
     }
     winningArmy = armyOne.hasUnits() ? armyOne : armyTwo;
     return winningArmy;
   }
 
-  /**
-   * Random unit from armyOne attacks a random unit from armyTwo.
-   * If the attacked unit is no longer alive it's removed from its army.
-   */
-  public void oneAttackTwo() {
-    Unit attacker = this.armyOne.getRandom();
-    Unit recipient = this.armyTwo.getRandom();
-    attacker.attack(recipient);
-    if (!recipient.isAlive()) {
-      armyTwo.remove(recipient);
-    }
-  }
 
   /**
-   * Random unit from armyTwo attacks a random unit from armyOne.
+   * Random unit from armyA attacks a random unit from armyB.
    * If the attacked unit is no longer alive it's removed from its army.
+   *
+   * @param armyA attacking army
+   * @param armyB army to be attacked
    */
-  public void twoAttackOne() {
-    Unit attacker = this.armyTwo.getRandom();
-    Unit recipient = this.armyOne.getRandom();
+  public void armyAttackArmyB(Army armyA, Army armyB) {
+    Unit attacker = armyA.getRandom();
+    Unit recipient = armyB.getRandom();
     attacker.attack(recipient);
     if (!recipient.isAlive()) {
-      armyOne.remove(recipient);
+      armyB.remove(recipient);
     }
   }
 
