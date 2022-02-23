@@ -1,3 +1,7 @@
 # Wargames
 This is a programming project in IDATA2001 at NTNU.  
-This readme file is to be updated.
+
+## Author
+[Kacper Lukasz Nowicki](https://github.com/nokacper24)
+
+*This readme file is to be updated.*
