@@ -22,7 +22,16 @@ public abstract class Unit {
    * @param armor  Base defence value
    */
   protected Unit(String name, int health, int attack, int armor) {
-    // TODO exceptions illegal arguments
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty.");
+    }
+    if (health <= 0) {
+      throw new IllegalArgumentException("Health cannot be equal or less than 0.");
+    }
+    if (attack < 0 || armor < 0) {
+      throw new IllegalArgumentException("Neither attack or armor can be less than 0.");
+    }
+
     this.name = name;
     this.health = health;
     this.attack = attack;
