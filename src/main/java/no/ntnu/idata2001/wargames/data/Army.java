@@ -106,7 +106,6 @@ public class Army {
       int index = random.nextInt(units.size());
       return units.get(index);
     } else {
-      // TODO exception? throw new EmptyCollectionException("Army collection is empty");
       return null;
     }
   }
