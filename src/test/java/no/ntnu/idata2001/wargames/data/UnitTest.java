@@ -1,6 +1,7 @@
 package no.ntnu.idata2001.wargames.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import no.ntnu.idata2001.wargames.data.CavalryUnit;
 import no.ntnu.idata2001.wargames.data.InfantryUnit;
@@ -10,6 +11,36 @@ import org.junit.jupiter.api.Test;
 class UnitTest {
 
   public UnitTest() {
+  }
+
+  @Test
+  void testCreationOfInstanceWithBlankName() {
+    assertThrows(IllegalArgumentException.class, () ->
+      new InfantryUnit("",100,12,5));
+  }
+
+  @Test
+  void testCreationOfInstanceWithNameNull() {
+    assertThrows(IllegalArgumentException.class, () ->
+        new InfantryUnit(null,100,12,5));
+  }
+
+  @Test
+  void testCreationOfInstanceWithZeroHealth() {
+    assertThrows(IllegalArgumentException.class, () ->
+        new InfantryUnit("Name1",0,12,5));
+  }
+
+  @Test
+  void testCreationOfInstanceWithNegativeAttack() {
+    assertThrows(IllegalArgumentException.class, () ->
+        new InfantryUnit("Name1",100,-12,5));
+  }
+
+  @Test
+  void testCreationOfInstanceWithNegativeArmor() {
+    assertThrows(IllegalArgumentException.class, () ->
+        new InfantryUnit("Name1",100,12,-5));
   }
 
   @Test
