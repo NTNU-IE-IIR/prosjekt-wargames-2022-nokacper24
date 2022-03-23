@@ -3,6 +3,7 @@ package no.ntnu.idata2001.wargames.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -71,16 +72,34 @@ class BattleTest {
     collectionOfUnits1.add(unit2);
 
     ArrayList<Unit> collectionOfUnits2 = new ArrayList<>();
-    Unit unit3 = new CommanderUnit("name3", 90);
-    Unit unit4 = new InfantryUnit("name4", 70);
+    Unit unit3 = new CommanderUnit("name3", 10);
+    Unit unit4 = new InfantryUnit("name4", 10);
     collectionOfUnits2.add(unit3);
     collectionOfUnits2.add(unit4);
 
     Army army1 = new Army("Army1", collectionOfUnits1);
     Army army2 = new Army("Army2", collectionOfUnits2);
+
     Battle battle = new Battle(army1, army2);
 
-    Army winningArmy = battle.simulate();
-    assertNotNull(winningArmy);
+    assertNotNull(battle.simulate());
+  }
+
+  @Test
+  void testSimulateDraw() {
+    ArrayList<Unit> collectionOfUnits1 = new ArrayList<>();
+    Unit unit1 = new CavalryUnit("name1", 1);
+    collectionOfUnits1.add(unit1);
+
+    ArrayList<Unit> collectionOfUnits2 = new ArrayList<>();
+    Unit unit2 = new CommanderUnit("name3", 1);
+    collectionOfUnits2.add(unit2);
+
+    Army army1 = new Army("Army1", collectionOfUnits1);
+    Army army2 = new Army("Army2", collectionOfUnits2);
+
+    Battle battle = new Battle(army1, army2);
+
+    assertNull(battle.simulate());
   }
 }

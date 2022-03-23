@@ -26,55 +26,61 @@ public class Battle {
   }
 
   /**
-   * Returns armyOne
+   * Returns armyOne.
    *
    * @return armyOne
    */
-  public Army getArmyOne(){
+  public Army getArmyOne() {
     return armyOne;
   }
 
   /**
-   * Returns armyTwo
+   * Returns armyTwo.
    *
    * @return armyTwo
    */
-  public Army getArmyTwo(){
+  public Army getArmyTwo() {
     return armyTwo;
   }
 
   /**
-   * Simulates a battle between the armies.
+   * Simulates a battle between two armies.
+   * Returns the winning army, if it was a draw null is returned.
    *
-   * @return winning army
+   * @return winning army, null if it's a draw
    */
   public Army simulate() {
-    Army winningArmy;
-
     while (this.isInProgress()) {
-      this.armyAttackArmyB(this.armyOne, this.armyTwo);
-      if (this.isInProgress()) { // make sure armyTwo still has units
-        this.armyAttackArmyB(this.armyTwo, this.armyOne);
-      }
+      this.armiesAttackEachOther(this.armyOne, this.armyTwo);
     }
-    winningArmy = armyOne.hasUnits() ? armyOne : armyTwo;
-    return winningArmy;
+
+    if (this.armyOne.hasUnits() || this.armyTwo.hasUnits()) {
+      return this.armyOne.hasUnits() ? this.armyOne : this.armyTwo;
+    } else {
+      return null;
+    }
   }
 
 
   /**
-   * Random unit from armyA attacks a random unit from armyB.
-   * If the attacked unit is no longer alive it's removed from its army.
+   * Two random units from both armies attack each other.
+   * If any of the units are no longer alive after attacks
+   * they're removed from their armies.
    *
-   * @param armyA attacking army
-   * @param armyB army to be attacked
+   * @param armyA Army 1
+   * @param armyB Army 2
    */
-  public void armyAttackArmyB(Army armyA, Army armyB) {
-    Unit attacker = armyA.getRandom();
-    Unit recipient = armyB.getRandom();
-    attacker.attack(recipient);
-    if (!recipient.isAlive()) {
-      armyB.remove(recipient);
+  public void armiesAttackEachOther(Army armyA, Army armyB) {
+    Unit randomUnitA = armyA.getRandom();
+    Unit randomUnitB = armyB.getRandom();
+    randomUnitA.attack(randomUnitB);
+    randomUnitB.attack(randomUnitA);
+
+    if (!randomUnitA.isAlive()) {
+      armyA.remove(randomUnitA);
+    }
+    if (!randomUnitB.isAlive()) {
+      armyB.remove(randomUnitB);
     }
   }
 
