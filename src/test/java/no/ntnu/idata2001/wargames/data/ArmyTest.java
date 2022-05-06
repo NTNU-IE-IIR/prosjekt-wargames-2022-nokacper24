@@ -21,7 +21,7 @@ class ArmyTest {
   @Test
   void testCreationOfInstanceEmpty() {
     Army army = new Army("Army1");
-    assertEquals("Army1",army.getName());
+    assertEquals("Army1", army.getName());
     assertEquals(0, army.getAllUnits().size());
   }
 
@@ -38,7 +38,7 @@ class ArmyTest {
     collectionOfUnits.add(unit4);
     Army army = new Army("Army1", collectionOfUnits);
 
-    assertEquals("Army1",army.getName());
+    assertEquals("Army1", army.getName());
     assertEquals(4, army.getAllUnits().size());
   }
 
@@ -63,7 +63,7 @@ class ArmyTest {
     collectionOfUnits.add(unit2);
     collectionOfUnits.add(unit3);
     collectionOfUnits.add(unit4);
-    Army army = new Army("Army1");
+    Army army = new Army("Army");
 
     assertEquals(0, army.getAllUnits().size());
     army.addAll(collectionOfUnits);
@@ -87,6 +87,7 @@ class ArmyTest {
     assertTrue(army.remove(unit4));
     assertEquals(3, army.getAllUnits().size());
   }
+
   @Test
   void testRemoveNonexistentUnit() {
     ArrayList<Unit> collectionOfUnits = new ArrayList<>();
@@ -127,4 +128,80 @@ class ArmyTest {
     assertNotNull(army.getRandom());
   }
 
+  @Test
+  void testGetInfantryUnits() {
+    ArrayList<Unit> collectionOfUnits = new ArrayList<>();
+    Unit unit1 = new InfantryUnit("name4", 70);
+    Unit unit2 = new CavalryUnit("name1", 100);
+    Unit unit3 = new RangedUnit("name2", 120);
+    Unit unit4 = new CommanderUnit("name3", 90);
+    collectionOfUnits.add(unit1);
+    collectionOfUnits.add(unit2);
+    collectionOfUnits.add(unit3);
+    collectionOfUnits.add(unit4);
+    Army army = new Army("Army1", collectionOfUnits);
+
+    assertEquals(unit1, army.getInfantryUnits().get(0));
+    assertEquals(1, army.getInfantryUnits().size());
+  }
+
+  @Test
+  void testGetCavalryUnits() {
+    ArrayList<Unit> collectionOfUnits = new ArrayList<>();
+    Unit unit1 = new InfantryUnit("name4", 70);
+    Unit unit2 = new CavalryUnit("name1", 100);
+    Unit unit3 = new RangedUnit("name2", 120);
+    Unit unit4 = new CommanderUnit("name3", 90);
+    collectionOfUnits.add(unit1);
+    collectionOfUnits.add(unit2);
+    collectionOfUnits.add(unit3);
+    collectionOfUnits.add(unit4);
+    Army army = new Army("Army1", collectionOfUnits);
+
+    assertEquals(unit2, army.getCavalryUnits().get(0));
+    assertEquals(1, army.getCavalryUnits().size());
+  }
+
+  @Test
+  void testGetRangedUnits() {
+    ArrayList<Unit> collectionOfUnits = new ArrayList<>();
+    Unit unit1 = new InfantryUnit("name4", 70);
+    Unit unit2 = new CavalryUnit("name1", 100);
+    Unit unit3 = new RangedUnit("name2", 120);
+    Unit unit4 = new CommanderUnit("name3", 90);
+    collectionOfUnits.add(unit1);
+    collectionOfUnits.add(unit2);
+    collectionOfUnits.add(unit3);
+    collectionOfUnits.add(unit4);
+    Army army = new Army("Army1", collectionOfUnits);
+
+    assertEquals(unit3, army.getRangedUnits().get(0));
+    assertEquals(1, army.getRangedUnits().size());
+  }
+
+  @Test
+  void testGetCommanderUnits() {
+    ArrayList<Unit> collectionOfUnits = new ArrayList<>();
+    Unit unit1 = new InfantryUnit("name4", 70);
+    Unit unit2 = new CavalryUnit("name1", 100);
+    Unit unit3 = new RangedUnit("name2", 120);
+    Unit unit4 = new CommanderUnit("name3", 90);
+    collectionOfUnits.add(unit1);
+    collectionOfUnits.add(unit2);
+    collectionOfUnits.add(unit3);
+    collectionOfUnits.add(unit4);
+    Army army = new Army("Army1", collectionOfUnits);
+
+    assertEquals(unit4, army.getCommanderUnits().get(0));
+    assertEquals(1, army.getCommanderUnits().size());
+  }
+
+  @Test
+  void testGetTypeUnitsNoUnits() {
+    Army army = new Army("Army");
+    assertEquals(0, army.getInfantryUnits().size());
+    assertEquals(0, army.getCavalryUnits().size());
+    assertEquals(0, army.getRangedUnits().size());
+    assertEquals(0, army.getCommanderUnits().size());
+  }
 }
