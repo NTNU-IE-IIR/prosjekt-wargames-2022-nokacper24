@@ -18,4 +18,4 @@ target/
 # Ghostwriter
 *.md.backup
 
-*.scv
+*.csv
