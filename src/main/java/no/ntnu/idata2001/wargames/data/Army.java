@@ -31,7 +31,7 @@ public class Army {
   /**
    * Constructor of the Army with given collection of units.
    *
-   * @param name name of the army
+   * @param name  name of the army
    * @param units collection of units in the army
    */
   public Army(String name, List<Unit> units) {
@@ -94,6 +94,51 @@ public class Army {
    */
   public List<Unit> getAllUnits() {
     return this.units;
+  }
+
+  /**
+   * Returns collection of all Infantry units in the army.
+   *
+   * @return all infantry units in army
+   */
+  public List<Unit> getInfantryUnits() {
+    return this.units.stream()
+        .filter(unit -> unit instanceof InfantryUnit)
+        .toList();
+  }
+
+  /**
+   * Returns collection of all Cavalry units in the army.
+   * Does not include Commander units that are subclass of CavalryUnit.
+   *
+   * @return all cavalry units in army
+   */
+  public List<Unit> getCavalryUnits() {
+    return this.units.stream()
+        .filter(unit -> unit instanceof CavalryUnit && !(unit instanceof CommanderUnit))
+        .toList();
+  }
+
+  /**
+   * Returns collection of all ranged units in the army.
+   *
+   * @return all ranged units in army
+   */
+  public List<Unit> getRangedUnits() {
+    return this.units.stream()
+        .filter(unit -> unit instanceof RangedUnit)
+        .toList();
+  }
+
+  /**
+   * Returns collection of all commander units in the army.
+   *
+   * @return all commander units in army
+   */
+  public List<Unit> getCommanderUnits() {
+    return this.units.stream()
+        .filter(unit -> unit instanceof CommanderUnit)
+        .toList();
   }
 
   /**
