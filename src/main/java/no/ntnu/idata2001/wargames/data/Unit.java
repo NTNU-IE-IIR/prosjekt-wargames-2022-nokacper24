@@ -8,6 +8,17 @@ package no.ntnu.idata2001.wargames.data;
  */
 public abstract class Unit {
 
+  /**
+   * Enum for all unit types.
+   * When adding a new unit type make sure to add new enum.
+   */
+  public enum UnitType {
+    INFANTRY,
+    CAVALRY,
+    RANGED,
+    COMMANDER
+  }
+
   private final String name;
   private int health;
   private final int attack;
@@ -140,6 +151,13 @@ public abstract class Unit {
    * @return resist bonus
    */
   abstract int getResistBonus();
+
+  /**
+   * Returns type of the unit.
+   *
+   * @return UnitType enum
+   */
+  public abstract UnitType getUnitType();
 
   /**
    * Returns unit's fields in form of a string.

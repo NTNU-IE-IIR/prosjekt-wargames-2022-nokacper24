@@ -36,6 +36,16 @@ public class CavalryUnit extends Unit {
   }
 
   /**
+   * Returns type of the unit.
+   *
+   * @return UnitType enum
+   */
+  @Override
+  public UnitType getUnitType() {
+    return UnitType.CAVALRY;
+  }
+
+  /**
    * Return attack bonus of the unit.
    * If it's the unit's first attack, returns first entry in attackBonus array.
    *

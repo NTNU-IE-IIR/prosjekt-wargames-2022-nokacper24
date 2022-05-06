@@ -38,6 +38,16 @@ public class DummyUnit extends Unit {
   }
 
   /**
+   * Method had to be implemented due to this method being abstract.
+   *
+   * @return null
+   */
+  @Override
+  public UnitType getUnitType() {
+    return null;
+  }
+
+  /**
    * Return attack bonus of the unit.
    *
    * @return attack bonus

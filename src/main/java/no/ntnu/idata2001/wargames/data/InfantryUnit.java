@@ -35,6 +35,16 @@ public class InfantryUnit extends Unit {
   }
 
   /**
+   * Returns type of the unit.
+   *
+   * @return UnitType enum
+   */
+  @Override
+  public UnitType getUnitType() {
+    return UnitType.INFANTRY;
+  }
+
+  /**
    * Return attack bonus of the unit.
    *
    * @return attack bonus
