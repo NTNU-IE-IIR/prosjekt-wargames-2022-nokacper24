@@ -97,14 +97,24 @@ public class Army {
   }
 
   /**
+   * Returns a collection of all Units of the given type.
+   *
+   * @param unitType UnitType enum
+   * @return all units of given type
+   */
+  private List<Unit> getUnitsByType(Unit.UnitType unitType) {
+    return this.units.stream()
+        .filter(unit -> unit.getUnitType() == unitType)
+        .toList();
+  }
+
+  /**
    * Returns collection of all Infantry units in the army.
    *
    * @return all infantry units in army
    */
   public List<Unit> getInfantryUnits() {
-    return this.units.stream()
-        .filter(unit -> unit instanceof InfantryUnit)
-        .toList();
+    return this.getUnitsByType(Unit.UnitType.INFANTRY);
   }
 
   /**
@@ -114,9 +124,7 @@ public class Army {
    * @return all cavalry units in army
    */
   public List<Unit> getCavalryUnits() {
-    return this.units.stream()
-        .filter(unit -> unit instanceof CavalryUnit && !(unit instanceof CommanderUnit))
-        .toList();
+    return this.getUnitsByType(Unit.UnitType.CAVALRY);
   }
 
   /**
@@ -125,9 +133,7 @@ public class Army {
    * @return all ranged units in army
    */
   public List<Unit> getRangedUnits() {
-    return this.units.stream()
-        .filter(unit -> unit instanceof RangedUnit)
-        .toList();
+    return this.getUnitsByType(Unit.UnitType.RANGED);
   }
 
   /**
@@ -136,9 +142,7 @@ public class Army {
    * @return all commander units in army
    */
   public List<Unit> getCommanderUnits() {
-    return this.units.stream()
-        .filter(unit -> unit instanceof CommanderUnit)
-        .toList();
+    return this.getUnitsByType(Unit.UnitType.COMMANDER);
   }
 
   /**
