@@ -1,6 +1,7 @@
 package no.ntnu.idata2001.wargames.logic;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,11 +32,11 @@ public class ArmyFileHandler {
    * Saves provided army in a file.
    *
    * @param army to be saved
-   * @param fileName name of file
+   * @param file name of file
    */
-  public void saveArmyToFile(Army army, String fileName) {
+  public void saveArmyToFile(Army army, File file) {
 
-    try (FileWriter fileWriter = new FileWriter(fileName)) {
+    try (FileWriter fileWriter = new FileWriter(file)) {
       PrintWriter writer = new PrintWriter(fileWriter);
 
       writer.println(army.getName());
@@ -56,13 +57,13 @@ public class ArmyFileHandler {
   /**
    * Loads and returns army from file provided.
    *
-   * @param filename file
+   * @param file file
    * @return army from file
    * @throws IllegalUnitsFileException if file format is incorrect
    */
-  public Army loadArmyFromFile(String filename) throws IllegalUnitsFileException {
+  public Army loadArmyFromFile(File file) throws IllegalUnitsFileException {
     UnitFactory unitFactory = new UnitFactory();
-    List<String> lines = this.loadLinesFromFile(filename);
+    List<String> lines = this.loadLinesFromFile(file);
 
     String armyName;
     ArrayList<Unit> collectionOfUnits = new ArrayList<>();
@@ -112,12 +113,12 @@ public class ArmyFileHandler {
   /**
    * Loads a file and returns the List of lines from file.
    *
-   * @param filename file to be read
+   * @param file file to be read
    * @return List of lines from file
    */
-  private List<String> loadLinesFromFile(String filename) {
+  private List<String> loadLinesFromFile(File file) {
     Charset charset = StandardCharsets.UTF_8;
-    Path path = Path.of(filename);
+    Path path = Path.of(file.getAbsolutePath());
 
     ArrayList<String> allLines = new ArrayList<>();
 
@@ -129,7 +130,7 @@ public class ArmyFileHandler {
         allLines.add(lineOfText);
       }
     } catch (IOException e) {
-      System.out.println("File not found."); //TODO
+      System.out.println("File not found. Couldn't find file"); //TODO
     }
     return allLines;
   }
