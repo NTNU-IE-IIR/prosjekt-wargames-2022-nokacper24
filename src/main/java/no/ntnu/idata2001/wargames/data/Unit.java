@@ -136,7 +136,7 @@ public abstract class Unit {
    *
    * @param healthPoints to be reduced
    */
-  public void reduceHealthBy(int healthPoints) {
+  private void reduceHealthBy(int healthPoints) {
     int newHealth = this.health - healthPoints;
     this.setHealth(newHealth);
   }
