@@ -2,7 +2,9 @@ package no.ntnu.idata2001.wargames.logic;
 
 /**
  * IllegalUnitsFileException is to be thrown when
- * something went wrong while loading file that should contain units.
+ * something went wrong while loading file that should contain units,
+ * for example corrupt or incorrect file.
+ * <p>
  * Possible issues that could trigger a throw: Incorrect file format, no units in the file,
  * when details for unit creation are illegal (incorrect type, blank name or negative health)
  */
