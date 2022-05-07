@@ -19,6 +19,9 @@ public class RangedUnit extends Unit {
    * @param health Initial health of the unit
    * @param attack Base attack damage
    * @param armor  Base defence value
+   * @throws IllegalArgumentException when name empty,
+   *                                  health equal or less than 0,
+   *                                  attack or armor equal or less than 0
    */
   public RangedUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
@@ -30,6 +33,8 @@ public class RangedUnit extends Unit {
    *
    * @param name Name of the unit
    * @param health Initial health of the unit
+   * @throws IllegalArgumentException when name empty,
+   *                                  health equal or less than 0
    */
   public RangedUnit(String name, int health) {
     super(name, health, 15, 8);

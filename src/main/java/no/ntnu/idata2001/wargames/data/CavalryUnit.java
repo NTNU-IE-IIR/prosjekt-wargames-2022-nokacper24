@@ -19,6 +19,9 @@ public class CavalryUnit extends Unit {
    * @param health Initial health of the unit
    * @param attack Base attack damage
    * @param armor  Base defence value
+   * @throws IllegalArgumentException when name empty,
+   *                                  health equal or less than 0,
+   *                                  attack or armor equal or less than 0
    */
   public CavalryUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
@@ -27,6 +30,8 @@ public class CavalryUnit extends Unit {
   /**
    * Constructor of the CavalryUnit.
    * Sets unit's attack to 20, and armor to 12.
+   * @throws IllegalArgumentException when name empty,
+   *                                  health equal or less than 0
    *
    * @param name Name of the unit
    * @param health Initial health of the unit

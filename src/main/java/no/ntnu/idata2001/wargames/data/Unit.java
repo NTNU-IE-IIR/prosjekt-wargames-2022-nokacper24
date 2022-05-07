@@ -31,6 +31,9 @@ public abstract class Unit {
    * @param health Initial health of the unit
    * @param attack Base attack damage
    * @param armor  Base defence value
+   * @throws IllegalArgumentException when name empty,
+   *                                  health equal or less than 0,
+   *                                  attack or armor equal or less than 0
    */
   protected Unit(String name, int health, int attack, int armor) {
     if (name == null || name.isBlank()) {
