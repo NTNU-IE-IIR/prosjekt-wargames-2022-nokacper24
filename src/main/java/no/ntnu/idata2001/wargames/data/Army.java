@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Army {
 
-  private final String name;
+  private String name;
   private List<Unit> units;
   private final Random random;
 
@@ -21,9 +21,10 @@ public class Army {
    * Constructor of the Army with no units.
    *
    * @param name name of the army
+   * @throws IllegalArgumentException when name null or blank
    */
   public Army(String name) {
-    this.name = name;
+    this.setName(name);
     this.units = new ArrayList<>();
     this.random = new Random();
   }
@@ -33,11 +34,26 @@ public class Army {
    *
    * @param name  name of the army
    * @param units collection of units in the army
+   * @throws IllegalArgumentException when name null or blank
    */
   public Army(String name, List<Unit> units) {
-    this.name = name;
+    this.setName(name);
     this.units = units;
     this.random = new Random();
+  }
+
+  /**
+   * Sets the name of this army.
+   *
+   * @param name name of the army
+   * @throws IllegalArgumentException when name null or blank
+   */
+  private void setName(String name) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Army name cannot be empty.");
+    } else {
+      this.name = name;
+    }
   }
 
   /**
