@@ -1,5 +1,7 @@
 package no.ntnu.idata2001.wargames.data;
 
+import java.util.Objects;
+
 /**
  * Abstract class representing a single unit in the Wargames app.
  *
@@ -173,4 +175,32 @@ public abstract class Unit {
         + "\n Attack " + this.attack + "\n Armor " + this.armor;
   }
 
+  /**
+   * Test if two Units are equal.
+   *
+   * @param o object to be compared to this
+   * @return true if units are equal
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Unit unit = (Unit) o;
+    return health == unit.health && attack == unit.attack && armor == unit.armor &&
+        name.equals(unit.name);
+  }
+
+  /**
+   * Returns a hashCode of the object.
+   *
+   * @return a hashcode for Unit object
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, health, attack, armor);
+  }
 }
