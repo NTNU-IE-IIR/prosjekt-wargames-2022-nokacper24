@@ -186,26 +186,27 @@ public class Army {
   }
 
   /**
-   * Test if two objects are equal.
+   * Test if two armies are equal.
    *
-   * @param other object to be compared to this
-   * @return true if objects are equal
+   * @param o object to be compared to this
+   * @return true if armies are equal
    */
   @Override
-  public boolean equals(Object other) {
-    if (other instanceof Army) {
-      Army otherArmy = (Army) other;
-      return this.name.equals(otherArmy.getName())
-          && this.units.equals(otherArmy.getAllUnits());
-    } else {
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
     }
+    Army army = (Army) o;
+    return name.equals(army.name) && units.containsAll(army.units);
   }
 
   /**
    * Returns a hashCode of the object.
    *
-   * @return a hashcode for Army
+   * @return a hashcode for Army object
    */
   @Override
   public int hashCode() {
