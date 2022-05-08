@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 public class ArmyFileHandlerTest {
 
   @Test
-  void LoadArmyFromFIleTest() throws IOException {
+  void testLoadArmyFromFIle() throws IOException {
     ArmyFileHandler handler = new ArmyFileHandler();
     File file = new File("./src/test/sampleArmy.csv");
     try {
@@ -41,7 +41,7 @@ public class ArmyFileHandlerTest {
   }
 
   @Test
-  void LoadArmyFromFIleTestBlankFile() throws IOException {
+  void testLoadArmyFromBlankFile() throws IOException {
     ArmyFileHandler handler = new ArmyFileHandler();
     File file = new File("./src/test/sampleArmyBlank.csv");
 
@@ -50,7 +50,7 @@ public class ArmyFileHandlerTest {
   }
 
   @Test
-  void LoadArmyFromFIleTestCorruptFile() throws IOException {
+  void testLoadArmyFromCorruptFile() throws IOException {
     ArmyFileHandler handler = new ArmyFileHandler();
     File file = new File("./src/test/sampleArmyCorrupt.csv");
 
@@ -64,7 +64,7 @@ public class ArmyFileHandlerTest {
    * So the test may fail in case load method is not working correctly.
    */
   @Test
-  void saveArmyToFileTest() throws IOException {
+  void testSaveArmyToFile() throws IOException {
     ArrayList<Unit> collectionOfUnits = new ArrayList<>();
     Unit unit1 = new InfantryUnit("name1", 70);
     Unit unit2 = new CavalryUnit("name2", 100);
@@ -87,18 +87,6 @@ public class ArmyFileHandlerTest {
     } catch (IllegalUnitsFileException e) {
       // this should not get triggered since file is created first
     }
-
   }
 
-  //@Test
-  void LoadArmyFromFIleTdwdwdwdwdwest() throws IllegalUnitsFileException, IOException {
-    ArmyFileHandler handler = new ArmyFileHandler();
-    UnitFactory factory = new UnitFactory();
-    List<Unit> units = factory.createUnits(25, "commander", "name1", 100);
-    units.addAll(factory.createUnits(50, Unit.UnitType.INFANTRY, "name232", 150));
-    Army army = new Army("Super amazing army", units);
-
-    File file = new File("./src/test/greatArmy.csv");
-    handler.saveArmyToFile(army,file);
-  }
 }
