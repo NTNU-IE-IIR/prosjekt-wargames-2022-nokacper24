@@ -60,6 +60,8 @@ public class ArmyFileHandlerTest {
 
   /**
    * This test method tests both save and load methods.
+   * It uses load method in order to check if the save method works correctly.
+   * So the test may fail in case load method is not working correctly.
    */
   @Test
   void saveArmyToFileTest() throws IOException {
