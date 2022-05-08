@@ -19,5 +19,5 @@ target/
 *.md.backup
 
 # other
-*.csv
+testArmyFile.csv
 notes.txt
