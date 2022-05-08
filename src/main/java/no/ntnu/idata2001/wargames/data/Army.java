@@ -187,6 +187,8 @@ public class Army {
 
   /**
    * Test if two armies are equal.
+   * By equal, we mean that they have the same name
+   * and the same units in their lists, order does not matter.
    *
    * @param o object to be compared to this
    * @return true if armies are equal
@@ -200,7 +202,8 @@ public class Army {
       return false;
     }
     Army army = (Army) o;
-    return name.equals(army.name) && units.containsAll(army.units);
+    return name.equals(army.name) && units.size() == army.units.size()
+        && units.containsAll(army.units) && army.units.containsAll(units);
   }
 
   /**
