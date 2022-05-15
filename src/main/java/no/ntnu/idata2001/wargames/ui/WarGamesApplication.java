@@ -1,7 +1,11 @@
 package no.ntnu.idata2001.wargames.ui;
 
+import java.io.File;
+import java.io.IOException;
 import no.ntnu.idata2001.wargames.data.Army;
+import no.ntnu.idata2001.wargames.logic.ArmyFileHandler;
 import no.ntnu.idata2001.wargames.logic.Battle;
+import no.ntnu.idata2001.wargames.logic.IllegalUnitsFileException;
 
 /**
  * Class representing a WarGames application.
@@ -16,11 +20,13 @@ public class WarGamesApplication {
   private Army armyOneInitial; // armyOne state before battle
   private Army armyTwoInitial; // armyTwo state before battle
 
+  private ArmyFileHandler armyFileHandler;
+
   /**
    * Constructor for war games application.
    */
   public WarGamesApplication() {
-    // no setup needed
+    this.armyFileHandler = new ArmyFileHandler();
   }
 
   /**
@@ -100,6 +106,28 @@ public class WarGamesApplication {
       this.armyOne = armyOneInitial.copy();
       this.armyTwo = armyTwoInitial.copy();
     }
+  }
+
+  /**
+   * Loads army from a file and sets it as armyOne.
+   *
+   * @param loadedFile file to load from
+   * @throws IllegalUnitsFileException if file is not valid
+   * @throws IOException if IO error occurs
+   */
+  public void loadArmy1FromFile(File loadedFile) throws IllegalUnitsFileException, IOException {
+    this.armyOne = this.armyFileHandler.loadArmyFromFile(loadedFile);
+  }
+
+  /**
+   * Loads army from a file and sets it as armyTwo.
+   *
+   * @param loadedFile file to load from
+   * @throws IllegalUnitsFileException if file is not valid
+   * @throws IOException if IO error occurs
+   */
+  public void loadArmy2FromFile(File loadedFile) throws IllegalUnitsFileException, IOException {
+    this.armyTwo = this.armyFileHandler.loadArmyFromFile(loadedFile);
   }
 
 }

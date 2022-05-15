@@ -1,5 +1,7 @@
 package no.ntnu.idata2001.wargames.ui;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -15,10 +17,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import no.ntnu.idata2001.wargames.data.Army;
 import no.ntnu.idata2001.wargames.data.Unit;
+import no.ntnu.idata2001.wargames.logic.IllegalUnitsFileException;
 import no.ntnu.idata2001.wargames.logic.UnitFactory;
 
 /**
@@ -93,7 +97,7 @@ public class Controller {
     army1.addAll(factory.createUnits(5, Unit.UnitType.CAVALRY, "unit1", 150));
     army1.addAll(factory.createUnits(1, Unit.UnitType.COMMANDER, "dddd", 150));
     army1.addAll(factory.createUnits(4, Unit.UnitType.RANGED, "unit1", 150));
-    army1.addAll(factory.createUnits(10, Unit.UnitType.INFANTRY, "unit1", 150));
+    army1.addAll(factory.createUnits(1000, Unit.UnitType.INFANTRY, "footman", 1));
 
     army2.addAll(factory.createUnits(5, Unit.UnitType.CAVALRY, "un2", 150));
     army2.addAll(factory.createUnits(1, Unit.UnitType.COMMANDER, "dddd", 150));
@@ -172,6 +176,48 @@ public class Controller {
     this.updateArmiesDetails();
   }
 
+  /**
+   * Shows a file chooser dialog and lets the user choose an army to load.
+   * Loads chosen army to army1 in the application.
+   *
+   * @param actionEvent event
+   */
+  @FXML
+  private void handleLoadArmy1FromFile(ActionEvent actionEvent) {
+    File loadedFile = this.showFIleChooserDialog();
+    if (loadedFile != null) {
+      try {
+        this.warGamesApplication.loadArmy1FromFile(loadedFile);
+        this.updateArmiesDetails();
+      } catch (IllegalUnitsFileException e) {
+        System.out.println(e.getMessage());
+      } catch (IOException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
+  /**
+   * Shows a file chooser dialog and lets the user choose an army to load.
+   * Loads chosen army to army2 in the application.
+   *
+   * @param actionEvent event
+   */
+  @FXML
+  private void handleLoadArmy2FromFile(ActionEvent actionEvent) {
+    File loadedFile = this.showFIleChooserDialog();
+    if (loadedFile != null) {
+      try {
+        this.warGamesApplication.loadArmy2FromFile(loadedFile);
+        this.updateArmiesDetails();
+      } catch (IllegalUnitsFileException e) {
+        System.out.println(e.getMessage());
+      } catch (IOException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
   @FXML
   private void handleSetUpArmy1Button(ActionEvent actionEvent) {
       //TODO: implement
@@ -209,7 +255,7 @@ public class Controller {
   }
 
   @FXML
-  public void exitApplicationConfirmationDialog() {
+  private void exitApplicationConfirmationDialog() {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Confirm exit");
     alert.setHeaderText("Are you sure you want to exit?");
@@ -222,6 +268,15 @@ public class Controller {
         // do nothing
       }
     }
+  }
+
+  private File showFIleChooserDialog() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Open Resource File");
+    fileChooser.getExtensionFilters().add(
+        new FileChooser.ExtensionFilter("Text files", "*.txt", "*.csv"));
+    File selectedFile = fileChooser.showOpenDialog(null);
+    return selectedFile;
   }
 
 }
