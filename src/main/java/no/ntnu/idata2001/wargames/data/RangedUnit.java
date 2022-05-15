@@ -41,6 +41,25 @@ public class RangedUnit extends Unit {
   }
 
   /**
+   * Constructor for copy of RangedUnit.
+   *
+   * @param unit to be copied
+   */
+  protected RangedUnit(RangedUnit unit) {
+    super(unit);
+  }
+
+  /**
+   * Returns a copy of the unit object.
+   *
+   * @return copy of th eunit object
+   */
+  @Override
+  public RangedUnit copy() {
+    return new RangedUnit(this);
+  }
+
+  /**
    * Returns type of the unit.
    *
    * @return UnitType enum

@@ -55,6 +55,26 @@ public abstract class Unit {
   }
 
   /**
+   * Constructor for copy of Unit.
+   *
+   * @param unit to be copied
+   */
+  protected Unit(Unit unit) {
+    this.name = unit.name;
+    this.health = unit.health;
+    this.attack = unit.attack;
+    this.armor = unit.armor;
+  }
+
+
+  /**
+   * Returns a copy of the unit object.
+   *
+   * @return copy of the unit object
+   */
+  public abstract Unit copy();
+
+  /**
    * Returns name of the unit.
    *
    * @return name

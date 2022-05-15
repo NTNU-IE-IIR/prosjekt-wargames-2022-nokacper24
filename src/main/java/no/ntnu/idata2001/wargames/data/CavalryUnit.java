@@ -41,6 +41,25 @@ public class CavalryUnit extends Unit {
   }
 
   /**
+   * Constructor for copy of CavalryUnit.
+   *
+   * @param unit to be copied
+   */
+  protected CavalryUnit(CavalryUnit unit) {
+    super(unit);
+  }
+
+  /**
+   * Returns a copy of the unit object.
+   *
+   * @return copy of the unit object
+   */
+  @Override
+  public CavalryUnit copy() {
+    return new CavalryUnit(this);
+  }
+
+  /**
    * Returns type of the unit.
    *
    * @return UnitType enum

@@ -43,6 +43,28 @@ public class Army {
   }
 
   /**
+   * Constructor used to make a copy of the army object.
+   *
+   * @param army to be copied
+   */
+  private Army(Army army) {
+    this.name = army.name;
+    this.units = new ArrayList<>();
+    // make a copy of each unit in army
+    army.units.forEach(unit -> this.units.add(unit.copy()));
+    this.random = new Random();
+  }
+
+  /**
+   * Returns a copy of the army object.
+   *
+   * @return copy of the army object
+   */
+  public Army copy() {
+    return new Army(this);
+  }
+
+  /**
    * Sets the name of this army.
    *
    * @param name name of the army

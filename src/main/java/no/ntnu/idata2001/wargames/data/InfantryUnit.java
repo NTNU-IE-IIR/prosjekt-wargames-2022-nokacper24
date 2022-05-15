@@ -40,6 +40,25 @@ public class InfantryUnit extends Unit {
   }
 
   /**
+   * Constructor for copy of InfantryUnit.
+   *
+   * @param unit to be copied
+   */
+  protected InfantryUnit(InfantryUnit unit) {
+    super(unit);
+  }
+
+  /**
+   * Returns a copy of the unit object.
+   *
+   * @return copy of the unit object
+   */
+  @Override
+  public InfantryUnit copy() {
+    return new InfantryUnit(this);
+  }
+
+  /**
    * Returns type of the unit.
    *
    * @return UnitType enum
