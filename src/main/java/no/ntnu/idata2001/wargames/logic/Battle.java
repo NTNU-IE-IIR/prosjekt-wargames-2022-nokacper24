@@ -11,8 +11,8 @@ import no.ntnu.idata2001.wargames.data.Unit;
  */
 public class Battle {
 
-  private final Army armyOne;
-  private final Army armyTwo;
+  private Army armyOne;
+  private Army armyTwo;
 
   /**
    * Constructor of the Battle class.
@@ -61,6 +61,37 @@ public class Battle {
     }
   }
 
+  /**
+   * Simulates a single step of the battle if battle is in progress.
+   */
+  public void simulateStep() {
+    if (this.isInProgress()) {
+      this.armiesAttackEachOther(this.armyOne, this.armyTwo);
+    }
+  }
+
+  /**
+   * Returns the winner of the battle.
+   * Returns null if it's a draw.
+   * Throws BattleStillInProgressException if both armies have units,
+   * i.e. battle is still in progress.
+   *
+   * @return winning army, null in case of a draw
+   * @throws BattleStillInProgressException if battle is still in progress
+   */
+  public Army getWinner() {
+    if (this.armyOne.hasUnits() && this.armyTwo.hasUnits()) {
+      // both armies have units
+      throw new BattleStillInProgressException();
+    } else if (this.armyOne.hasUnits() || this.armyTwo.hasUnits()) {
+      // one of the armies has no units, returns the one with units
+      return this.armyOne.hasUnits() ? this.armyOne : this.armyTwo;
+    } else {
+      // draw
+      return null;
+    }
+  }
+
 
   /**
    * Two random units from both armies attack each other.
@@ -70,7 +101,7 @@ public class Battle {
    * @param armyA Army 1
    * @param armyB Army 2
    */
-  public void armiesAttackEachOther(Army armyA, Army armyB) {
+  private void armiesAttackEachOther(Army armyA, Army armyB) {
     Unit randomUnitA = armyA.getRandom();
     Unit randomUnitB = armyB.getRandom();
     randomUnitA.attack(randomUnitB);
