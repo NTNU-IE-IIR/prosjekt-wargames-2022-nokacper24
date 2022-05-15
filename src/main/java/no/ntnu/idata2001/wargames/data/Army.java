@@ -38,7 +38,7 @@ public class Army {
    */
   public Army(String name, List<Unit> units) {
     this.setName(name);
-    this.units = units;
+    this.units = new ArrayList<>(units);
     this.random = new Random();
   }
 
