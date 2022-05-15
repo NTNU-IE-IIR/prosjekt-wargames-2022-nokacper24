@@ -1,16 +1,22 @@
 package no.ntnu.idata2001.wargames.ui;
 
+import java.util.Optional;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import no.ntnu.idata2001.wargames.data.Army;
 import no.ntnu.idata2001.wargames.data.Unit;
 import no.ntnu.idata2001.wargames.logic.UnitFactory;
@@ -96,16 +102,16 @@ public class Controller {
 
     this.setUpTables();
 
-    this.warGamesApplication = new WarGamesApplication(this.army1TableView, this.army2TableView);
+    this.warGamesApplication = new WarGamesApplication();
     this.warGamesApplication.setArmyOne(army1);
     this.warGamesApplication.setArmyTwo(army2);
-    this.warGamesApplication.setUp();
     this.updateArmiesDetails();
 
     //terrainChoiceBox.setItems(FXCollections.observableList(Arrays.stream(Battle.TerrainType.values()).toList().stream().toList()));
 
 
-  }
+    }
+
 
   /**
    * Sets up the table views for army1 and army2.
@@ -155,6 +161,30 @@ public class Controller {
   }
 
   /**
+   * Resets armies to the state before battle.
+   * If battle was not simulated yet, it does nothing.
+   *
+   * @param actionEvent event
+   */
+  @FXML
+  private void handleResetArmiesButton(ActionEvent actionEvent) {
+    this.warGamesApplication.resetArmies();
+    this.updateArmiesDetails();
+  }
+
+  @FXML
+  private void handleSetUpArmy1Button(ActionEvent actionEvent) {
+      //TODO: implement
+    System.out.println("Set up army 1 pressed");
+  }
+
+  @FXML
+  private void handleSetUpArmy2Button(ActionEvent actionEvent) {
+    //TODO: implement
+    System.out.println("Set up army 2 pressed");
+  }
+
+  /**
    * Shows a dialog with the winning army.
    * If null is passed it shows a dialog with a tie.
    *
@@ -167,7 +197,8 @@ public class Controller {
     if (army != null) {
       alert.setHeaderText(army.getName() + " won!");
       String unitOrUnits = army.getAllUnits().size() > 1 ? "units" : "unit";
-      content = "The battle was won by " + army.getName() + "\n" + army.getAllUnits().size() + " " + unitOrUnits +" survived.";
+      content = "The battle was won by " + army.getName() + "\n" + army.getAllUnits().size() + " " +
+          unitOrUnits + " survived.";
     } else {
       alert.setHeaderText("Draw!");
       content = "The battle ended in a draw. \nNo one survived.";
@@ -177,16 +208,20 @@ public class Controller {
     alert.showAndWait();
   }
 
-  /**
-   * Resets armies to the state before battle.
-   * If battle was not simulated yet, it does nothing.
-   *
-   * @param actionEvent event
-   */
   @FXML
-  private void handleResetArmiesButton(ActionEvent actionEvent) {
-    this.warGamesApplication.resetArmies();
-    this.updateArmiesDetails();
+  public void exitApplicationConfirmationDialog() {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setTitle("Confirm exit");
+    alert.setHeaderText("Are you sure you want to exit?");
+    alert.setContentText("The application will be closed.");
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent()) {
+      if (result.get() == ButtonType.OK) {
+        Platform.exit();
+      } else {
+        // do nothing
+      }
+    }
   }
 
 }
