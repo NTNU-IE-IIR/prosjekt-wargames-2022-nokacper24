@@ -59,13 +59,13 @@
                      <items>
                   <MenuItem mnemonicParsing="false" text="Load from file" onAction="#handleLoadArmy1FromFile" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSetUpArmy1Button" text="Set up" />
-                  <MenuItem mnemonicParsing="false" text="Save to file" />
+                  <MenuItem mnemonicParsing="false" text="Save to file" onAction="#handleSaveArmy1ToFile" />
                      </items></Menu>
                   <Menu mnemonicParsing="false" text="Army 2">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Load from file" onAction="#handleLoadArmy2FromFile" />
                         <MenuItem mnemonicParsing="false" onAction="#handleSetUpArmy2Button" text="Set up" />
-                        <MenuItem mnemonicParsing="false" text="Save to file" />
+                        <MenuItem mnemonicParsing="false" text="Save to file" onAction="#handleSaveArmy2ToFile"  />
                      </items>
                   </Menu>
             <SeparatorMenuItem mnemonicParsing="false" />

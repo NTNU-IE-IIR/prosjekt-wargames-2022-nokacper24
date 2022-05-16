@@ -130,4 +130,10 @@ public class WarGamesApplication {
     this.armyTwo = this.armyFileHandler.loadArmyFromFile(loadedFile);
   }
 
+  public void saveArmy1ToFile(File loadedFile) throws IOException {
+    this.armyFileHandler.saveArmyToFile(this.armyOne, loadedFile);
+  }
+  public void saveArmy2ToFile(File loadedFile) throws IOException {
+    this.armyFileHandler.saveArmyToFile(this.armyTwo, loadedFile);
+  }
 }

@@ -174,6 +174,7 @@ public class Controller {
   private void handleResetArmiesButton(ActionEvent actionEvent) {
     this.warGamesApplication.resetArmies();
     this.updateArmiesDetails();
+    //TODO if army is laoded from file it can be replaced by old army when reset is called
   }
 
   /**
@@ -191,6 +192,30 @@ public class Controller {
         this.updateArmiesDetails();
       } catch (IllegalUnitsFileException e) {
         System.out.println(e.getMessage());
+      } catch (IOException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
+  @FXML
+  private void handleSaveArmy1ToFile(ActionEvent actionEvent) {
+    File loadedFile = this.showFileSaveDialog(this.warGamesApplication.getArmyOne().getName());
+    if (loadedFile != null) {
+      try {
+        this.warGamesApplication.saveArmy1ToFile(loadedFile);
+      } catch (IOException e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
+  @FXML
+  private void handleSaveArmy2ToFile(ActionEvent actionEvent) {
+    File loadedFile = this.showFileSaveDialog(this.warGamesApplication.getArmyTwo().getName());
+    if (loadedFile != null) {
+      try {
+        this.warGamesApplication.saveArmy2ToFile(loadedFile);
       } catch (IOException e) {
         System.out.println(e.getMessage());
       }
@@ -274,8 +299,18 @@ public class Controller {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Open Resource File");
     fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter("Text files", "*.txt", "*.csv"));
+        new FileChooser.ExtensionFilter("CSV","*.csv"));
     File selectedFile = fileChooser.showOpenDialog(null);
+    return selectedFile;
+  }
+
+  private File showFileSaveDialog(String armyName) {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save Resource File");
+    fileChooser.getExtensionFilters().add(
+        new FileChooser.ExtensionFilter("CSV", "*.csv"));
+    fileChooser.setInitialFileName(armyName + ".csv");
+    File selectedFile = fileChooser.showSaveDialog(null);
     return selectedFile;
   }
 
