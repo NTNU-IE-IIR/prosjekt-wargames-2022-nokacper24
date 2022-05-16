@@ -69,7 +69,7 @@
                      </items>
                   </Menu>
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" onAction="#exitApplicationConfirmationDialog" text="Quit" />
+            <MenuItem mnemonicParsing="false" onAction="#handleQuitButton" text="Quit" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="View">

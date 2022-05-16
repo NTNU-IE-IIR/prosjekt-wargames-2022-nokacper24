@@ -16,10 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import no.ntnu.idata2001.wargames.data.Army;
 import no.ntnu.idata2001.wargames.data.Unit;
 import no.ntnu.idata2001.wargames.logic.IllegalUnitsFileException;
@@ -82,6 +79,7 @@ public class Controller {
   private ChoiceBox<Unit.UnitType> terrainChoiceBox;
 
   private WarGamesApplication warGamesApplication;
+  private DialogFactory dialogFactory;
 
   /**
    * Initializes the controller.
@@ -93,6 +91,8 @@ public class Controller {
     Army army2 = new Army("Glorious army of noobs");
 
     UnitFactory factory = new UnitFactory();
+    this.warGamesApplication = new WarGamesApplication();
+    this.dialogFactory = new DialogFactory();
 
     army1.addAll(factory.createUnits(5, Unit.UnitType.CAVALRY, "unit1", 150));
     army1.addAll(factory.createUnits(1, Unit.UnitType.COMMANDER, "dddd", 150));
@@ -106,15 +106,11 @@ public class Controller {
 
     this.setUpTables();
 
-    this.warGamesApplication = new WarGamesApplication();
     this.warGamesApplication.setArmyOne(army1);
     this.warGamesApplication.setArmyTwo(army2);
     this.updateArmiesDetails();
 
-    //terrainChoiceBox.setItems(FXCollections.observableList(Arrays.stream(Battle.TerrainType.values()).toList().stream().toList()));
-
-
-    }
+  }
 
 
   /**
@@ -159,9 +155,15 @@ public class Controller {
    */
   @FXML
   private void handleStartSimulationButton(ActionEvent actionEvent) {
-    this.warGamesApplication.simulateBattle();
-    this.updateArmiesDetails();
-    this.showBattleResultsDialog(warGamesApplication.getBattle().getWinner());
+    try {
+      this.warGamesApplication.simulateBattle();
+      this.updateArmiesDetails();
+      this.showBattleResultsDialog(warGamesApplication.getBattle().getWinner());
+    } catch (IllegalStateException e) {
+      Alert alert = this.dialogFactory.createErrorDialog(
+          "Could not start simulation", e.getMessage());
+      alert.showAndWait();
+    }
   }
 
   /**
@@ -185,39 +187,16 @@ public class Controller {
    */
   @FXML
   private void handleLoadArmy1FromFile(ActionEvent actionEvent) {
-    File loadedFile = this.showFIleChooserDialog();
-    if (loadedFile != null) {
+    FileChooser fileChooser = this.dialogFactory.createFileChooser();
+    File file = fileChooser.showOpenDialog(null);
+    if (file != null) {
       try {
-        this.warGamesApplication.loadArmy1FromFile(loadedFile);
+        this.warGamesApplication.loadArmy1FromFile(file);
         this.updateArmiesDetails();
       } catch (IllegalUnitsFileException e) {
-        System.out.println(e.getMessage());
+        this.showErrorLoadingArmyFileDialog(e);
       } catch (IOException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-  }
-
-  @FXML
-  private void handleSaveArmy1ToFile(ActionEvent actionEvent) {
-    File loadedFile = this.showFileSaveDialog(this.warGamesApplication.getArmyOne().getName());
-    if (loadedFile != null) {
-      try {
-        this.warGamesApplication.saveArmy1ToFile(loadedFile);
-      } catch (IOException e) {
-        System.out.println(e.getMessage());
-      }
-    }
-  }
-
-  @FXML
-  private void handleSaveArmy2ToFile(ActionEvent actionEvent) {
-    File loadedFile = this.showFileSaveDialog(this.warGamesApplication.getArmyTwo().getName());
-    if (loadedFile != null) {
-      try {
-        this.warGamesApplication.saveArmy2ToFile(loadedFile);
-      } catch (IOException e) {
-        System.out.println(e.getMessage());
+        this.showFileErrorDialog(e);
       }
     }
   }
@@ -230,22 +209,75 @@ public class Controller {
    */
   @FXML
   private void handleLoadArmy2FromFile(ActionEvent actionEvent) {
-    File loadedFile = this.showFIleChooserDialog();
-    if (loadedFile != null) {
+    FileChooser fileChooser = this.dialogFactory.createFileChooser();
+    File file = fileChooser.showOpenDialog(null);
+    if (file != null) {
       try {
-        this.warGamesApplication.loadArmy2FromFile(loadedFile);
+        this.warGamesApplication.loadArmy2FromFile(file);
         this.updateArmiesDetails();
       } catch (IllegalUnitsFileException e) {
-        System.out.println(e.getMessage());
+        this.showErrorLoadingArmyFileDialog(e);
       } catch (IOException e) {
-        System.out.println(e.getMessage());
+        this.showFileErrorDialog(e);
       }
     }
   }
 
   @FXML
+  private void handleSaveArmy1ToFile(ActionEvent actionEvent) {
+    String armyName = this.warGamesApplication.getArmyOne().getName();
+    FileChooser fileChooser = this.dialogFactory.createFileChooserSaving(armyName);
+    File file = fileChooser.showSaveDialog(null);
+    if (file != null) {
+      try {
+        this.warGamesApplication.saveArmy1ToFile(file);
+      } catch (IOException e) {
+        this.showFileErrorDialog(e);
+      }
+    }
+  }
+
+  @FXML
+  private void handleSaveArmy2ToFile(ActionEvent actionEvent) {
+    String armyName = this.warGamesApplication.getArmyTwo().getName();
+    FileChooser fileChooser = this.dialogFactory.createFileChooserSaving(armyName);
+    File file = fileChooser.showSaveDialog(null);
+    if (file != null) {
+      try {
+        this.warGamesApplication.saveArmy2ToFile(file);
+      } catch (IOException e) {
+        this.showFileErrorDialog(e);
+      }
+    }
+  }
+
+  /**
+   * Shows invalid army file error dialog.
+   * Used when IllegalUnitsFileException occurs.
+   *
+   * @param e IllegalUnitsFileException
+   */
+  private void showErrorLoadingArmyFileDialog(IllegalUnitsFileException e) {
+    Alert alert = this.dialogFactory.createErrorDialog(
+        "Could not load army from file!", "Details:\n" + e.getMessage());
+    alert.showAndWait();
+  }
+
+  /**
+   * Shows a file error dialog.
+   * Used when IOException occurs.
+   *
+   * @param e IOException
+   */
+  private void showFileErrorDialog(IOException e) {
+    Alert alert = this.dialogFactory.createErrorDialog(
+        "File error!", "Details:\n" + e.getMessage());
+    alert.showAndWait();
+  }
+
+  @FXML
   private void handleSetUpArmy1Button(ActionEvent actionEvent) {
-      //TODO: implement
+    //TODO: implement
     System.out.println("Set up army 1 pressed");
   }
 
@@ -262,56 +294,33 @@ public class Controller {
    * @param army winning army
    */
   private void showBattleResultsDialog(Army army) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Battle results");
+    String headerText;
     String content;
     if (army != null) {
-      alert.setHeaderText(army.getName() + " won!");
+      headerText = army.getName() + " won!";
       String unitOrUnits = army.getAllUnits().size() > 1 ? "units" : "unit";
       content = "The battle was won by " + army.getName() + "\n" + army.getAllUnits().size() + " " +
           unitOrUnits + " survived.";
     } else {
-      alert.setHeaderText("Draw!");
+      headerText = "Draw!";
       content = "The battle ended in a draw. \nNo one survived.";
     }
 
-    alert.setContentText(content);
-    alert.showAndWait();
+    Alert informationDialog = this.dialogFactory.createInformationDialog(headerText, content);
+    informationDialog.showAndWait();
   }
 
+  /**
+   * Shows exit confirmation dialog.
+   * When ok is pressed, the application is closed.
+   */
   @FXML
-  private void exitApplicationConfirmationDialog() {
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setTitle("Confirm exit");
-    alert.setHeaderText("Are you sure you want to exit?");
-    alert.setContentText("The application will be closed.");
+  private void handleQuitButton(ActionEvent actionEvent) {
+    Alert alert = this.dialogFactory.createConfirmExitDialog();
     Optional<ButtonType> result = alert.showAndWait();
-    if (result.isPresent()) {
-      if (result.get() == ButtonType.OK) {
+    if (result.isPresent() && result.get() == ButtonType.OK) {
         Platform.exit();
-      } else {
-        // do nothing
-      }
     }
-  }
-
-  private File showFIleChooserDialog() {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Open Resource File");
-    fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter("CSV","*.csv"));
-    File selectedFile = fileChooser.showOpenDialog(null);
-    return selectedFile;
-  }
-
-  private File showFileSaveDialog(String armyName) {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Save Resource File");
-    fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter("CSV", "*.csv"));
-    fileChooser.setInitialFileName(armyName + ".csv");
-    File selectedFile = fileChooser.showSaveDialog(null);
-    return selectedFile;
   }
 
 }

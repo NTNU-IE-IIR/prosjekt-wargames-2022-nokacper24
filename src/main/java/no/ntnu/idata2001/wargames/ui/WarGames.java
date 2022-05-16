@@ -36,10 +36,8 @@ public class WarGames extends Application {
    */
   private void setUpDialogOnClose(Stage primaryStage) {
     primaryStage.setOnCloseRequest(event -> {
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-      alert.setTitle("Confirm exit");
-      alert.setHeaderText("Are you sure you want to exit?");
-      alert.setContentText("The application will be closed.");
+      DialogFactory dialogFactory = new DialogFactory();
+      Alert alert = dialogFactory.createConfirmExitDialog();
 
       Optional<ButtonType> result = alert.showAndWait();
       if (result.isPresent()) {
