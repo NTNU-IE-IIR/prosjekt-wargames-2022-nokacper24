@@ -176,7 +176,6 @@ public class Controller {
   private void handleResetArmiesButton(ActionEvent actionEvent) {
     this.warGamesApplication.resetArmies();
     this.updateArmiesDetails();
-    //TODO if army is laoded from file it can be replaced by old army when reset is called
   }
 
   /**

@@ -30,17 +30,25 @@ public class WarGamesApplication {
   }
 
   /**
-   * Sets armyOne.
+   * Sets armyOne in the application to the given army.
+   * Also updates the initial state of armyOne to given army.
+   *
+   * @param army to set armyOne to
    */
-  public void setArmyOne(Army army1) {
-    this.armyOne = army1;
+  public void setArmyOne(Army army) {
+    this.armyOne = army;
+    this.armyOneInitial = this.armyOne.copy();
   }
 
   /**
-   * Sets armyTwo.
+   * Sets armyTwo in the application to the given army.
+   * Also updates the initial state of armyTwo to given army.
+   *
+   * @param army to set armyTwo to
    */
-  public void setArmyTwo(Army army2) {
-    this.armyTwo = army2;
+  public void setArmyTwo(Army army) {
+    this.armyTwo = army;
+    this.armyTwoInitial = this.armyTwo.copy();
   }
 
   /**
@@ -116,7 +124,7 @@ public class WarGamesApplication {
    * @throws IOException if IO error occurs
    */
   public void loadArmy1FromFile(File loadedFile) throws IllegalUnitsFileException, IOException {
-    this.armyOne = this.armyFileHandler.loadArmyFromFile(loadedFile);
+    this.setArmyOne(this.armyFileHandler.loadArmyFromFile(loadedFile));
   }
 
   /**
@@ -127,7 +135,7 @@ public class WarGamesApplication {
    * @throws IOException if IO error occurs
    */
   public void loadArmy2FromFile(File loadedFile) throws IllegalUnitsFileException, IOException {
-    this.armyTwo = this.armyFileHandler.loadArmyFromFile(loadedFile);
+    this.setArmyTwo(this.armyFileHandler.loadArmyFromFile(loadedFile));
   }
 
   public void saveArmy1ToFile(File loadedFile) throws IOException {
