@@ -1,6 +1,5 @@
 package no.ntnu.idata2001.wargames.ui;
 
-import java.io.IOException;
 import java.util.Optional;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -27,7 +26,9 @@ public class WarGames extends Application {
       primaryStage.show();
     } catch (Exception e) {
       DialogFactory dialogFactory = new DialogFactory();
-      dialogFactory.showResourceErrorDialog(e);
+      Alert alert = dialogFactory.createResourceErrorDialog(
+          e.getClass().getSimpleName()+ ": " + e.getMessage());
+      alert.showAndWait();
     }
 
     setUpDialogOnClose(primaryStage);

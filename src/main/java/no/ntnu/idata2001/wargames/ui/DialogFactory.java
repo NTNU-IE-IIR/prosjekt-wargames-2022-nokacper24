@@ -45,8 +45,8 @@ public class DialogFactory {
   /**
    * Creates and returns a confirm exit dialog.
    * Used for exit confirmation.
-   * <p>
-   * Use Optional&ltButtonType&gt result = dialog.showAndWait() to open the dialog.
+   *
+   * <p>Use Optional&lt;ButtonType&gt; result = dialog.showAndWait() to open the dialog.
    * Check for ButtonType.OK to confirm exit and call Platform.exit()
    *
    * @return confirmation dialog with exit contents
@@ -109,24 +109,38 @@ public class DialogFactory {
     return fileChooser;
   }
 
+  /**
+   * Sets icon for the given alert.
+   *
+   * @param alert alert to set icon for
+   */
   private void setAlertWindowIcon(Alert alert) {
     Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
     try {
       Image icon = new Image("no/ntnu/idata2001/wargames/ui/icon.png");
       stage.getIcons().add(icon);
     } catch (Exception e) {
-      showResourceErrorDialog(e);
+      Alert errorAlert =
+          createResourceErrorDialog(e.getClass().getSimpleName() + ": " + e.getMessage());
+      errorAlert.showAndWait();
     }
   }
 
-  public void showResourceErrorDialog(Exception e) {
+  /**
+   * Creates and returns a resource error dialog.
+   * Used for errors when loading resources. (e.g. fxml files or images)
+   *
+   * @param details details of the error
+   * @return error dialog
+   */
+  public Alert createResourceErrorDialog(String details) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Error");
     alert.setHeaderText("Could not load resource");
     alert.setContentText(
-        "Could not find files necessary for the application.\nPlease contact support.\nDetails: " +
-            e.getMessage());
-    alert.showAndWait();
+        "Could not find files necessary for the application.\nPlease contact support.\nDetails:\n"
+            + details);
+    return alert;
   }
 
 }
