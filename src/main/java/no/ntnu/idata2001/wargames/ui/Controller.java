@@ -134,17 +134,21 @@ public class Controller {
    * Updated the army tables, army names and number of units.
    */
   public void updateArmiesDetails() {
-    ObservableList<Unit> army1ObservableUnitRegister =
-        FXCollections.observableList(this.warGamesApplication.getArmyOne().getAllUnits());
-    this.army1TableView.setItems(army1ObservableUnitRegister);
-    this.army1NumberOfUnitsField.setText(String.valueOf(army1ObservableUnitRegister.size()));
-    this.army1NameField.setText(this.warGamesApplication.getArmyOne().getName());
+    if (this.warGamesApplication.getArmyOne() != null) {
+      ObservableList<Unit> army1ObservableUnitRegister =
+          FXCollections.observableList(this.warGamesApplication.getArmyOne().getAllUnits());
+      this.army1TableView.setItems(army1ObservableUnitRegister);
+      this.army1NumberOfUnitsField.setText(String.valueOf(army1ObservableUnitRegister.size()));
+      this.army1NameField.setText(this.warGamesApplication.getArmyOne().getName());
+    }
 
+    if (this.warGamesApplication.getArmyTwo() != null) {
     ObservableList<Unit> army2ObservableUnitRegister =
         FXCollections.observableList(this.warGamesApplication.getArmyTwo().getAllUnits());
     this.army2TableView.setItems(army2ObservableUnitRegister);
     this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
     this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
+    }
   }
 
   /**
@@ -222,6 +226,11 @@ public class Controller {
     }
   }
 
+  /**
+   * Shows a file chooser dialog and lets the user choose where to save army 1.
+   *
+   * @param actionEvent event
+   */
   @FXML
   private void handleSaveArmy1ToFile(ActionEvent actionEvent) {
     String armyName = this.warGamesApplication.getArmyOne().getName();
@@ -236,6 +245,11 @@ public class Controller {
     }
   }
 
+  /**
+   * Shows a file chooser dialog and lets the user choose where to save army 2.
+   *
+   * @param actionEvent event
+   */
   @FXML
   private void handleSaveArmy2ToFile(ActionEvent actionEvent) {
     String armyName = this.warGamesApplication.getArmyTwo().getName();
@@ -274,20 +288,46 @@ public class Controller {
     alert.showAndWait();
   }
 
+  /**
+   * Shows a dialog where army1 can be edited.
+   *
+   * @param actionEvent event
+   */
   @FXML
   private void handleSetUpArmy1Button(ActionEvent actionEvent) {
-    //TODO: implement
-    System.out.println("Set up army 1 pressed");
-    ArmySetupDialog armySetupDialog = new ArmySetupDialog(this.warGamesApplication.getArmyOne());
-    armySetupDialog.showAndWait();
+    ArmySetupDialog armySetupDialog;
+    if (this.warGamesApplication.getArmyOne()!=null) {
+      armySetupDialog = this.dialogFactory.createArmySetupDialog(this.warGamesApplication.getArmyOne());
+    } else {
+      armySetupDialog = this.dialogFactory.createArmySetupDialog();
+    }
+
+    Optional<Army> result = armySetupDialog.showAndWait();
+    if (result.isPresent()) {
+      this.warGamesApplication.setArmyOne(result.get());
+      this.updateArmiesDetails();
+    }
   }
 
+  /**
+   * Shows a dialog where army2 can be edited.
+   *
+   * @param actionEvent event
+   */
   @FXML
   private void handleSetUpArmy2Button(ActionEvent actionEvent) {
-    //TODO: implement
-    System.out.println("Set up army 2 pressed");
-    ArmySetupDialog armySetupDialog = new ArmySetupDialog(this.warGamesApplication.getArmyTwo());
-    armySetupDialog.showAndWait();
+    ArmySetupDialog armySetupDialog;
+    if (this.warGamesApplication.getArmyTwo()!=null) {
+      armySetupDialog = this.dialogFactory.createArmySetupDialog(this.warGamesApplication.getArmyTwo());
+    } else {
+      armySetupDialog = this.dialogFactory.createArmySetupDialog();
+    }
+
+    Optional<Army> result = armySetupDialog.showAndWait();
+    if (result.isPresent()) {
+      this.warGamesApplication.setArmyTwo(result.get());
+      this.updateArmiesDetails();
+    }
   }
 
   /**
