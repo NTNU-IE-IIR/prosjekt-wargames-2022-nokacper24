@@ -34,14 +34,12 @@ public abstract class Unit {
    * @param health Initial health of the unit
    * @param attack Base attack damage
    * @param armor  Base defence value
-   * @throws IllegalArgumentException when name empty,
+   * @throws IllegalArgumentException when name empty or null,
    *                                  health equal or less than 0,
    *                                  attack or armor equal or less than 0
    */
   protected Unit(String name, int health, int attack, int armor) {
-    if (name == null || name.isBlank()) {
-      throw new IllegalArgumentException("Name cannot be empty.");
-    }
+    this.setName(name);
     if (health <= 0) {
       throw new IllegalArgumentException("Health cannot be equal or less than 0.");
     }
@@ -49,7 +47,6 @@ public abstract class Unit {
       throw new IllegalArgumentException("Neither attack or armor can be less than 0.");
     }
 
-    this.name = name;
     this.health = health;
     this.attack = attack;
     this.armor = armor;
@@ -84,6 +81,8 @@ public abstract class Unit {
   public void setName(String name) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Name cannot be empty.");
+    } else {
+      this.name = name;
     }
   }
 
