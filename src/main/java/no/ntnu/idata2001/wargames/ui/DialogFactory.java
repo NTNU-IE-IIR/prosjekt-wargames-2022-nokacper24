@@ -1,9 +1,11 @@
 package no.ntnu.idata2001.wargames.ui;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import no.ntnu.idata2001.wargames.data.Army;
 
 /**
  * Class responsible for creating various dialogs used in WarGamesApplication.
@@ -20,7 +22,7 @@ public class DialogFactory {
   public Alert createErrorDialog(String header, String content) {
     Alert alert = new Alert(Alert.AlertType.ERROR);
     alert.setTitle("Error");
-    this.setAlertWindowIcon(alert);
+    this.setDialogWindowIcon(alert);
     alert.setHeaderText(header);
     alert.setContentText(content);
     return alert;
@@ -36,7 +38,7 @@ public class DialogFactory {
   public Alert createConfirmationDialog(String header, String content) {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Confirmation");
-    this.setAlertWindowIcon(alert);
+    this.setDialogWindowIcon(alert);
     alert.setHeaderText(header);
     alert.setContentText(content);
     return alert;
@@ -54,7 +56,7 @@ public class DialogFactory {
   public Alert createConfirmExitDialog() {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setTitle("Confirm exit");
-    this.setAlertWindowIcon(alert);
+    this.setDialogWindowIcon(alert);
     alert.setHeaderText("Are you sure you want to exit?");
     alert.setContentText("The application will be closed.");
     return alert;
@@ -70,7 +72,7 @@ public class DialogFactory {
   public Alert createInformationDialog(String header, String content) {
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Information");
-    this.setAlertWindowIcon(alert);
+    this.setDialogWindowIcon(alert);
     alert.setHeaderText(header);
     alert.setContentText(content);
     return alert;
@@ -110,18 +112,18 @@ public class DialogFactory {
   }
 
   /**
-   * Sets icon for the given alert.
+   * Sets icon for the given dialog.
    *
-   * @param alert alert to set icon for
+   * @param dialog dialog to set icon for
    */
-  private void setAlertWindowIcon(Alert alert) {
-    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+  private void setDialogWindowIcon(Dialog<?> dialog) {
+    Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
     try {
       Image icon = new Image("no/ntnu/idata2001/wargames/ui/icon.png");
       stage.getIcons().add(icon);
     } catch (Exception e) {
       Alert errorAlert =
-          createResourceErrorDialog(e.getClass().getSimpleName() + ": " + e.getMessage());
+          this.createResourceErrorDialog(e.getClass().getSimpleName() + ": " + e.getMessage());
       errorAlert.showAndWait();
     }
   }
@@ -141,6 +143,29 @@ public class DialogFactory {
         "Could not find files necessary for the application.\nPlease contact support.\nDetails:\n"
             + details);
     return alert;
+  }
+
+  /**
+   * Creates and returns a ArmySetupDialog with the given army.
+   *
+   * @param army army to edit
+   * @return ArmySetupDialog
+   */
+  public ArmySetupDialog createArmySetupDialog(Army army) {
+    ArmySetupDialog armySetupDialog = new ArmySetupDialog(army);
+    this.setDialogWindowIcon(armySetupDialog);
+    return armySetupDialog;
+  }
+
+  /**
+   * Creates and returns a ArmySetupDialog for a new army.
+   *
+   * @return ArmySetupDialog
+   */
+  public ArmySetupDialog createArmySetupDialog() {
+    ArmySetupDialog armySetupDialog = new ArmySetupDialog();
+    this.setDialogWindowIcon(armySetupDialog);
+    return armySetupDialog;
   }
 
 }
