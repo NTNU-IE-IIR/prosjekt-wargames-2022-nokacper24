@@ -70,7 +70,7 @@ public class Army {
    * @param name name of the army
    * @throws IllegalArgumentException when name null or blank
    */
-  private void setName(String name) {
+  public void setName(String name) {
     if (name == null || name.isBlank()) {
       throw new IllegalArgumentException("Army name cannot be empty.");
     } else {
