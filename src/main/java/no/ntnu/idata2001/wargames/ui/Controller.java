@@ -278,12 +278,16 @@ public class Controller {
   private void handleSetUpArmy1Button(ActionEvent actionEvent) {
     //TODO: implement
     System.out.println("Set up army 1 pressed");
+    ArmySetupDialog armySetupDialog = new ArmySetupDialog(this.warGamesApplication.getArmyOne());
+    armySetupDialog.showAndWait();
   }
 
   @FXML
   private void handleSetUpArmy2Button(ActionEvent actionEvent) {
     //TODO: implement
     System.out.println("Set up army 2 pressed");
+    ArmySetupDialog armySetupDialog = new ArmySetupDialog(this.warGamesApplication.getArmyTwo());
+    armySetupDialog.showAndWait();
   }
 
   /**
