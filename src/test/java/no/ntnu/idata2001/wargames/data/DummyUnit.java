@@ -27,6 +27,25 @@ public class DummyUnit extends Unit {
   }
 
   /**
+   * Constructor for copy of DummyUnit.
+   *
+   * @param unit to be copied
+   */
+  protected DummyUnit(DummyUnit unit) {
+    super(unit);
+  }
+
+  /**
+   * Returns a copy of the unit object.
+   *
+   * @return copy of the unit object
+   */
+  @Override
+  public Unit copy() {
+    return new DummyUnit(this);
+  }
+
+  /**
    * Constructor of the DummyUnit.
    * Sets unit's attack to 15, and armor to 10.
    *
