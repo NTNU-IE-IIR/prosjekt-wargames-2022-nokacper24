@@ -10,6 +10,8 @@ import java.util.Objects;
  */
 public abstract class Unit {
 
+
+
   /**
    * Enum for all unit types.
    * When adding a new unit type make sure to add new enum.
@@ -18,14 +20,13 @@ public abstract class Unit {
     INFANTRY,
     CAVALRY,
     RANGED,
-    COMMANDER
+    COMMANDER;
   }
+  private String name;
 
-  private final String name;
   private int health;
   private final int attack;
   private final int armor;
-
   /**
    * Constructor of the abstract class Unit.
    *
@@ -73,6 +74,18 @@ public abstract class Unit {
    * @return copy of the unit object
    */
   public abstract Unit copy();
+
+  /**
+   * Sets the name of the unit.
+   *
+   * @parm name of the unit
+   * @throws IllegalArgumentException when name empty or null
+   */
+  public void setName(String name) {
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Name cannot be empty.");
+    }
+  }
 
   /**
    * Returns name of the unit.
