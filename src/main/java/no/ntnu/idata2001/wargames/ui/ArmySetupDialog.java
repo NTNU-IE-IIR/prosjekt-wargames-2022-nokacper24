@@ -2,6 +2,7 @@ package no.ntnu.idata2001.wargames.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.MultipleSelectionModel;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,8 +38,8 @@ import no.ntnu.idata2001.wargames.logic.IllegalUnitsFileException;
 public class ArmySetupDialog extends Dialog<Army> {
 
   private Army army;
-  private DialogFactory dialogFactory;
-  private ArmyFileHandler armyFileHandler;
+  private final DialogFactory dialogFactory;
+  private final ArmyFileHandler armyFileHandler;
   private TextField armyNameTextField;
   private TextField armyCountTextField;
   private TableView<Unit> unitsTableView;
@@ -68,10 +71,25 @@ public class ArmySetupDialog extends Dialog<Army> {
   }
 
   /**
+   * Constructor for the ArmySetupDialog with no army from before.
+   */
+  public ArmySetupDialog() {
+    super();
+    this.dialogFactory = new DialogFactory();
+    this.armyFileHandler = new ArmyFileHandler();
+    this.armyNameTextField = new TextField();
+    this.armyCountTextField = new TextField();
+    this.army = new Army("New army");
+
+    this.initialize();
+    this.createContent();
+    this.defineReturnInstance();
+  }
+
+  /**
    * Initializes the dialog.
    */
   private void initialize() {
-    this.armyCountTextField.setEditable(false);
     this.setUpUnitsTableView();
     this.updateUnitsDetails();
   }
@@ -82,6 +100,9 @@ public class ArmySetupDialog extends Dialog<Army> {
   private void createContent() {
     this.setTitle("Army Setup");
     this.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+    this.armyCountTextField.setEditable(false);
+    this.armyNameTextField.setPromptText("Army name");
 
     VBox vboxButtons = this.createVboxButtons();
 
@@ -168,7 +189,23 @@ public class ArmySetupDialog extends Dialog<Army> {
   private void handleEditUnitButton(ActionEvent event) {
   }
 
+  /**
+   * Handles the remove unit button.
+   * If a unit is selected it is removed from the army.
+   * If no unit is selected, error message is displayed.
+   *
+   * @param event event
+   */
   private void handleRemoveUnitButton(ActionEvent event) {
+    Unit selectedUnit = this.unitsTableView.getSelectionModel().getSelectedItem();
+    if (selectedUnit != null) {
+      this.army.remove(selectedUnit);
+      this.updateUnitsDetails();
+    } else {
+      Alert alert = this.dialogFactory.createErrorDialog(
+          "No units selected!", "Please select a unit to remove.");
+      alert.showAndWait();
+    }
   }
 
   /**
@@ -263,6 +300,7 @@ public class ArmySetupDialog extends Dialog<Army> {
     nameColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("name"));
     healthColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("health"));
 
+    this.unitsTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
   }
 
   /**
@@ -283,5 +321,19 @@ public class ArmySetupDialog extends Dialog<Army> {
    * When cancel or X is pressed it returns null.
    */
   private void defineReturnInstance() {
+    this.setResultConverter(button -> {
+      if (button == ButtonType.OK) {
+        if (!this.armyNameTextField.getText().isBlank()) {
+          // if arny name is not blank, set name and return army
+          this.army.setName(this.armyNameTextField.getText());
+          return this.army;
+        } else {
+          Alert alert = this.dialogFactory.createErrorDialog(
+              "Army name cannot be empty!", "Please enter a name!");
+          alert.showAndWait();
+        }
+      }
+      return null;
+    });
   }
 }
