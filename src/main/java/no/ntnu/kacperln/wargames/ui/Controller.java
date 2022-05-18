@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
 import no.ntnu.kacperln.wargames.logic.IllegalUnitsFileException;
+import no.ntnu.kacperln.wargames.logic.TerrainType;
 import no.ntnu.kacperln.wargames.logic.UnitFactory;
 import no.ntnu.kacperln.wargames.ui.dialogs.ArmySetupDialog;
 import no.ntnu.kacperln.wargames.ui.dialogs.DialogFactory;
@@ -78,7 +79,7 @@ public class Controller {
   private Button startSimulationButton;
 
   @FXML
-  private ChoiceBox<Unit.UnitType> terrainChoiceBox;
+  private ChoiceBox<TerrainType> terrainChoiceBox;
 
   private WarGamesApplication warGamesApplication;
   private DialogFactory dialogFactory;
@@ -92,6 +93,9 @@ public class Controller {
     this.dialogFactory = new DialogFactory();
     this.setUpTables();
     this.updateArmiesDetails();
+    ObservableList<TerrainType> terrainTypes = FXCollections.observableArrayList(TerrainType.values());
+    this.terrainChoiceBox.setItems(terrainTypes);
+    this.terrainChoiceBox.setValue(TerrainType.values()[0]);
   }
 
 
@@ -144,7 +148,7 @@ public class Controller {
   @FXML
   private void handleStartSimulationButton(ActionEvent actionEvent) {
     try {
-      this.warGamesApplication.simulateBattle();
+      this.warGamesApplication.simulateBattle(this.terrainChoiceBox.getValue());
       this.updateArmiesDetails();
       this.showBattleResultsDialog(warGamesApplication.getBattle().getWinner());
     } catch (IllegalStateException e) {

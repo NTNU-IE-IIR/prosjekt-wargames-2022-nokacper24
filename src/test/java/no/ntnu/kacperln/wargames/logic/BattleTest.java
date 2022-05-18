@@ -24,7 +24,7 @@ class BattleTest {
   void testCreationOfInstance(){
     Army army1 = new Army("Army1");
     Army army2 = new Army("Army2");
-    Battle battle = new Battle(army1, army2);
+    Battle battle = new Battle(army1, army2, TerrainType.values()[0]);
 
     assertEquals(army1,battle.getArmyOne());
     assertEquals(army2,battle.getArmyTwo());
@@ -46,7 +46,7 @@ class BattleTest {
 
     Army army1 = new Army("Army1", collectionOfUnits1);
     Army army2 = new Army("Army2", collectionOfUnits2);
-    Battle battle = new Battle(army1, army2);
+    Battle battle = new Battle(army1, army2, TerrainType.values()[0]);
 
     assertTrue(battle.isInProgress());
   }
@@ -58,7 +58,7 @@ class BattleTest {
 
     Army army1 = new Army("Army1", collectionOfUnits1);
     Army army2 = new Army("Army2", collectionOfUnits2);
-    Battle battle = new Battle(army1, army2);
+    Battle battle = new Battle(army1, army2, TerrainType.values()[0]);
 
     assertFalse(battle.isInProgress());
   }
@@ -80,7 +80,7 @@ class BattleTest {
     Army army1 = new Army("Army1", collectionOfUnits1);
     Army army2 = new Army("Army2", collectionOfUnits2);
 
-    Battle battle = new Battle(army1, army2);
+    Battle battle = new Battle(army1, army2, TerrainType.values()[0]);
 
     assertNotNull(battle.simulate());
   }
@@ -98,7 +98,7 @@ class BattleTest {
     Army army1 = new Army("Army1", collectionOfUnits1);
     Army army2 = new Army("Army2", collectionOfUnits2);
 
-    Battle battle = new Battle(army1, army2);
+    Battle battle = new Battle(army1, army2, TerrainType.values()[0]);
 
     assertNull(battle.simulate());
   }

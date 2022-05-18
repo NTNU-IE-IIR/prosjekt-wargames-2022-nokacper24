@@ -4,15 +4,18 @@ import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
 
 /**
- * Class representing a battle, it simulates a battle between two armies.
+ * Class representing a Battle.
+ * Battle is set on a TerrainType, all units are standing on the same TerrainType.
+ * It simulates a battle between two armies.
  *
  * @author Kacper L. Nowicki
- * @version 22.02.2022
+ * @version 18.05.2022
  */
 public class Battle {
 
   private Army armyOne;
   private Army armyTwo;
+  private TerrainType battleTerrain;
 
   /**
    * Constructor of the Battle class.
@@ -20,9 +23,11 @@ public class Battle {
    * @param armyOne First army to take part in a battle
    * @param armyTwo Second army to take part in a battle
    */
-  public Battle(Army armyOne, Army armyTwo) {
+  public Battle(Army armyOne, Army armyTwo, TerrainType battleTerrain) {
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
+    this.battleTerrain = battleTerrain;
+    this.setTerrainTypeForALl();
   }
 
   /**
@@ -41,6 +46,18 @@ public class Battle {
    */
   public Army getArmyTwo() {
     return armyTwo;
+  }
+
+  /**
+   * Sets the current terrain type for all units in both armies.
+   */
+  private void setTerrainTypeForALl() {
+    for (Unit unit : armyOne.getAllUnits()) {
+      unit.setCurrentTerrain(battleTerrain);
+    }
+    for (Unit unit : armyTwo.getAllUnits()) {
+      unit.setCurrentTerrain(battleTerrain);
+    }
   }
 
   /**

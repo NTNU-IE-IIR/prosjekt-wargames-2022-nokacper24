@@ -6,6 +6,7 @@ import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.logic.ArmyFileHandler;
 import no.ntnu.kacperln.wargames.logic.Battle;
 import no.ntnu.kacperln.wargames.logic.IllegalUnitsFileException;
+import no.ntnu.kacperln.wargames.logic.TerrainType;
 
 /**
  * Class representing a WarGames application.
@@ -87,12 +88,13 @@ public class WarGamesApplication {
   }
 
   /**
-   * Simulates a battle between armies.
+   * Simulates a battle between armies on the given terrain.
    *
+   * @param terrainType terrain to simulate battle on
    * @throws IllegalStateException if armies are not set
    * @throws IllegalStateException if there are no units in one of the armies
    */
-  public void simulateBattle() {
+  public void simulateBattle(TerrainType terrainType) {
     if (armyOne == null || armyTwo == null) {
       throw new IllegalStateException(
           "Both armies must be set up before battle can be simulated.");
@@ -101,7 +103,7 @@ public class WarGamesApplication {
           "Both armies must have some units before battle can be simulated.");
     } else {
       this.saveInitialArmies();
-      this.battle = new Battle(this.armyOne, this.armyTwo);
+      this.battle = new Battle(this.armyOne, this.armyTwo, terrainType);
       this.battle.simulate();
     }
   }
