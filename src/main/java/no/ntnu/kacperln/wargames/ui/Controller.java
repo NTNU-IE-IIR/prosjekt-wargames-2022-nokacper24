@@ -96,17 +96,27 @@ public class Controller {
    * Sets up the table views for army1 and army2.
    */
   private void setUpTables() {
-    this.army1TableColumnType.setCellValueFactory(
-        new PropertyValueFactory<Unit, Unit.UnitType>("unitType"));
-    this.army1TableColumnName.setCellValueFactory(new PropertyValueFactory<Unit, String>("name"));
-    this.army1TableColumnHealth.setCellValueFactory(
-        new PropertyValueFactory<Unit, String>("health"));
+    this.army1TableColumnType.setCellValueFactory(new PropertyValueFactory<>("unitType"));
+    this.army1TableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+    this.army1TableColumnHealth.setCellValueFactory(new PropertyValueFactory<>("health"));
+    // open setup when double-clicking on table
+    this.army1TableView.setOnMouseClicked(
+        e -> {
+          if (e.getClickCount() == 2) {
+            this.handleSetUpArmy1Button(null);
+          }
+        });
 
-    this.army2TableColumnType.setCellValueFactory(
-        new PropertyValueFactory<Unit, Unit.UnitType>("unitType"));
-    this.army2TableColumnName.setCellValueFactory(new PropertyValueFactory<Unit, String>("name"));
-    this.army2TableColumnHealth.setCellValueFactory(
-        new PropertyValueFactory<Unit, String>("health"));
+    this.army2TableColumnType.setCellValueFactory(new PropertyValueFactory<>("unitType"));
+    this.army2TableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+    this.army2TableColumnHealth.setCellValueFactory(new PropertyValueFactory<>("health"));
+    // open setup when double-clicking on table
+    this.army2TableView.setOnMouseClicked(
+        e -> {
+          if (e.getClickCount() == 2) {
+            this.handleSetUpArmy2Button(null);
+          }
+        });
   }
 
   /**
@@ -388,7 +398,7 @@ public class Controller {
   private void handleShowAboutInfo(ActionEvent actionEvent) {
     String textBlock = """
         War Games is a simple battle simulation program.
-        
+                
         This program is a project for IDATA2001 course at NTNU.
         Author: Kacper Lukasz Nowicki
         """;
