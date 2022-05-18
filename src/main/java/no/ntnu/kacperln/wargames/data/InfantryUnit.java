@@ -24,6 +24,7 @@ public class InfantryUnit extends Unit {
    */
   public InfantryUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
+    this.unitType = UnitType.INFANTRY;
   }
 
   /**
@@ -37,6 +38,7 @@ public class InfantryUnit extends Unit {
    */
   public InfantryUnit(String name, int health) {
     super(name, health, 15, 10);
+    this.unitType = UnitType.INFANTRY;
   }
 
   /**
@@ -56,16 +58,6 @@ public class InfantryUnit extends Unit {
   @Override
   public InfantryUnit copy() {
     return new InfantryUnit(this);
-  }
-
-  /**
-   * Returns type of the unit.
-   *
-   * @return UnitType enum
-   */
-  @Override
-  public UnitType getUnitType() {
-    return UnitType.INFANTRY;
   }
 
   /**

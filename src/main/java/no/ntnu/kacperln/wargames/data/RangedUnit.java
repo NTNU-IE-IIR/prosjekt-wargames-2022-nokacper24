@@ -25,6 +25,7 @@ public class RangedUnit extends Unit {
    */
   public RangedUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
+    this.unitType = UnitType.RANGED;
   }
 
   /**
@@ -38,6 +39,7 @@ public class RangedUnit extends Unit {
    */
   public RangedUnit(String name, int health) {
     super(name, health, 15, 8);
+    this.unitType = UnitType.RANGED;
   }
 
   /**
@@ -57,16 +59,6 @@ public class RangedUnit extends Unit {
   @Override
   public RangedUnit copy() {
     return new RangedUnit(this);
-  }
-
-  /**
-   * Returns type of the unit.
-   *
-   * @return UnitType enum
-   */
-  @Override
-  public UnitType getUnitType() {
-    return UnitType.RANGED;
   }
 
   /**

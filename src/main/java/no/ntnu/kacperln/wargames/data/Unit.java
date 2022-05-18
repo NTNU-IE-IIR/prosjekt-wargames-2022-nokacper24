@@ -38,10 +38,10 @@ public abstract class Unit {
   }
 
   private String name;
-
   private int health;
   private final int attack;
   private final int armor;
+  protected UnitType unitType;
 
   /**
    * Constructor of the abstract class Unit.
@@ -78,6 +78,7 @@ public abstract class Unit {
     this.health = unit.health;
     this.attack = unit.attack;
     this.armor = unit.armor;
+    this.unitType = unit.unitType;
   }
 
 
@@ -210,7 +211,9 @@ public abstract class Unit {
    *
    * @return UnitType enum
    */
-  public abstract UnitType getUnitType();
+  public UnitType getUnitType() {
+    return this.unitType;
+  }
 
   /**
    * Returns unit's fields in form of a string.
@@ -220,7 +223,7 @@ public abstract class Unit {
   @Override
   public String toString() {
     return this.name + "\n Health " + this.health
-        + "\n Attack " + this.attack + "\n Armor " + this.armor;
+        + "\n Attack " + this.attack + "\n Armor " + this.armor + "\n Type " + this.unitType + "\n";
   }
 
   /**
@@ -238,8 +241,8 @@ public abstract class Unit {
       return false;
     }
     Unit unit = (Unit) o;
-    return health == unit.health && attack == unit.attack && armor == unit.armor
-        && name.equals(unit.name);
+    return health == unit.health && attack == unit.attack && armor == unit.armor &&
+        name.equals(unit.name) && unitType.equals(unit.unitType);
   }
 
   /**
@@ -249,6 +252,6 @@ public abstract class Unit {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(name, health, attack, armor);
+    return Objects.hash(name, health, attack, armor, unitType);
   }
 }

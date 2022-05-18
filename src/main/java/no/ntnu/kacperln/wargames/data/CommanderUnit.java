@@ -20,6 +20,7 @@ public class CommanderUnit extends CavalryUnit {
    */
   public CommanderUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
+    this.unitType = UnitType.COMMANDER;
   }
 
   /**
@@ -33,6 +34,7 @@ public class CommanderUnit extends CavalryUnit {
    */
   public CommanderUnit(String name, int health) {
     super(name, health, 25, 15);
+    this.unitType = UnitType.COMMANDER;
   }
 
   /**
@@ -52,16 +54,6 @@ public class CommanderUnit extends CavalryUnit {
   @Override
   public CommanderUnit copy() {
     return new CommanderUnit(this);
-  }
-
-  /**
-   * Returns type of the unit.
-   *
-   * @return UnitType enum
-   */
-  @Override
-  public UnitType getUnitType() {
-    return UnitType.COMMANDER;
   }
 
 }
