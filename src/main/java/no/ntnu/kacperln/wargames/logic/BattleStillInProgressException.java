@@ -4,6 +4,9 @@ package no.ntnu.kacperln.wargames.logic;
  * BattleStillInProgressException is to be thrown when
  * getWinner() method in Battle class is called when battle
  * is still in progress, i.e. both armies have some units.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 15.05.2022
  */
 public class BattleStillInProgressException extends RuntimeException {
 

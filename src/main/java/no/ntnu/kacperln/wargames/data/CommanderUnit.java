@@ -4,7 +4,7 @@ package no.ntnu.kacperln.wargames.data;
  * Class representing a CommanderUnit.
  *
  * @author Kacper L. Nowicki
- * @version 20.02.2022
+ * @version 15.05.2022
  */
 public class CommanderUnit extends CavalryUnit {
   /**

@@ -14,6 +14,9 @@ import no.ntnu.kacperln.wargames.logic.UnitFactory;
 
 /**
  * Dialog for adding multiple units to the army.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 18.05.2022
  */
 public class MultipleUnitsDialog extends Dialog<List<Unit>> {
 

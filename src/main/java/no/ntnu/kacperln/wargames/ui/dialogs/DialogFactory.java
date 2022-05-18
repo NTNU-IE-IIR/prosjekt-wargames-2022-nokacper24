@@ -10,6 +10,11 @@ import no.ntnu.kacperln.wargames.data.Unit;
 
 /**
  * Class responsible for creating various dialogs used in WarGamesApplication.
+ * Its purpose is to simplify creation of dialogs from any part of the gui.
+ * It automatically sets the icon of the dialogs.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 18.05.2022
  */
 public class DialogFactory {
 

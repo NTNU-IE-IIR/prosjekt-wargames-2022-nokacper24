@@ -7,6 +7,9 @@ package no.ntnu.kacperln.wargames.logic;
  *
  * <p>Possible issues that could trigger a throw: Incorrect file format, no units in the file,
  * when details for unit creation are illegal (incorrect type, blank name or negative health)
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 07.05.2022
  */
 public class IllegalUnitsFileException extends Exception {
 

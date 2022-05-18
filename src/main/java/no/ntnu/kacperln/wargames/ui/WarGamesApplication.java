@@ -12,6 +12,9 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
  * Class representing a WarGames application.
  * Its purpose is to connect the UI to the logic.
  * It provides all necessary methods for the UI to interact with the logic.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 18.05.2022
  */
 public class WarGamesApplication {
 

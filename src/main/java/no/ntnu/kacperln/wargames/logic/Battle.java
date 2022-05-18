@@ -4,9 +4,8 @@ import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
 
 /**
- * Class representing a Battle.
+ * Class representing a Battle. Class ir responsible for simulating a battle between two armies.
  * Battle is set on a TerrainType, all units are standing on the same TerrainType.
- * It simulates a battle between two armies.
  *
  * @author Kacper L. Nowicki
  * @version 18.05.2022

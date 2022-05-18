@@ -32,9 +32,11 @@ import no.ntnu.kacperln.wargames.logic.IllegalUnitsFileException;
  * Dialog for setting up an army.
  * This dialog supports: setting army's name, adding units individually, adding multiple
  * units at once, removing units, editing each unit, loading army from file, saving army to file.
+ * It automatically checks if name field is valid, adjusts OK button's availability accordingly
+ * and gives feedback to user.
  *
  * @author Kacper L. Nowicki
- * @version 16.05.2022
+ * @version 18.05.2022
  */
 public class ArmySetupDialog extends Dialog<Army> {
 

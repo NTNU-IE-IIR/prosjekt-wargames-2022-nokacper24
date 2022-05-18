@@ -6,10 +6,11 @@ import java.util.Objects;
 import java.util.Random;
 
 /**
- * Class representing an Army, collection of units.
+ * Class representing an Army.
+ * It has a name and a collection of units.
  *
  * @author Kacper L. Nowicki
- * @version 20.02.2022
+ * @version 18.05.2022
  */
 public class Army {
 
@@ -97,9 +98,9 @@ public class Army {
   }
 
   /**
-   * Adds all specified units to the army.
+   * Adds all given units to the army.
    *
-   * @param units Collection of units to be added
+   * @param units List&lt;Unit&gt; of units to be added
    */
   public void addAll(List<Unit> units) {
     this.units.addAll(units);

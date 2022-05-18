@@ -6,7 +6,7 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
  * Class representing an InfantryUnit.
  *
  * @author Kacper L. Nowicki
- * @version 20.02.2022
+ * @version 18.05.2022
  */
 public class InfantryUnit extends Unit {
 

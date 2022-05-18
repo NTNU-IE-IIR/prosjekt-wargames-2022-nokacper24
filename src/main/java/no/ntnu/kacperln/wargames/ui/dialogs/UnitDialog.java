@@ -13,7 +13,10 @@ import no.ntnu.kacperln.wargames.logic.UnitFactory;
 
 
 /**
- * A dialog for creating new units or editing existing ones.
+ * A dialog for creating a new unit or editing existing ones.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 18.05.2022
  */
 public class UnitDialog extends Dialog<Unit> {
 

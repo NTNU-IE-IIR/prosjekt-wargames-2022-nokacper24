@@ -18,6 +18,9 @@ import no.ntnu.kacperln.wargames.ui.dialogs.DialogFactory;
  *
  * <p>If exception is thrown when loading fxml file or icon of the application,
  * an error dialog is shown to the user.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 18.05.2022
  */
 public class WarGames extends Application {
 

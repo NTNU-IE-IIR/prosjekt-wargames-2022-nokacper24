@@ -7,7 +7,7 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
  * Abstract class representing a single unit in the Wargames app.
  *
  * @author Kacper L. Nowicki
- * @version 20.02.2022
+ * @version 18.05.2022
  */
 public abstract class Unit {
 
