@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
@@ -102,7 +103,26 @@ public class ArmySetupDialog extends Dialog<Army> {
     this.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
     this.armyCountTextField.setEditable(false);
+
+    Label armyNameLabel = new Label("Army name:");
     this.armyNameTextField.setPromptText("Army name");
+    // check if army name is blank
+    // if it is blank, disable OK button and inform user
+    this.armyNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (newValue.isBlank()) {
+        // if army name is blank, inform user and disable OK button
+        armyNameLabel.setText("Name cannot be blank!");
+        armyNameLabel.setTextFill(Paint.valueOf("#FF0000"));
+        armyNameLabel.setStyle("-fx-font-weight: bold");
+        this.setOkButtonAvailability();
+      } else {
+        // if army name is not blank, enable OK button
+        armyNameLabel.setText("Army name:");
+        armyNameLabel.setTextFill(Paint.valueOf("#000000"));
+        armyNameLabel.setStyle("-fx-font-weight: normal");
+        this.setOkButtonAvailability();
+      }
+    });
 
     VBox vboxButtons = this.createVboxButtons();
 
@@ -111,16 +131,16 @@ public class ArmySetupDialog extends Dialog<Army> {
     grid.setVgap(10);
     grid.setPadding(new Insets(20, 10, 10, 10));
 
-    grid.add(new Label("Army name:"), 0, 0);
+    grid.add(armyNameLabel, 0, 0);
     grid.add(this.armyNameTextField, 1, 0);
     grid.add(new Label("Number of units:"), 0, 1);
     grid.add(this.armyCountTextField, 1, 1);
     grid.add(vboxButtons, 0, 2);
     grid.add(this.unitsTableView, 1, 2);
 
+    this.setOkButtonAvailability();
+
     this.getDialogPane().setContent(grid);
-
-
   }
 
   /**
@@ -178,6 +198,18 @@ public class ArmySetupDialog extends Dialog<Army> {
     vboxButtons.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
 
     return vboxButtons;
+  }
+
+  /**
+   * Enables the OK button if the army name is valid.
+   * Disables it if the army name is invalid.
+   */
+  private void setOkButtonAvailability() {
+    if (this.armyNameTextField.getText().isBlank()) {
+      this.getDialogPane().lookupButton(ButtonType.OK).setDisable(true);
+    } else {
+      this.getDialogPane().lookupButton(ButtonType.OK).setDisable(false);
+    }
   }
 
   /**
