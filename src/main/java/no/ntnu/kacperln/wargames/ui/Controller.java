@@ -38,9 +38,6 @@ public class Controller {
   private TextField army1NameField;
 
   @FXML
-  private TextField army1NumberOfUnitsField;
-
-  @FXML
   private TableView<Unit> army1TableView;
 
   @FXML
@@ -56,9 +53,6 @@ public class Controller {
   private TextField army2NameField;
 
   @FXML
-  private TextField army2NumberOfUnitsField;
-
-  @FXML
   private TableView<Unit> army2TableView;
 
   @FXML
@@ -72,6 +66,30 @@ public class Controller {
 
   @FXML
   private ChoiceBox<TerrainType> terrainChoiceBox;
+
+  @FXML
+  private TextField army1NumberOfUnitsField;
+
+  @FXML
+  public TextField army1NumberOfCommanderUnitsField;
+
+  @FXML
+  public TextField army1NumberOfRangedUnitsField;
+
+  @FXML
+  public TextField army1NumberOfInfantryUnitsField;
+
+  @FXML
+  private TextField army2NumberOfUnitsField;
+
+  @FXML
+  public TextField army2NumberOfCommanderUnitsField;
+
+  @FXML
+  public TextField army2NumberOfRangedUnitsField;
+
+  @FXML
+  public TextField army2NumberOfInfantryUnitsField;
 
   private WarGamesApplication warGamesApplication;
   private DialogFactory dialogFactory;
@@ -128,8 +146,11 @@ public class Controller {
           FXCollections.observableList(this.warGamesApplication.getArmyOne().getAllUnits());
       this.army1TableView.setItems(army1ObservableUnitRegister);
       this.army1TableView.refresh();
-      this.army1NumberOfUnitsField.setText(String.valueOf(army1ObservableUnitRegister.size()));
       this.army1NameField.setText(this.warGamesApplication.getArmyOne().getName());
+      this.army1NumberOfUnitsField.setText(String.valueOf(army1ObservableUnitRegister.size()));
+      this.army1NumberOfCommanderUnitsField.setText(String.valueOf(this.warGamesApplication.getArmyOne().getCommanderUnits().size()));
+      this.army1NumberOfRangedUnitsField.setText(String.valueOf(this.warGamesApplication.getArmyOne().getRangedUnits().size()));
+      this.army1NumberOfInfantryUnitsField.setText(String.valueOf(this.warGamesApplication.getArmyOne().getInfantryUnits().size()));
     }
 
     if (this.warGamesApplication.getArmyTwo() != null) {
@@ -137,8 +158,11 @@ public class Controller {
           FXCollections.observableList(this.warGamesApplication.getArmyTwo().getAllUnits());
       this.army2TableView.setItems(army2ObservableUnitRegister);
       this.army2TableView.refresh();
-      this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
       this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
+      this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
+      this.army2NumberOfCommanderUnitsField.setText(String.valueOf(this.warGamesApplication.getArmyTwo().getCommanderUnits().size()));
+      this.army2NumberOfRangedUnitsField.setText(String.valueOf(this.warGamesApplication.getArmyTwo().getRangedUnits().size()));
+      this.army2NumberOfInfantryUnitsField.setText(String.valueOf(this.warGamesApplication.getArmyTwo().getInfantryUnits().size()));
     }
   }
 
