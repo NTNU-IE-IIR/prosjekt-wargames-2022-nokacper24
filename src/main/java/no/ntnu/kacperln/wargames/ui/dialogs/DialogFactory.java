@@ -192,4 +192,15 @@ public class DialogFactory {
     return unitDialog;
   }
 
+  /**
+   * Creates and returns a MultipleUnitsDialog for creation of multiple units.
+   *
+   * @return MultipleUnitsDialog
+   */
+  public MultipleUnitsDialog createMultipleUnitsDialog() {
+    MultipleUnitsDialog multipleUnitsDialog = new MultipleUnitsDialog();
+    this.setDialogWindowIcon(multipleUnitsDialog);
+    return multipleUnitsDialog;
+  }
+
 }

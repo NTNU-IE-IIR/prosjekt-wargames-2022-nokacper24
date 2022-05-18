@@ -2,6 +2,7 @@ package no.ntnu.kacperln.wargames.ui.dialogs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -179,6 +180,11 @@ public class ArmySetupDialog extends Dialog<Army> {
     return vboxButtons;
   }
 
+  /**
+   * Opens UnitDialog to add a new unit to the army.
+   *
+   * @param event event
+   */
   private void handleAddUnitButton(ActionEvent event) {
     UnitDialog unitDialog = this.dialogFactory.createUnitDialog();
     Optional<Unit> result = unitDialog.showAndWait();
@@ -188,7 +194,18 @@ public class ArmySetupDialog extends Dialog<Army> {
     }
   }
 
+  /**
+   * Opens MultipleUnitsDialog to add multiple units to the army.
+   *
+   * @param event event
+   */
   private void handleAddMultipleUnitsButton(ActionEvent event) {
+    MultipleUnitsDialog multipleUnitsDialog = this.dialogFactory.createMultipleUnitsDialog();
+    Optional<List<Unit>> result = multipleUnitsDialog.showAndWait();
+    if (result.isPresent()) {
+      this.army.addAll(result.get());
+      this.updateUnitsDetails();
+    }
   }
 
   /**
@@ -200,7 +217,8 @@ public class ArmySetupDialog extends Dialog<Army> {
   private void handleEditUnitButton(ActionEvent event) {
     Unit selectedUnit = this.unitsTableView.getSelectionModel().getSelectedItem();
     if (selectedUnit == null) {
-      Alert alert = this.dialogFactory.createErrorDialog("No unit selected!", "Please select unit to edit.");
+      Alert alert =
+          this.dialogFactory.createErrorDialog("No unit selected!", "Please select unit to edit.");
       alert.showAndWait();
     } else {
       UnitDialog unitDialog = this.dialogFactory.createUnitDialog(selectedUnit);
