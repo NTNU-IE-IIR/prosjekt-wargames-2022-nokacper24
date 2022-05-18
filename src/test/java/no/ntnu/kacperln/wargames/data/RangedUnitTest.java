@@ -1,6 +1,8 @@
 package no.ntnu.kacperln.wargames.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import no.ntnu.kacperln.wargames.logic.TerrainType;
@@ -60,6 +62,15 @@ class RangedUnitTest {
     RangedUnit unit = new RangedUnit("ExampleName", 100, 12, 5);
     RangedUnit copy = unit.copy();
     assertEquals(unit, copy);
+    assertNotSame(unit, copy);
+  }
+
+  @Test
+  void testCopyNegative() {
+    RangedUnit unit = new RangedUnit("ExampleName", 100, 12, 5);
+    RangedUnit copy = unit.copy();
+    unit.setHealth(50);
+    assertNotEquals(unit, copy);
     assertNotSame(unit, copy);
   }
 
