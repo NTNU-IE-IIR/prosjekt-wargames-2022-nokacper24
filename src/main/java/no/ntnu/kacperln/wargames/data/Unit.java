@@ -35,7 +35,17 @@ public abstract class Unit {
     /**
      * Commander unit.
      */
-    COMMANDER;
+    COMMANDER;;
+
+    /**
+     * Returns the UnitType in form of a string, all lowercase.
+     *
+     * @return UnitType in lowercase
+     */
+    @Override
+    public String toString() {
+      return this.name().toLowerCase();
+    }
   }
 
   private String name;

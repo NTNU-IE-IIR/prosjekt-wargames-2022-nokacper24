@@ -15,5 +15,15 @@ public enum TerrainType {
   /**
    * Forest terrain type.
    */
-  FOREST
+  FOREST;
+
+  /**
+   * Returns the TerrainType in form of a string, all lowercase.
+   *
+   * @return TerrainType in lowercase
+   */
+  @Override
+  public String toString() {
+    return this.name().toLowerCase();
+  }
 }
