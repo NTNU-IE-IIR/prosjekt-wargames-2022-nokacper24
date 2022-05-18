@@ -1,4 +1,4 @@
-package no.ntnu.idata2001.wargames.ui;
+package no.ntnu.idata2001.wargames.ui.dialogs;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;

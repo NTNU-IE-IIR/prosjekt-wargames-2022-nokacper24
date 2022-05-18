@@ -21,6 +21,8 @@ import no.ntnu.idata2001.wargames.data.Army;
 import no.ntnu.idata2001.wargames.data.Unit;
 import no.ntnu.idata2001.wargames.logic.IllegalUnitsFileException;
 import no.ntnu.idata2001.wargames.logic.UnitFactory;
+import no.ntnu.idata2001.wargames.ui.dialogs.ArmySetupDialog;
+import no.ntnu.idata2001.wargames.ui.dialogs.DialogFactory;
 
 /**
  * Gui controller for wargames application.

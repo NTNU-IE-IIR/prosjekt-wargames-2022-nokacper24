@@ -1,4 +1,6 @@
-package no.ntnu.idata2001.wargames.ui;
+package no.ntnu.idata2001.wargames;
+
+import no.ntnu.idata2001.wargames.ui.WarGames;
 
 /**
  * The main starting point for the WarGames application, non-JavaFX.
