@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import no.ntnu.idata2001.wargames.data.Army;
+import no.ntnu.idata2001.wargames.data.Unit;
 
 /**
  * Class responsible for creating various dialogs used in WarGamesApplication.
@@ -166,6 +167,29 @@ public class DialogFactory {
     ArmySetupDialog armySetupDialog = new ArmySetupDialog();
     this.setDialogWindowIcon(armySetupDialog);
     return armySetupDialog;
+  }
+
+  /**
+   * Creates and returns a UnitDialog for a new unit.
+   *
+   * @return UnitDialog
+   */
+  public UnitDialog createUnitDialog() {
+    UnitDialog unitDialog = new UnitDialog();
+    this.setDialogWindowIcon(unitDialog);
+    return unitDialog;
+  }
+
+  /**
+   * Creates and returns a UnitDialog for the given unit.
+   *
+   * @param unit unit to edit
+   * @return UnitDialog
+   */
+  public UnitDialog createUnitDialog(Unit unit) {
+    UnitDialog unitDialog = new UnitDialog(unit);
+    this.setDialogWindowIcon(unitDialog);
+    return unitDialog;
   }
 
 }

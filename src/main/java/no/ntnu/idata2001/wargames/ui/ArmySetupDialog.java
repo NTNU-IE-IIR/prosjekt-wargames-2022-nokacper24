@@ -3,6 +3,7 @@ package no.ntnu.idata2001.wargames.ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -181,12 +182,37 @@ public class ArmySetupDialog extends Dialog<Army> {
   }
 
   private void handleAddUnitButton(ActionEvent event) {
+    UnitDialog unitDialog = this.dialogFactory.createUnitDialog();
+    Optional<Unit> result = unitDialog.showAndWait();
+    if (result.isPresent()) {
+      this.army.add(result.get());
+      this.updateUnitsDetails();
+    }
   }
 
   private void handleAddMultipleUnitsButton(ActionEvent event) {
   }
 
+  /**
+   * Opens a dialog to edit the selected unit.
+   * If no unit selected shows error dialog.
+   *
+   * @param event event
+   */
   private void handleEditUnitButton(ActionEvent event) {
+    Unit selectedUnit = this.unitsTableView.getSelectionModel().getSelectedItem();
+    if (selectedUnit == null) {
+      Alert alert = this.dialogFactory.createErrorDialog("No unit selected!", "Please select unit to edit.");
+      alert.showAndWait();
+    } else {
+      UnitDialog unitDialog = this.dialogFactory.createUnitDialog(selectedUnit);
+      Optional<Unit> result = unitDialog.showAndWait();
+      if (result.isPresent()) {
+        this.army.remove(selectedUnit);
+        this.army.add(result.get());
+        this.updateUnitsDetails();
+      }
+    }
   }
 
   /**
@@ -301,6 +327,13 @@ public class ArmySetupDialog extends Dialog<Army> {
     healthColumn.setCellValueFactory(new PropertyValueFactory<Unit, String>("health"));
 
     this.unitsTableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+    // call edit unit when double-clicked on a row
+    this.unitsTableView.setOnMouseClicked(event -> {
+      if (event.getClickCount() == 2) {
+        this.handleEditUnitButton(null);
+      }
+    });
   }
 
   /**
@@ -318,22 +351,22 @@ public class ArmySetupDialog extends Dialog<Army> {
   /**
    * Defines what is returned when the dialog is closed.
    * When ok is pressed and army name is valid it returns a new army.
-   * When cancel or X is pressed it returns null.
    */
   private void defineReturnInstance() {
     this.setResultConverter(button -> {
+      Army result = null;
       if (button == ButtonType.OK) {
         if (!this.armyNameTextField.getText().isBlank()) {
           // if arny name is not blank, set name and return army
           this.army.setName(this.armyNameTextField.getText());
-          return this.army;
+          result = this.army;
         } else {
           Alert alert = this.dialogFactory.createErrorDialog(
               "Army name cannot be empty!", "Please enter a name!");
           alert.showAndWait();
         }
       }
-      return null;
+      return result;
     });
   }
 }
