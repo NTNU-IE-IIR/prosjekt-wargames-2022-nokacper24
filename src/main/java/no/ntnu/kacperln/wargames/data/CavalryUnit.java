@@ -1,5 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
+import no.ntnu.kacperln.wargames.logic.TerrainType;
+
 /**
  * Class representing a CavalryUnit.
  *
@@ -31,11 +33,11 @@ public class CavalryUnit extends Unit {
   /**
    * Constructor of the CavalryUnit.
    * Sets unit's attack to 20, and armor to 12.
+   *
+   * @param name   Name of the unit
+   * @param health Initial health of the unit
    * @throws IllegalArgumentException when name empty,
    *                                  health equal or less than 0
-   *
-   * @param name Name of the unit
-   * @param health Initial health of the unit
    */
   public CavalryUnit(String name, int health) {
     super(name, health, 20, 12);
@@ -64,11 +66,13 @@ public class CavalryUnit extends Unit {
   /**
    * Return attack bonus of the unit.
    * If it's the unit's first attack, returns first entry in attackBonus array.
+   * If the terrain is PLAINS, bonus is increased.
    *
    * @return attack bonus
    */
   @Override
   public int getAttackBonus() {
+    int bonus;
     int index;
 
     if (!this.firstAttack) {
@@ -77,17 +81,27 @@ public class CavalryUnit extends Unit {
       index = 0;
       this.firstAttack = false;
     }
+    bonus = this.attackBonus[index];
 
-    return this.attackBonus[index];
+    if (this.currentTerrain == TerrainType.PLAINS) {
+      bonus += 2;
+    }
+
+    return bonus;
   }
 
   /**
    * Returns resist bonus of the unit.
+   * If the terrain is FOREST, bonus is 0.
    *
    * @return resist bonus
    */
   @Override
   public int getResistBonus() {
-    return this.resistBonus;
+    int bonus = this.resistBonus;
+    if (this.currentTerrain == TerrainType.FOREST) {
+      bonus = 0;
+    }
+    return bonus;
   }
 }

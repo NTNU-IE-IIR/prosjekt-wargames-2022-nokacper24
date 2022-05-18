@@ -1,6 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
 import java.util.Objects;
+import no.ntnu.kacperln.wargames.logic.TerrainType;
 
 /**
  * Abstract class representing a single unit in the Wargames app.
@@ -42,6 +43,7 @@ public abstract class Unit {
   private final int attack;
   private final int armor;
   protected UnitType unitType;
+  protected TerrainType currentTerrain; // terrain the unit is currently on
 
   /**
    * Constructor of the abstract class Unit.
@@ -66,6 +68,7 @@ public abstract class Unit {
     this.health = health;
     this.attack = attack;
     this.armor = armor;
+    this.currentTerrain = TerrainType.values()[0];
   }
 
   /**
@@ -79,6 +82,7 @@ public abstract class Unit {
     this.attack = unit.attack;
     this.armor = unit.armor;
     this.unitType = unit.unitType;
+    this.currentTerrain = unit.currentTerrain;
   }
 
 
@@ -101,6 +105,28 @@ public abstract class Unit {
     } else {
       this.name = name;
     }
+  }
+
+  /**
+   * Sets the terrain the unit is currently on.
+   *
+   * @param terrain terrain the unit is currently on
+   */
+  public void setCurrentTerrain(TerrainType terrain) {
+    if (terrain != null) {
+      this.currentTerrain = terrain;
+    } else {
+      throw new IllegalArgumentException("Terrain cannot be null.");
+    }
+  }
+
+  /**
+   * Returns the terrain the unit is currently on.
+   *
+   * @return terrain the unit is currently on
+   */
+  public TerrainType getCurrentTerrain() {
+    return currentTerrain;
   }
 
   /**

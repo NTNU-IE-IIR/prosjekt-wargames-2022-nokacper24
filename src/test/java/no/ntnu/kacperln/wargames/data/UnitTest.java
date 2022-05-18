@@ -11,6 +11,16 @@ class UnitTest {
   }
 
   @Test
+  void testCreationOfInstance() {
+    DummyUnit unit = new DummyUnit("ExampleName", 100, 12, 5);
+
+    assertEquals("ExampleName", unit.getName());
+    assertEquals(100, unit.getHealth());
+    assertEquals(12, unit.getAttack());
+    assertEquals(5, unit.getArmor());
+  }
+
+  @Test
   void testCreationOfInstanceWithBlankName() {
     assertThrows(IllegalArgumentException.class, () ->
       new DummyUnit("",100,12,5));

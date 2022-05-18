@@ -1,5 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
+import no.ntnu.kacperln.wargames.logic.TerrainType;
+
 /**
  * Class representing an InfantryUnit.
  *
@@ -62,21 +64,31 @@ public class InfantryUnit extends Unit {
 
   /**
    * Return attack bonus of the unit.
+   * Bonus is increased if the terrain is FOREST.
    *
    * @return attack bonus
    */
   @Override
   public int getAttackBonus() {
-    return this.attackBonus;
+    int bonus = this.attackBonus;
+    if (this.currentTerrain == TerrainType.FOREST) {
+      bonus += 2;
+    }
+    return bonus;
   }
 
   /**
    * Returns resist bonus of the unit.
+   * Bonus is increased if the terrain is FOREST.
    *
    * @return resist bonus
    */
   @Override
   public int getResistBonus() {
-    return this.resistBonus;
+    int bonus = this.resistBonus;
+    if (this.currentTerrain == TerrainType.FOREST) {
+      bonus += 2;
+    }
+    return bonus;
   }
 }

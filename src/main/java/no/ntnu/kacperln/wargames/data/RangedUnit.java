@@ -1,5 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
+import no.ntnu.kacperln.wargames.logic.TerrainType;
+
 /**
  * Class representing a RangedUnit.
  *
@@ -63,12 +65,21 @@ public class RangedUnit extends Unit {
 
   /**
    * Return attack bonus of the unit.
+   * Bonus is increased when the terrain is HILL.
+   * Bonus is reduced when the unit is FOREST.
    *
    * @return attack bonus
    */
   @Override
   public int getAttackBonus() {
-    return this.attackBonus;
+    int bonus = this.attackBonus;
+
+    if (this.currentTerrain == TerrainType.HILL) {
+      bonus += 2;
+    } else if (this.currentTerrain == TerrainType.FOREST) {
+      bonus -= 2;
+    }
+    return bonus;
   }
 
   /**
