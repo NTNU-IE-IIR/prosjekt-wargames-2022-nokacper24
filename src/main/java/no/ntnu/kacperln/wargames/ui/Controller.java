@@ -2,6 +2,8 @@ package no.ntnu.kacperln.wargames.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -67,18 +69,6 @@ public class Controller {
   private TableColumn<Unit, Unit.UnitType> army2TableColumnType;
 
   @FXML
-  private Button resetArmiesButton;
-
-  @FXML
-  private Button setUpArmy1Button;
-
-  @FXML
-  private Button setUpArmy2Button;
-
-  @FXML
-  private Button startSimulationButton;
-
-  @FXML
   private ChoiceBox<TerrainType> terrainChoiceBox;
 
   private WarGamesApplication warGamesApplication;
@@ -93,7 +83,8 @@ public class Controller {
     this.dialogFactory = new DialogFactory();
     this.setUpTables();
     this.updateArmiesDetails();
-    ObservableList<TerrainType> terrainTypes = FXCollections.observableArrayList(TerrainType.values());
+    ObservableList<TerrainType> terrainTypes =
+        FXCollections.observableArrayList(TerrainType.values());
     this.terrainChoiceBox.setItems(terrainTypes);
     this.terrainChoiceBox.setValue(TerrainType.values()[0]);
   }
@@ -130,12 +121,12 @@ public class Controller {
     }
 
     if (this.warGamesApplication.getArmyTwo() != null) {
-    ObservableList<Unit> army2ObservableUnitRegister =
-        FXCollections.observableList(this.warGamesApplication.getArmyTwo().getAllUnits());
-    this.army2TableView.setItems(army2ObservableUnitRegister);
-    this.army2TableView.refresh();
-    this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
-    this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
+      ObservableList<Unit> army2ObservableUnitRegister =
+          FXCollections.observableList(this.warGamesApplication.getArmyTwo().getAllUnits());
+      this.army2TableView.setItems(army2ObservableUnitRegister);
+      this.army2TableView.refresh();
+      this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
+      this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
     }
   }
 
@@ -284,8 +275,9 @@ public class Controller {
   @FXML
   private void handleSetUpArmy1Button(ActionEvent actionEvent) {
     ArmySetupDialog armySetupDialog;
-    if (this.warGamesApplication.getArmyOne()!=null) {
-      armySetupDialog = this.dialogFactory.createArmySetupDialog(this.warGamesApplication.getArmyOne());
+    if (this.warGamesApplication.getArmyOne() != null) {
+      armySetupDialog =
+          this.dialogFactory.createArmySetupDialog(this.warGamesApplication.getArmyOne());
     } else {
       armySetupDialog = this.dialogFactory.createArmySetupDialog();
     }
@@ -305,8 +297,9 @@ public class Controller {
   @FXML
   private void handleSetUpArmy2Button(ActionEvent actionEvent) {
     ArmySetupDialog armySetupDialog;
-    if (this.warGamesApplication.getArmyTwo()!=null) {
-      armySetupDialog = this.dialogFactory.createArmySetupDialog(this.warGamesApplication.getArmyTwo());
+    if (this.warGamesApplication.getArmyTwo() != null) {
+      armySetupDialog =
+          this.dialogFactory.createArmySetupDialog(this.warGamesApplication.getArmyTwo());
     } else {
       armySetupDialog = this.dialogFactory.createArmySetupDialog();
     }
@@ -330,8 +323,8 @@ public class Controller {
     if (army != null) {
       headerText = army.getName() + " won!";
       String unitOrUnits = army.getAllUnits().size() > 1 ? "units" : "unit";
-      content = "The battle was won by " + army.getName() + "\n" + army.getAllUnits().size() + " " +
-          unitOrUnits + " survived.";
+      content = "The battle was won by " + army.getName() + "\n" + army.getAllUnits().size() + " "
+          + unitOrUnits + " survived.";
     } else {
       headerText = "Draw!";
       content = "The battle ended in a draw. \nNo one survived.";
@@ -344,14 +337,63 @@ public class Controller {
   /**
    * Shows exit confirmation dialog.
    * When ok is pressed, the application is closed.
+   *
+   * @param actionEvent event
    */
   @FXML
   private void handleQuitButton(ActionEvent actionEvent) {
     Alert alert = this.dialogFactory.createConfirmExitDialog();
     Optional<ButtonType> result = alert.showAndWait();
     if (result.isPresent() && result.get() == ButtonType.OK) {
-        Platform.exit();
+      Platform.exit();
     }
+  }
+
+  /**
+   * Creates two sample armies and sets them to the application.
+   *
+   * @param actionEvent event
+   */
+  @FXML
+  private void handleLoadSampleArmies(ActionEvent actionEvent) {
+    UnitFactory unitFactory = new UnitFactory();
+
+    List<Unit> sampleUnitsOne = new ArrayList<>();
+    sampleUnitsOne.add(unitFactory.createUnit(Unit.UnitType.COMMANDER, "Mountain King", 180));
+    sampleUnitsOne.addAll(unitFactory.createUnits(200, Unit.UnitType.RANGED, "Archer", 100));
+    sampleUnitsOne.addAll(unitFactory.createUnits(100, Unit.UnitType.CAVALRY, "Knight", 100));
+    sampleUnitsOne.addAll(unitFactory.createUnits(500, Unit.UnitType.INFANTRY, "Footman", 100));
+    Army sampleArmyOne = new Army("Human army", sampleUnitsOne);
+    this.warGamesApplication.setArmyOne(sampleArmyOne);
+
+    List<Unit> sampleUnitsTwo = new ArrayList<>();
+    sampleUnitsTwo.add(unitFactory.createUnit(Unit.UnitType.COMMANDER, " Gul´dan", 180));
+    sampleUnitsTwo.addAll(unitFactory.createUnits(200, Unit.UnitType.RANGED, "Spearman", 100));
+    sampleUnitsTwo.addAll(unitFactory.createUnits(100, Unit.UnitType.CAVALRY, "Raider", 100));
+    sampleUnitsTwo.addAll(unitFactory.createUnits(500, Unit.UnitType.INFANTRY, "Grunt", 100));
+    Army sampleArmyTwo = new Army("Orcish horde", sampleUnitsTwo);
+    this.warGamesApplication.setArmyTwo(sampleArmyTwo);
+
+    this.updateArmiesDetails();
+  }
+
+  /**
+   * Shows an information dialog with about info.
+   *
+   * @param actionEvent event
+   */
+  @FXML
+  private void handleShowAboutInfo(ActionEvent actionEvent) {
+    String textBlock = """
+        War Games is a simple battle simulation program.
+        
+        This program is a project for IDATA2001 course at NTNU.
+        Author: Kacper Lukasz Nowicki
+        """;
+
+    Alert alert = this.dialogFactory.createInformationDialog("About War Games", textBlock);
+
+    alert.showAndWait();
   }
 
 }

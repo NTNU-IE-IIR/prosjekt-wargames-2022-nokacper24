@@ -57,15 +57,15 @@
           <items>
             <Menu mnemonicParsing="false" text="Army 1">
                      <items>
-                  <MenuItem mnemonicParsing="false" text="Load from file" onAction="#handleLoadArmy1FromFile" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLoadArmy1FromFile" text="Load from file" />
                   <MenuItem mnemonicParsing="false" onAction="#handleSetUpArmy1Button" text="Set up" />
-                  <MenuItem mnemonicParsing="false" text="Save to file" onAction="#handleSaveArmy1ToFile" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSaveArmy1ToFile" text="Save to file" />
                      </items></Menu>
                   <Menu mnemonicParsing="false" text="Army 2">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Load from file" onAction="#handleLoadArmy2FromFile" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleLoadArmy2FromFile" text="Load from file" />
                         <MenuItem mnemonicParsing="false" onAction="#handleSetUpArmy2Button" text="Set up" />
-                        <MenuItem mnemonicParsing="false" text="Save to file" onAction="#handleSaveArmy2ToFile"  />
+                        <MenuItem mnemonicParsing="false" onAction="#handleSaveArmy2ToFile" text="Save to file" />
                      </items>
                   </Menu>
             <SeparatorMenuItem mnemonicParsing="false" />
@@ -74,12 +74,13 @@
         </Menu>
         <Menu mnemonicParsing="false" text="View">
           <items>
-            <MenuItem mnemonicParsing="false" text="Show battle logger" />
+            <MenuItem disable="true" mnemonicParsing="false" text="Show battle logger" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About War Games" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleLoadSampleArmies" text="Load sample armies" />
+            <MenuItem mnemonicParsing="false" onAction="#handleShowAboutInfo" text="About War Games" />
           </items>
         </Menu>
       </menus>
