@@ -1,5 +1,6 @@
 package no.ntnu.kacperln.wargames.data;
 
+import java.util.Objects;
 import no.ntnu.kacperln.wargames.logic.TerrainType;
 
 /**
@@ -98,5 +99,36 @@ public class RangedUnit extends Unit {
     index = this.timesHit >= 3 ? 2 : index; //if third hit, default resist value (index = 2)
 
     return this.resistBonus[index];
+  }
+
+  /**
+   * Test if two Units are equal.
+   *
+   * @param o object to be compared to this
+   * @return true if units are equal
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
+    }
+    RangedUnit that = (RangedUnit) o;
+    return timesHit == that.timesHit;
+  }
+
+  /**
+   * Returns a hashCode of the object.
+   *
+   * @return a hashcode for Unit object
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), timesHit);
   }
 }
