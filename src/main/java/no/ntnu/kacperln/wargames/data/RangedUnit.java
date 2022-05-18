@@ -11,8 +11,10 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
  */
 public class RangedUnit extends Unit {
 
-  private final int attackBonus = 3;
-  private final int[] resistBonus = {6, 4, 2}; // Starting resistance bonus, third value is default
+  // fields are static because they are shared by all instances of RangedUnit
+  private static final int ATTACK_BONUS = 3;
+  private static final int[] RESIST_BONUS = {6, 4, 2}; // Starting resistance bonus, third value is default
+
   private int timesHit = 0; // How many times unit got hit
 
   /**
@@ -73,7 +75,7 @@ public class RangedUnit extends Unit {
    */
   @Override
   public int getAttackBonus() {
-    int bonus = this.attackBonus;
+    int bonus = RangedUnit.ATTACK_BONUS;
 
     if (this.currentTerrain == TerrainType.HILL) {
       bonus += 2;
@@ -98,7 +100,7 @@ public class RangedUnit extends Unit {
 
     index = this.timesHit >= 3 ? 2 : index; //if third hit, default resist value (index = 2)
 
-    return this.resistBonus[index];
+    return RangedUnit.RESIST_BONUS[index];
   }
 
   /**

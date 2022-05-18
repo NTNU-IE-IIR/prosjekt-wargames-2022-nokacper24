@@ -10,8 +10,9 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
  */
 public class InfantryUnit extends Unit {
 
-  private final int attackBonus = 2;
-  private final int resistBonus = 1;
+  // fields are static, they're shared between all instances of InfantryUnit
+  private static final int ATTACK_BONUS = 2;
+  private static final int RESIST_BONUS = 1;
 
   /**
    * Constructor of the InfantryUnit.
@@ -70,7 +71,7 @@ public class InfantryUnit extends Unit {
    */
   @Override
   public int getAttackBonus() {
-    int bonus = this.attackBonus;
+    int bonus = InfantryUnit.ATTACK_BONUS;
     if (this.currentTerrain == TerrainType.FOREST) {
       bonus += 2;
     }
@@ -85,7 +86,7 @@ public class InfantryUnit extends Unit {
    */
   @Override
   public int getResistBonus() {
-    int bonus = this.resistBonus;
+    int bonus = InfantryUnit.RESIST_BONUS;
     if (this.currentTerrain == TerrainType.FOREST) {
       bonus += 2;
     }

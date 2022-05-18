@@ -11,9 +11,11 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
  */
 public class CavalryUnit extends Unit {
 
-  private final int[] attackBonus = {6, 2}; //Initial and default attack bonus
+  // fields are static, they're shared between all instances of CavalryUnit
+  private static final int[] ATTACK_BONUS = {6, 2}; //Initial and default attack bonus
+  private static final int RESIST_BONUS = 1;
+
   private boolean firstAttack = true;
-  private final int resistBonus = 1;
 
   /**
    * Constructor of the CavalryUnit.
@@ -82,7 +84,7 @@ public class CavalryUnit extends Unit {
       index = 0;
       this.firstAttack = false;
     }
-    bonus = this.attackBonus[index];
+    bonus = CavalryUnit.ATTACK_BONUS[index];
 
     if (this.currentTerrain == TerrainType.PLAINS) {
       bonus += 2;
@@ -99,7 +101,7 @@ public class CavalryUnit extends Unit {
    */
   @Override
   public int getResistBonus() {
-    int bonus = this.resistBonus;
+    int bonus = CavalryUnit.RESIST_BONUS;
     if (this.currentTerrain == TerrainType.FOREST) {
       bonus = 0;
     }
