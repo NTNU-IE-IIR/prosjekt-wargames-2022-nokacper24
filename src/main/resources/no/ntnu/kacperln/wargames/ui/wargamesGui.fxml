@@ -92,7 +92,7 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="168.0" minHeight="-Infinity" prefHeight="131.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="168.0" prefHeight="158.0" valignment="CENTER" vgrow="NEVER" />
           <RowConstraints vgrow="SOMETIMES" />
           <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" valignment="CENTER" vgrow="NEVER" />
         </rowConstraints>
@@ -105,6 +105,7 @@
               <rowConstraints>
                 <RowConstraints vgrow="SOMETIMES" />
                 <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
@@ -143,7 +144,7 @@
                         <Font size="11.0" />
                      </font>
                   </TextField>
-                  <Label text="Ranged units:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                  <Label text="Ranged units:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -151,12 +152,12 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="army1NumberOfRangedUnitsField" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="army1NumberOfRangedUnitsField" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </TextField>
-                  <Label text="Infantry units:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                  <Label text="Infantry units:" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -164,7 +165,20 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="army1NumberOfInfantryUnitsField" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="army1NumberOfInfantryUnitsField" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Cavalry units:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="army1NumberOfCavalryUnitsField" editable="false" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -185,6 +199,7 @@
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <Label text="Commander units:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -200,7 +215,7 @@
                         <Font size="11.0" />
                      </font>
                   </TextField>
-                  <Label text="Ranged units:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                  <Label text="Ranged units:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -208,12 +223,12 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="army2NumberOfRangedUnitsField" editable="false" prefHeight="11.0" prefWidth="117.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="army2NumberOfRangedUnitsField" editable="false" prefHeight="11.0" prefWidth="117.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </TextField>
-                  <Label text="Infantry units:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                  <Label text="Infantry units:" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -221,7 +236,7 @@
                         <Insets right="5.0" />
                      </padding>
                   </Label>
-                  <TextField fx:id="army2NumberOfInfantryUnitsField" editable="false" prefHeight="11.0" prefWidth="117.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="army2NumberOfInfantryUnitsField" editable="false" prefHeight="11.0" prefWidth="117.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -244,6 +259,19 @@
                   <TextField fx:id="army2NumberOfUnitsField" editable="false" prefHeight="11.0" prefWidth="117.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Cavalry units:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="army2NumberOfCavalryUnitsField" editable="false" prefHeight="11.0" prefWidth="117.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="11.0" />
                      </font>
                   </TextField>
                </children>
@@ -271,26 +299,19 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <VBox alignment="CENTER">
-                     <children>
-                        <Label text="Choose terrain type" />
-                        <ChoiceBox fx:id="terrainChoiceBox" prefWidth="100.0" />
-                     </children>
-                  </VBox>
-                  <Button fx:id="startSimulationButton" mnemonicParsing="false" onAction="#handleStartSimulationButton" text="Start Simulation" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </VBox>
             <Button fx:id="setUpArmy1Button" mnemonicParsing="false" onAction="#handleSetUpArmy1Button" text="Set up army" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button fx:id="setUpArmy2Button" mnemonicParsing="false" onAction="#handleSetUpArmy2Button" text="Set up army" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button fx:id="resetArmiesButton" mnemonicParsing="false" onAction="#handleResetArmiesButton" text="Reset Armies" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <VBox alignment="BOTTOM_CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Label text="Choose terrain type" />
+                  <ChoiceBox fx:id="terrainChoiceBox" prefWidth="100.0" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </VBox>
+            <Button fx:id="startSimulationButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleStartSimulationButton" text="Start Simulation" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
