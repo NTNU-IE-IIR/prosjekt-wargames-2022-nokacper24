@@ -24,6 +24,7 @@ public class DummyUnit extends Unit {
    */
   public DummyUnit(String name, int health, int attack, int armor) {
     super(name, health, attack, armor);
+    this.unitType = null;
   }
 
   /**
@@ -54,16 +55,6 @@ public class DummyUnit extends Unit {
    */
   public DummyUnit(String name, int health) {
     super(name, health, 15, 10);
-  }
-
-  /**
-   * Method had to be implemented due to this method being abstract.
-   *
-   * @return null
-   */
-  @Override
-  public UnitType getUnitType() {
-    return null;
   }
 
   /**

@@ -1,6 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,4 +35,13 @@ class RangedUnitTest {
     assertEquals(3, unit.getAttackBonus()); // always 3
     assertEquals(3, unit.getAttackBonus());
   }
+
+  @Test
+  void testCopy() {
+    RangedUnit unit = new RangedUnit("ExampleName", 100, 12, 5);
+    RangedUnit copy = unit.copy();
+    assertEquals(unit, copy);
+    assertNotSame(unit, copy);
+  }
+
 }

@@ -1,6 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +33,14 @@ class CavalryUnitTest {
     assertEquals(6, unit.getAttackBonus()); // first attack 6
     assertEquals(2, unit.getAttackBonus()); // later only 2
     assertEquals(2, unit.getAttackBonus());
+  }
+
+  @Test
+  void testCopy() {
+    CavalryUnit unit = new CavalryUnit("ExampleName", 100, 12, 5);
+    CavalryUnit copy = unit.copy();
+    assertEquals(unit, copy);
+    assertNotSame(unit, copy);
   }
 
 }
