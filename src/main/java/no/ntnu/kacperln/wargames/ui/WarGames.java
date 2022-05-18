@@ -41,7 +41,7 @@ public class WarGames extends Application {
       // if any exception when loading resources, show error dialog and exit
       DialogFactory dialogFactory = new DialogFactory();
       Alert alert = dialogFactory.createResourceErrorDialog(
-          e.getClass().getSimpleName()+ ": " + e.getMessage());
+          e.getClass().getSimpleName() + ": " + e.getMessage());
       alert.showAndWait();
     }
 
@@ -49,7 +49,7 @@ public class WarGames extends Application {
   }
 
   /**
-   * Sets up a confirmation dialog for when the user closes the application
+   * Sets up a confirmation dialog for when the user closes the application.
    *
    * @param primaryStage primary stage of the application
    */

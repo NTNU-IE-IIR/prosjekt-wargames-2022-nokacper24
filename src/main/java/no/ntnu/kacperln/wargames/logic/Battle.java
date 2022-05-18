@@ -22,12 +22,13 @@ public class Battle {
    *
    * @param armyOne First army to take part in a battle
    * @param armyTwo Second army to take part in a battle
+   * @param battleTerrain TerrainType on which the battle takes place
    */
   public Battle(Army armyOne, Army armyTwo, TerrainType battleTerrain) {
     this.armyOne = armyOne;
     this.armyTwo = armyTwo;
     this.battleTerrain = battleTerrain;
-    this.setTerrainTypeForALl();
+    this.setTerrainTypeForAll();
   }
 
   /**
@@ -51,7 +52,7 @@ public class Battle {
   /**
    * Sets the current terrain type for all units in both armies.
    */
-  private void setTerrainTypeForALl() {
+  private void setTerrainTypeForAll() {
     for (Unit unit : armyOne.getAllUnits()) {
       unit.setCurrentTerrain(battleTerrain);
     }

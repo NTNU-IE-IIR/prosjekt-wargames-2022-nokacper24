@@ -106,7 +106,7 @@ public class MultipleUnitsDialog extends Dialog<List<Unit>> {
    * Adds a listener to the number field.
    * Sets the error label and OK button availability accordingly.
    *
-   * @param textField the text field to add the listener to
+   * @param textField  the text field to add the listener to
    * @param errorLabel the error label to set
    */
   private void addNumberFieldListener(TextField textField, Label errorLabel) {
@@ -203,13 +203,14 @@ public class MultipleUnitsDialog extends Dialog<List<Unit>> {
       List<Unit> result = null;
       if (button == ButtonType.OK) {
         // make sure all fields are valid
-        if (this.isNameFieldValid() && this.isHealthFieldValid() && this.isNumberOfUnitsFieldValid()) {
+        if (this.isNameFieldValid() && this.isHealthFieldValid()
+            && this.isNumberOfUnitsFieldValid()) {
           String name = this.nameField.getText();
           Unit.UnitType type = this.typeChoiceBox.getValue();
           int health = Integer.parseInt(this.healthField.getText());
           int numberOfUnits = Integer.parseInt(this.numberOfUnitsField.getText());
           // if mode NEW, create a new units
-            result = this.unitFactory.createUnits(numberOfUnits ,type, name, health);
+          result = this.unitFactory.createUnits(numberOfUnits, type, name, health);
 
         } else {
           this.dialogFactory.createErrorDialog("Could not create units!",

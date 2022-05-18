@@ -11,7 +11,7 @@ import no.ntnu.kacperln.wargames.logic.TerrainType;
 public class RangedUnit extends Unit {
 
   private final int attackBonus = 3;
-  private final int[] resistBonus = {6, 4, 2}; // Starting resistance bonus, third value is the default
+  private final int[] resistBonus = {6, 4, 2}; // Starting resistance bonus, third value is default
   private int timesHit = 0; // How many times unit got hit
 
   /**

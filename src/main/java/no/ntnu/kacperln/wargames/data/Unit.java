@@ -267,8 +267,8 @@ public abstract class Unit {
       return false;
     }
     Unit unit = (Unit) o;
-    return health == unit.health && attack == unit.attack && armor == unit.armor &&
-        name.equals(unit.name) && unitType.equals(unit.unitType);
+    return health == unit.health && attack == unit.attack && armor == unit.armor
+        && name.equals(unit.name) && unitType.equals(unit.unitType);
   }
 
   /**

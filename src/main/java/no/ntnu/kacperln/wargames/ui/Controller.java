@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -29,6 +28,9 @@ import no.ntnu.kacperln.wargames.ui.dialogs.DialogFactory;
 
 /**
  * Gui controller for wargames application.
+ *
+ * @author Kacper Lukassz Nowicki
+ * @version 18.05.2022
  */
 public class Controller {
 
@@ -110,7 +112,7 @@ public class Controller {
   /**
    * Updated the army tables, army names and number of units.
    */
-  public void updateArmiesDetails() {
+  private void updateArmiesDetails() {
     if (this.warGamesApplication.getArmyOne() != null) {
       ObservableList<Unit> army1ObservableUnitRegister =
           FXCollections.observableList(this.warGamesApplication.getArmyOne().getAllUnits());
