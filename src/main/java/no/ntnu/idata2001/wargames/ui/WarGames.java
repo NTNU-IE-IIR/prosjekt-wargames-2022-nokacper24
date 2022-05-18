@@ -10,9 +10,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import no.ntnu.idata2001.wargames.ui.dialogs.DialogFactory;
 
+/**
+ * The main window of the WarGames application, uses javaFX framework for GUI.
+ * Gui is loaded from WarGames.fxml file, which is located under resources.
+ *
+ * <p>If exception is thrown when loading fxml file or icon of the application,
+ * an error dialog is shown to the user.
+ */
 public class WarGames extends Application {
 
+  /**
+   * Sets up the main window of the application.
+   *
+   * @param primaryStage primary stage of the application
+   */
   @Override
   public void start(Stage primaryStage) {
     Parent root = null;
@@ -25,6 +38,7 @@ public class WarGames extends Application {
       primaryStage.setScene(new Scene(root));
       primaryStage.show();
     } catch (Exception e) {
+      // if any exception when loading resources, show error dialog and exit
       DialogFactory dialogFactory = new DialogFactory();
       Alert alert = dialogFactory.createResourceErrorDialog(
           e.getClass().getSimpleName()+ ": " + e.getMessage());
@@ -35,7 +49,7 @@ public class WarGames extends Application {
   }
 
   /**
-   * Sets up a dialog box that asks the user if they want to close the application.
+   * Sets up a confirmation dialog for when the user closes the application
    *
    * @param primaryStage primary stage of the application
    */
@@ -55,7 +69,12 @@ public class WarGames extends Application {
     });
   }
 
-
+  /**
+   * Main method for the WarGames application.
+   * Launches javaFX application.
+   *
+   * @param args arguments
+   */
   public static void main(String[] args) {
     launch(args);
   }
