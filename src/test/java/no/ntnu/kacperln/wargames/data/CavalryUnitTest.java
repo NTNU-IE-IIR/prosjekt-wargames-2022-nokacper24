@@ -73,4 +73,13 @@ class CavalryUnitTest {
     assertNotSame(unit, copy);
   }
 
+  @Test
+  void testCopyTestFirstAttack() {
+    CavalryUnit unit = new CavalryUnit("ExampleName", 100, 12, 5);
+    unit.getAttackBonus();
+    CavalryUnit copy = unit.copy();
+    assertEquals(unit, copy);
+    assertNotSame(unit, copy);
+  }
+
 }

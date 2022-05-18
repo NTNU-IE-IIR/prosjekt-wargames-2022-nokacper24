@@ -54,6 +54,7 @@ public class RangedUnit extends Unit {
    */
   protected RangedUnit(RangedUnit unit) {
     super(unit);
+    timesHit = unit.timesHit;
   }
 
   /**
@@ -132,5 +133,15 @@ public class RangedUnit extends Unit {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), timesHit);
+  }
+
+  /**
+   * Returns unit's fields in form of a string.
+   *
+   * @return name, health, attack, armor, timesHit
+   */
+  @Override
+  public String toString() {
+    return super.toString() + "timesHit=" + timesHit;
   }
 }

@@ -74,4 +74,13 @@ class RangedUnitTest {
     assertNotSame(unit, copy);
   }
 
+  @Test
+  void testCopyTimesHit() {
+    RangedUnit unit = new RangedUnit("ExampleName", 100, 12, 5);
+    unit.getResistBonus(); // changes value of timesHit field
+    RangedUnit copy = unit.copy();
+    assertEquals(unit, copy);
+    assertNotSame(unit, copy);
+  }
+
 }

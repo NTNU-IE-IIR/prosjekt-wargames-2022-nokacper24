@@ -54,6 +54,7 @@ public class CavalryUnit extends Unit {
    */
   protected CavalryUnit(CavalryUnit unit) {
     super(unit);
+    this.firstAttack = unit.firstAttack;
   }
 
   /**
@@ -137,5 +138,15 @@ public class CavalryUnit extends Unit {
   @Override
   public int hashCode() {
     return Objects.hash(super.hashCode(), firstAttack);
+  }
+
+  /**
+   * Returns unit's fields in form of a string.
+   *
+   * @return name, health, attack, armor, firstAttack
+   */
+  @Override
+  public String toString() {
+    return super.toString() + "firstAttack=" + this.firstAttack;
   }
 }
