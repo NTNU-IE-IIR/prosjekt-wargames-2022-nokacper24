@@ -11,22 +11,38 @@ import java.util.Objects;
 public abstract class Unit {
 
 
-
   /**
    * Enum for all unit types.
    * When adding a new unit type make sure to add new enum.
    */
   public enum UnitType {
+    /**
+     * Infantry unit.
+     */
     INFANTRY,
+
+    /**
+     * Cavalry unit.
+     */
     CAVALRY,
+
+    /**
+     * Ranged unit.
+     */
     RANGED,
+
+    /**
+     * Commander unit.
+     */
     COMMANDER;
   }
+
   private String name;
 
   private int health;
   private final int attack;
   private final int armor;
+
   /**
    * Constructor of the abstract class Unit.
    *
@@ -75,7 +91,7 @@ public abstract class Unit {
   /**
    * Sets the name of the unit.
    *
-   * @parm name of the unit
+   * @param name of the unit
    * @throws IllegalArgumentException when name empty or null
    */
   public void setName(String name) {
@@ -222,8 +238,8 @@ public abstract class Unit {
       return false;
     }
     Unit unit = (Unit) o;
-    return health == unit.health && attack == unit.attack && armor == unit.armor &&
-        name.equals(unit.name);
+    return health == unit.health && attack == unit.attack && armor == unit.armor
+        && name.equals(unit.name);
   }
 
   /**

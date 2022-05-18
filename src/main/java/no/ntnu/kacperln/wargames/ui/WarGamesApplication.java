@@ -138,9 +138,22 @@ public class WarGamesApplication {
     this.setArmyTwo(this.armyFileHandler.loadArmyFromFile(loadedFile));
   }
 
+  /**
+   * Saves armyOne to the given file.
+   *
+   * @param loadedFile file to save to
+   * @throws IOException if IO error occurs
+   */
   public void saveArmy1ToFile(File loadedFile) throws IOException {
     this.armyFileHandler.saveArmyToFile(this.armyOne, loadedFile);
   }
+
+  /**
+   * Saves armyTwo to the given file.
+   *
+   * @param loadedFile file to save to
+   * @throws IOException if IO error occurs
+   */
   public void saveArmy2ToFile(File loadedFile) throws IOException {
     this.armyFileHandler.saveArmyToFile(this.armyTwo, loadedFile);
   }
