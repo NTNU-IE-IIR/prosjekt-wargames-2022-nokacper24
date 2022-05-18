@@ -24,12 +24,18 @@ public class UnitDialog extends Dialog<Unit> {
    * EDIT is used when editing an existing unit, thus UnitType cannot be chosen.
    */
   private enum Mode {
+    /**
+     * UnitDialog mode for creating a new unit.
+     */
     NEW,
+    /**
+     * UnitDialog mode for editing of an existing unit.
+     */
     EDIT
   }
 
   private final Mode mode;
-  private Unit existingUnit;
+  private final Unit existingUnit;
 
   private TextField nameField;
   private ChoiceBox<Unit.UnitType> typeChoiceBox;
