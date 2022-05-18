@@ -88,30 +88,10 @@ public class Controller {
    * This method is called automatically after the fxml file has been loaded.
    */
   public void initialize() {
-
-    Army army1 = new Army("Humans");
-    Army army2 = new Army("Glorious army of noobs");
-
-    UnitFactory factory = new UnitFactory();
     this.warGamesApplication = new WarGamesApplication();
     this.dialogFactory = new DialogFactory();
-
-    army1.addAll(factory.createUnits(5, Unit.UnitType.CAVALRY, "unit1", 150));
-    army1.addAll(factory.createUnits(1, Unit.UnitType.COMMANDER, "dddd", 150));
-    army1.addAll(factory.createUnits(4, Unit.UnitType.RANGED, "unit1", 150));
-    army1.addAll(factory.createUnits(1000, Unit.UnitType.INFANTRY, "footman", 1));
-
-    army2.addAll(factory.createUnits(5, Unit.UnitType.CAVALRY, "un2", 150));
-    army2.addAll(factory.createUnits(1, Unit.UnitType.COMMANDER, "dddd", 150));
-    army2.addAll(factory.createUnits(4, Unit.UnitType.RANGED, "un2", 150));
-    army2.addAll(factory.createUnits(100, Unit.UnitType.INFANTRY, "un2", 150));
-
     this.setUpTables();
-
-    this.warGamesApplication.setArmyOne(army1);
-    this.warGamesApplication.setArmyTwo(army2);
     this.updateArmiesDetails();
-
   }
 
 
@@ -140,6 +120,7 @@ public class Controller {
       ObservableList<Unit> army1ObservableUnitRegister =
           FXCollections.observableList(this.warGamesApplication.getArmyOne().getAllUnits());
       this.army1TableView.setItems(army1ObservableUnitRegister);
+      this.army1TableView.refresh();
       this.army1NumberOfUnitsField.setText(String.valueOf(army1ObservableUnitRegister.size()));
       this.army1NameField.setText(this.warGamesApplication.getArmyOne().getName());
     }
@@ -148,6 +129,7 @@ public class Controller {
     ObservableList<Unit> army2ObservableUnitRegister =
         FXCollections.observableList(this.warGamesApplication.getArmyTwo().getAllUnits());
     this.army2TableView.setItems(army2ObservableUnitRegister);
+    this.army2TableView.refresh();
     this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
     this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
     }
