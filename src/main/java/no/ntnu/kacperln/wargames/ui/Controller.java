@@ -71,31 +71,31 @@ public class Controller {
   private TextField army1NumberOfUnitsField;
 
   @FXML
-  public TextField army1NumberOfCommanderUnitsField;
+  private TextField army1NumberOfCommanderUnitsField;
 
   @FXML
-  public TextField army1NumberOfCavalryUnitsField;
+  private TextField army1NumberOfCavalryUnitsField;
 
   @FXML
-  public TextField army1NumberOfRangedUnitsField;
+  private TextField army1NumberOfRangedUnitsField;
 
   @FXML
-  public TextField army1NumberOfInfantryUnitsField;
+  private TextField army1NumberOfInfantryUnitsField;
 
   @FXML
   private TextField army2NumberOfUnitsField;
 
   @FXML
-  public TextField army2NumberOfCommanderUnitsField;
+  private TextField army2NumberOfCommanderUnitsField;
 
   @FXML
-  public TextField army2NumberOfCavalryUnitsField;
+  private TextField army2NumberOfCavalryUnitsField;
 
   @FXML
-  public TextField army2NumberOfRangedUnitsField;
+  private TextField army2NumberOfRangedUnitsField;
 
   @FXML
-  public TextField army2NumberOfInfantryUnitsField;
+  private TextField army2NumberOfInfantryUnitsField;
 
   private WarGamesApplication warGamesApplication;
   private DialogFactory dialogFactory;
