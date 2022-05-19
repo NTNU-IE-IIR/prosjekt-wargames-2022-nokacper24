@@ -155,15 +155,17 @@ public class Controller {
 
       this.army1NameField.setText(this.warGamesApplication.getArmyOne().getName());
 
-      this.army1NumberOfUnitsField.setText(String.valueOf(army1ObservableUnitRegister.size()));
-      this.army1NumberOfCommanderUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyOne().getCommanderUnits().size()));
-      this.army1NumberOfCavalryUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyOne().getCavalryUnits().size()));
-      this.army1NumberOfRangedUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyOne().getRangedUnits().size()));
-      this.army1NumberOfInfantryUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyOne().getInfantryUnits().size()));
+      // update number of units
+      this.army1NumberOfUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyOne().getUnitCount()));
+      this.army1NumberOfCommanderUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyOne().getUnitCount(Unit.UnitType.COMMANDER)));
+      this.army1NumberOfCavalryUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyOne().getUnitCount(Unit.UnitType.CAVALRY)));
+      this.army1NumberOfRangedUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyOne().getUnitCount(Unit.UnitType.RANGED)));
+      this.army1NumberOfInfantryUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyOne().getUnitCount(Unit.UnitType.INFANTRY)));
     }
 
     if (this.warGamesApplication.getArmyTwo() != null) {
@@ -174,15 +176,17 @@ public class Controller {
 
       this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
 
-      this.army2NumberOfUnitsField.setText(String.valueOf(army2ObservableUnitRegister.size()));
-      this.army2NumberOfCommanderUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyTwo().getCommanderUnits().size()));
-      this.army2NumberOfCavalryUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyTwo().getCavalryUnits().size()));
-      this.army2NumberOfRangedUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyTwo().getRangedUnits().size()));
-      this.army2NumberOfInfantryUnitsField.setText(
-          String.valueOf(this.warGamesApplication.getArmyTwo().getInfantryUnits().size()));
+        // update number of units
+      this.army2NumberOfUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyTwo().getUnitCount()));
+      this.army2NumberOfCommanderUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyTwo().getUnitCount(Unit.UnitType.COMMANDER)));
+      this.army2NumberOfCavalryUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyTwo().getUnitCount(Unit.UnitType.CAVALRY)));
+      this.army2NumberOfRangedUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyTwo().getUnitCount(Unit.UnitType.RANGED)));
+      this.army2NumberOfInfantryUnitsField.setText(String.valueOf(
+          this.warGamesApplication.getArmyTwo().getUnitCount(Unit.UnitType.INFANTRY)));
     }
   }
 

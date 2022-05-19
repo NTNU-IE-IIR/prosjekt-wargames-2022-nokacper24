@@ -1,5 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
+import static no.ntnu.kacperln.wargames.data.Unit.UnitType.INFANTRY;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -153,7 +155,7 @@ public class Army {
    * @return all infantry units in army
    */
   public List<Unit> getInfantryUnits() {
-    return this.getUnitsByType(Unit.UnitType.INFANTRY);
+    return this.getUnitsByType(INFANTRY);
   }
 
   /**
@@ -196,6 +198,31 @@ public class Army {
     } else {
       return null;
     }
+  }
+
+  /**
+   * Returns the size of the army.
+   * Number of all units in the army.
+   *
+   * @return size of the army
+   */
+  public int getUnitCount() {
+    return this.units.size();
+  }
+
+  /**
+   * Returns the number of units of given type in the army.
+   *
+   * @param unitType UnitType to count
+   * @return number of units of given type in army
+   */
+  public int getUnitCount(Unit.UnitType unitType) {
+    return switch (unitType) {
+      case INFANTRY -> this.getInfantryUnits().size();
+      case RANGED -> this.getRangedUnits().size();
+      case CAVALRY -> this.getCavalryUnits().size();
+      case COMMANDER -> this.getCommanderUnits().size();
+    };
   }
 
   /**
