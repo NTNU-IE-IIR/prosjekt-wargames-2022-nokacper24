@@ -1,8 +1,6 @@
 # Wargames
 Programming project in [IDATA2001](https://www.ntnu.no/studier/emner/IDATA2001#tab=omEmnet) at NTNU.
-
-##### Author
-[Kacper Lukasz Nowicki](https://github.com/nokacper24)
+Author: [Kacper Lukasz Nowicki](https://github.com/nokacper24)
 
 ## Introduction
 
