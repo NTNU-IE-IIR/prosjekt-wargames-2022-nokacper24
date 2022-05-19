@@ -110,6 +110,9 @@ class ArmyTest {
     assertTrue(army.hasUnits());
   }
 
+  /**
+   * Only tests if a unit is returned, does not test if the unit is in fact (pseudo) random.
+   */
   @Test
   void testGetRandom() {
     ArrayList<Unit> collectionOfUnits = new ArrayList<>();
@@ -197,5 +200,25 @@ class ArmyTest {
     assertEquals(0, army.getCavalryUnits().size());
     assertEquals(0, army.getRangedUnits().size());
     assertEquals(0, army.getCommanderUnits().size());
+  }
+
+  @Test
+  void testGetUnitCount() {
+    ArrayList<Unit> collectionOfUnits = new ArrayList<>();
+    Unit unit1 = new InfantryUnit("name4", 70);
+    Unit unit2 = new CavalryUnit("name1", 100);
+    Unit unit3 = new RangedUnit("name2", 120);
+    Unit unit4 = new CommanderUnit("name3", 90);
+    collectionOfUnits.add(unit1);
+    collectionOfUnits.add(unit2);
+    collectionOfUnits.add(unit3);
+    collectionOfUnits.add(unit4);
+    Army army = new Army("Army1", collectionOfUnits);
+
+    assertEquals(4, army.getUnitCount());
+    assertEquals(1, army.getUnitCount(Unit.UnitType.INFANTRY));
+    assertEquals(1, army.getUnitCount(Unit.UnitType.CAVALRY));
+    assertEquals(1, army.getUnitCount(Unit.UnitType.RANGED));
+    assertEquals(1, army.getUnitCount(Unit.UnitType.COMMANDER));
   }
 }
