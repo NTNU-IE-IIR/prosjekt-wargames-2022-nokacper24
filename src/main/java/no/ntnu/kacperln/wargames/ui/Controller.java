@@ -427,7 +427,7 @@ public class Controller {
     this.warGamesApplication.setArmyOne(sampleArmyOne);
 
     List<Unit> sampleUnitsTwo = new ArrayList<>();
-    sampleUnitsTwo.add(unitFactory.createUnit(Unit.UnitType.COMMANDER, " Gul´dan", 180));
+    sampleUnitsTwo.add(unitFactory.createUnit(Unit.UnitType.COMMANDER, " Guldan", 180));
     sampleUnitsTwo.addAll(unitFactory.createUnits(200, Unit.UnitType.RANGED, "Spearman", 100));
     sampleUnitsTwo.addAll(unitFactory.createUnits(100, Unit.UnitType.CAVALRY, "Raider", 100));
     sampleUnitsTwo.addAll(unitFactory.createUnits(500, Unit.UnitType.INFANTRY, "Grunt", 100));

@@ -393,6 +393,7 @@ public class ArmySetupDialog extends Dialog<Army> {
     ObservableList<Unit> observableUnitRegister =
         FXCollections.observableList(this.army.getAllUnits());
     this.unitsTableView.setItems(observableUnitRegister);
+    this.unitsTableView.refresh();
     this.armyNameTextField.setText(this.army.getName());
     this.armyCountTextField.setText(String.valueOf(this.army.getAllUnits().size()));
   }
