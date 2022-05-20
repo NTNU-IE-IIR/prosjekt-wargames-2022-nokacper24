@@ -1,5 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Objects;
 import no.ntnu.kacperln.wargames.logic.TerrainType;
 
@@ -14,6 +16,15 @@ public class CavalryUnit extends Unit {
   // fields are static, they're shared between all instances of CavalryUnit
   private static final int[] ATTACK_BONUS = {6, 2}; //Initial and default attack bonus
   private static final int RESIST_BONUS = 1;
+  private static final Map<TerrainType, Integer> TERRAIN_ATTACK_BONUS =
+      new EnumMap<>(TerrainType.class);
+  private static final Map<TerrainType, Integer> TERRAIN_RESIST_BONUS =
+      new EnumMap<>(TerrainType.class);
+
+  static {
+    TERRAIN_ATTACK_BONUS.put(TerrainType.PLAINS, 2);
+    TERRAIN_RESIST_BONUS.put(TerrainType.FOREST, -1); // 1-1 = 0 resist bonus in FOREST
+  }
 
   private boolean firstAttack = true;
 
@@ -87,8 +98,8 @@ public class CavalryUnit extends Unit {
     }
     bonus = CavalryUnit.ATTACK_BONUS[index];
 
-    if (this.currentTerrain == TerrainType.PLAINS) {
-      bonus += 2;
+    if (CavalryUnit.TERRAIN_ATTACK_BONUS.containsKey(this.currentTerrain)) {
+      bonus += CavalryUnit.TERRAIN_ATTACK_BONUS.get(this.currentTerrain);
     }
 
     return bonus;
@@ -103,8 +114,8 @@ public class CavalryUnit extends Unit {
   @Override
   public int getResistBonus() {
     int bonus = CavalryUnit.RESIST_BONUS;
-    if (this.currentTerrain == TerrainType.FOREST) {
-      bonus = 0;
+    if (CavalryUnit.TERRAIN_RESIST_BONUS.containsKey(this.currentTerrain)) {
+      bonus += CavalryUnit.TERRAIN_RESIST_BONUS.get(this.currentTerrain);
     }
     return bonus;
   }

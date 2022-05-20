@@ -1,5 +1,7 @@
 package no.ntnu.kacperln.wargames.data;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Objects;
 import no.ntnu.kacperln.wargames.logic.TerrainType;
 
@@ -13,7 +15,14 @@ public class RangedUnit extends Unit {
 
   // fields are static because they are shared by all instances of RangedUnit
   private static final int ATTACK_BONUS = 3;
-  private static final int[] RESIST_BONUS = {6, 4, 2}; // Starting resistance bonus, third value is default
+  private static final int[] RESIST_BONUS = {6, 4, 2}; // Starting resistance bonus, third = default
+  private static final Map<TerrainType, Integer> TERRAIN_ATTACK_BONUS =
+      new EnumMap<>(TerrainType.class);
+
+  static {
+    TERRAIN_ATTACK_BONUS.put(TerrainType.FOREST, -2);
+    TERRAIN_ATTACK_BONUS.put(TerrainType.HILL, 2);
+  }
 
   private int timesHit = 0; // How many times unit got hit
 
@@ -78,11 +87,10 @@ public class RangedUnit extends Unit {
   public int getAttackBonus() {
     int bonus = RangedUnit.ATTACK_BONUS;
 
-    if (this.currentTerrain == TerrainType.HILL) {
-      bonus += 2;
-    } else if (this.currentTerrain == TerrainType.FOREST) {
-      bonus -= 2;
+    if (RangedUnit.TERRAIN_ATTACK_BONUS.containsKey(this.currentTerrain)) {
+      bonus += RangedUnit.TERRAIN_ATTACK_BONUS.get(this.currentTerrain);
     }
+
     return bonus;
   }
 
