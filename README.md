@@ -25,6 +25,7 @@ As shown, there are 4 main use cases. The user can:
 		- Remove a specific unit
 		- Load army from file
 		- Save army to file
+
 *The description does not cover all use cases, more details on the diagram itself*  
 Application gives reasonable feedback to the user when errors occur. For example, detailed information when a "corrupt" file is being loaded.  
 ![corrupt file](/images/corruptfile.png)  
