@@ -3,7 +3,7 @@ Programming project in [IDATA2001](https://www.ntnu.no/studier/emner/IDATA2001#t
 Author: [Kacper Łukasz Nowicki](https://github.com/nokacper24)
 
 ## Introduction
-War Games is a simple battle simulator. It is a portfolio project in IDATX2001 at NTNU. The application is meant to simulate a battle between two armies.
+War Games is a simple battle simulator. It is a portfolio project in IDATX2001 at NTNU. The application is meant to simulate a battle between two armies.  
 ![main window](/images/mainwindow.png)
 
 ## Functional requirements
@@ -27,7 +27,8 @@ As shown, there are 4 main use cases. The user can:
 		- Save army to file
 
 *The description does not cover all use cases, more details on the diagram itself*  
-Application gives reasonable feedback to the user when errors occur. For example, detailed information when a "corrupt" file is being loaded.  
+
+The application gives reasonable feedback to the user when errors occur. For instance, when a "corrupt" file is being loaded, it displays a detailed error dialog.  
 ![corrupt file](/images/corruptfile.png)  
 ![file error dialog](/images/fileerrordialog.png)  
 
