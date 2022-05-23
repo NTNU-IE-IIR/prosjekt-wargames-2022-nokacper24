@@ -3,11 +3,12 @@ Programming project in [IDATA2001](https://www.ntnu.no/studier/emner/IDATA2001#t
 Author: [Kacper Łukasz Nowicki](https://github.com/nokacper24)
 
 ## Introduction
-War Games is a simple battle simulator. It is a portfolio project in IDATX2001 at NTNU. The application is meant to simulate a battle between two armies.  
-![main window](/images/mainwindow.png)
+War Games is a simple battle simulator. It is an assignment in IDATX2001 at NTNU. The application has a rather basic user interface. The main focus was not a pretty GUI, but well written software along with usable and robust GUI.  
+![main window](/images/mainwindow.png)  
 
 ## Functional requirements
-The application offers a graphical user interface, showing the user details of both armies, before and after a battle was simulated. All functionality is depicted in the use case diagram below.  
+The application offers a graphical user interface, showing the user details of both armies, before and after a battle was simulated. It allows the user to set up both armies and choose terrain for the battle.  
+All functionality is depicted in the use case diagram below.  
 ![usecase diagram](/images/usecasewargames.png)  
 ##### Description of the diagram
 As shown, there are 4 main use cases. The user can:
@@ -28,9 +29,11 @@ As shown, there are 4 main use cases. The user can:
 
 *The description does not cover all use cases, more details on the diagram itself*  
 
-The application gives reasonable feedback to the user when errors occur. For instance, when a "corrupt" file is being loaded, it displays a detailed error dialog.  
-![corrupt file](/images/corruptfile.png)  
-![file error dialog](/images/fileerrordialog.png)  
+Since there was high focus on customization of the armies, the application must get and handle user inputs. The problem with allowing the user to type whatever they want is that the user may try to type in invalid inputs, such as negative health, or empty name for the units. This was addressed by disabling the OK button and displaying detailed information to the user when for instance the `name` field is emptied.  
+![unit creation](/images/unitcreationemptyname.png)  
+
+In addition to that, the application gives reasonable feedback to the user when any errors occur. For instance, when a "corrupt" file is being loaded, it displays a detailed error dialog.  
+![file error dialog](/images/fileerrordialog.png) ![corrupt file](/images/corruptfile.png)  
 
 ## Design
 
