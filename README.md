@@ -1,3 +1,4 @@
+*This README file is simultaneously the project report.*
 # Wargames
 Programming project in [IDATA2001](https://www.ntnu.no/studier/emner/IDATA2001#tab=omEmnet) at NTNU.  
 Author: [Kacper Lukasz Nowicki](https://github.com/nokacper24)
@@ -42,14 +43,11 @@ As shown, there are 4 main use cases. The user can:
 
 *The description does not cover all use cases, more details on the diagram itself*  
 
-Since there was high focus on customization of the armies, the application must get and handle user inputs. The problem with allowing the user to type whatever they want is that the user may try to type in invalid inputs, such as negative health, or empty name for the units. This was addressed by disabling the OK button and displaying detailed information to the user when for instance the `name` field is emptied.  
-![unit creation](/images/unitcreationemptyname.png)  
-
-In addition to that, the application gives reasonable feedback to the user when any errors occur. For instance, when a "corrupt" file is being loaded, it displays a detailed error dialog.  
-![file error dialog](/images/fileerrordialog.png) ![corrupt file](/images/corruptfile.png)  
-
 ## Design
-Classes in the program are built with maintainability, readability and future development in mind. They are divided into 3 main packages: data, logic and UI.  
+Classes in the program are built with maintainability, readability and future development in mind. They are divided into 3 main packages:
+- [Data](#Data-package)
+- [Logic](#Logic-package)
+- [UI](#UI-package)
 
 #### Data package
 This package has all classes responsible for storing data and all logic closely related to the said data. It has the abstract `Unit` class, all unit subclasses, `Army` class and `UnitFactory` class.  
@@ -90,8 +88,13 @@ Another example of responsibility driven design can be found in the `Unit` class
 When a unit attacks another unit, instead of calculating final health for the opponent and setting it, it calculates how much damage it can deal (taking the attack bonus to the account), and calls `takeDamage(int attackDamage)` on the opponent. The opponent then calculates how much damage it should receive, taking the armor and defense bonus in consideration, and sets its own health accordingly.  
 This way, the attacker only focuses on dealing damage, and the opponent only on defending itself.  
 
-Since `Unit` is an abstract class, no instances can be constructed. For the purpose of implementing unit tests for this class, `UnitDummy` subclass was implemented (it's in the test folder of the project).  
+Due to the fact that  `Unit` is an abstract class, no instances can be constructed. For the purpose of implementing unit tests for this class, `UnitDummy` subclass was implemented (it's in the test folder of the project).  
 Generally, we could get an instinct to use a subclass that already exists, such as `RangedUnit` for purposes of testing `Unit` class. But if `RangedUnit` was either removed or edited in the future, the tests could fail, even though `Unit` class itself was not changed.
+
+Since there was high focus on customization of the armies, the application must get and handle user inputs. The problem with allowing the user to type whatever they want is that the user may type invalid inputs, such as negative health, or empty name for the units. This was addressed by disabling the OK button and displaying detailed information to the user when for instance the `name` field is emptied. This effectively forces the user to type in the expected values.  
+![unit creation](/images/unitcreationemptyname.png)  
+In addition to that, the application gives reasonable feedback to the user when any errors occur. For instance, when a "corrupt" file is being loaded, it displays a detailed error dialog.  
+![file error dialog](/images/fileerrordialog.png)![corrupt file](/images/corruptfile.png)  
 
 ## Process
 The work on the project was carried out in the spring semester of 2022, with a varying intensity. Work was directed and motivated mainly by mandatory assignments in the course. In addition, own notes and to-do lists were made along the way.  
@@ -120,5 +123,3 @@ Even though, the `Battle` class simulates the battle in a rather primitive way n
 ## Conclusion
 In conclusion, this project can be considered a success; all requirements from the given assignments were met, and the application is rather robust. The code was written with good design practices in mind, which would surely make future development easier.  
 A lot was learned on the way, especially about designing user interfaces and using different software to make the development more effective.
-
-*This README file is simultaneously the project report.*
