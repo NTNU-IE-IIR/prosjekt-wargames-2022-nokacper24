@@ -1,6 +1,6 @@
 # Wargames
 Programming project in [IDATA2001](https://www.ntnu.no/studier/emner/IDATA2001#tab=omEmnet) at NTNU.  
-Author: [Kacper Łukasz Nowicki](https://github.com/nokacper24)
+Author: [Kacper Lukasz Nowicki](https://github.com/nokacper24)
 
 ## Table of Contents
 - [Introduction](#Introduction)
@@ -63,13 +63,13 @@ Army class represents a collection of units and an army name.
 This package has the following classes: `Battle`, `ArmyFileHandler`, `TerrainType`, `BattleStillInProgressException`, `IllegalUnitsFileException`.  
 `TerrainType` is an enum, and both exception classes are just self-defined exceptions.  
 `Battle` takes the responsibility of simulating a battle between two armies.  
-At the moment the simulation is rather simple:
-	- gets a random unit from army1
-	- gets a random unit from army1
-	- the unit from army1 attacks the unit from army2
-	- the unit from army2 attacks the unit from army1
-	- if any of the unit's health is 0 or less, remove the unit from its army
-	- repeat
+At the moment the simulation is rather simple: 
+- gets a random unit from army1  
+- gets a random unit from army1  
+- the unit from army1 attacks the unit from army2  
+- the unit from army2 attacks the unit from army1  
+- if any of the unit's health is 0 or less, remove the unit from its army  
+- repeat  
 
 `ArmyFileHandler` is responsible for loading and saving army files, it throws `IllegalUnitsFileException` when trying to load a file that has either incorrect format or is corrupt in some way. Exception messages are detailed enough to pinpoint the error.  
 
@@ -98,14 +98,27 @@ The work on the project was carried out in the spring semester of 2022, with a v
 
 Version control was kept with [Git](https://git-scm.com/) from the begging. In addition, later in the semester in a different project we have started using conventional commit messages. They were later used in this project as well, as a form of a good practice. To make generation of conventional commits easier, [Commitizen](https://commitizen-tools.github.io/commitizen/). Additionally, Commitizen enforces descriptive commit messages, making review of commits easier.  
 
-As mentioned before, the graphical user interface is [JavaFX](https://openjfx.io/) framework, and the applicaiton loads the GUI from a `fxml` file. Said file was created with [Scene Builder](https://gluonhq.com/products/scene-builder/).
+As mentioned before, the graphical user interface is [JavaFX](https://openjfx.io/) framework, and the application loads the GUI from a `fxml` file. Said file was created with [Scene Builder](https://gluonhq.com/products/scene-builder/).  
 
-
+Under the development, [Checkstyle](https://checkstyle.sourceforge.io/) with Google checks was used to ensure standard style and readability of code. Additionally, [SonarLint](https://www.sonarlint.org/) was used to ensure quality and security.
 
 ## Reflection
+In general the project went well, there were no major issues on the way. Something that definitely could use some improvement was regularity of work. Due to other projects with closer deadlines, as well as some personal matters, the project was completed in a number of "sprints".  
 
+The code itself shows a rather high degree of cohesion and low coupling. All classes have well-defined tasks and responsibilities.  
+Although, there is an example of high coupling to be found. Namely, if we were to add a new unit type, we would need to also:  
+- add new unit type to `UnitType` enum  
+- add a creator method in the `UnitFactory`  
+- update GUI to also show the number of units of that new type  
+
+The first two points are inevitable, but the last one could be addressed. For instance, instead of displaying all different counts in separate text fields, display one table view, with rows for each unit type and its count. This way, the GUI would not need to know about all different unit types.
+
+Lastly, the user interface surely does not look the most appealing, as it does not use any CSS stylesheets. The focus was to make it user-friendly and robust, and it is that. It is realitevly easy to use, and it gives sensible error messages in response to unexpected behavior.  
+
+Even though, the `Battle` class simulates the battle in a rather primitive way now, this could quite easily be changed in the future. Due to loose coupling and high cohesion in the code, `Battle` class could be replaced with for instance a battlefield, with a grid and different terrain types on different parts of the map. Making such changes would not need to effect other parts of the code, unless we would like to display the grid to the user, of course.
 
 ## Conclusion
-
+In conclusion, this project can be considered a success; all requirements from the given assignments were met, and the application is rather robust. The code was written with good design practices in mind, which would surely make future development easier.  
+A lot was learned on the way, especially about designing user interfaces and using different software to make the development more effective.
 
 *This README file is simultaneously the project report.*
