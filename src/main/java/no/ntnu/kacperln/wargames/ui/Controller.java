@@ -22,7 +22,7 @@ import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
 import no.ntnu.kacperln.wargames.logic.IllegalUnitsFileException;
 import no.ntnu.kacperln.wargames.logic.TerrainType;
-import no.ntnu.kacperln.wargames.logic.UnitFactory;
+import no.ntnu.kacperln.wargames.data.UnitFactory;
 import no.ntnu.kacperln.wargames.ui.dialogs.ArmySetupDialog;
 import no.ntnu.kacperln.wargames.ui.dialogs.DialogFactory;
 

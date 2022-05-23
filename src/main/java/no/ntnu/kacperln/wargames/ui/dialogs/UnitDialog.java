@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import no.ntnu.kacperln.wargames.data.Unit;
-import no.ntnu.kacperln.wargames.logic.UnitFactory;
+import no.ntnu.kacperln.wargames.data.UnitFactory;
 
 
 /**

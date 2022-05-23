@@ -1,4 +1,4 @@
-package no.ntnu.kacperln.wargames.logic;
+package no.ntnu.kacperln.wargames.data;
 
 import java.util.ArrayList;
 import java.util.List;

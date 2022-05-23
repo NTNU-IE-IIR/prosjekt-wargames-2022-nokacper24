@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import no.ntnu.kacperln.wargames.data.Unit;
+import no.ntnu.kacperln.wargames.data.UnitFactory;
 import org.junit.jupiter.api.Test;
 
 public class UnitFactoryTest {

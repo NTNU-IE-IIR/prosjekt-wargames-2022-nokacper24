@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
+import no.ntnu.kacperln.wargames.data.UnitFactory;
 
 /**
  * Class representing a FileHandler for Army files.
