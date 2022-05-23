@@ -1,9 +1,9 @@
 {
   "tests": [
     {
-      "name": "Maven Compile",
+      "name": "Maven Version",
       "setup": "",
-      "run": "mvn compile",
+      "run": "mvn -v",
       "input": "",
       "output": "",
       "comparison": "included",
