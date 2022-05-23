@@ -99,7 +99,7 @@ public class Controller {
   private TextField army2NumberOfInfantryUnitsField;
 
   @FXML
-  public MenuItem showBattleLoggerButton;
+  private MenuItem showBattleLoggerButton;
 
   private WarGamesApplication warGamesApplication;
   private DialogFactory dialogFactory;
