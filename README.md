@@ -7,9 +7,9 @@ Author: [Kacper Łukasz Nowicki](https://github.com/nokacper24)
 - [Functional requirements](#Functional-requirements)
 	- [Description of the diagram](#Description-of-the-diagram)
 - [Design](#Design)
-	- [Data](#Data)
-	- [Logic](#Logic)
-	- [UI](#UI)
+	- [Data package](#Data-package)
+	- [Logic package](#Logic-package)
+	- [UI package](#UI-package)
 - [Implementation](#Implementation)
 - [Process](#Process)
 - [Reflection](#Reflection)
@@ -51,7 +51,7 @@ In addition to that, the application gives reasonable feedback to the user when 
 ## Design
 Classes in the program are built with maintainability, readability and future development in mind. They are divided into 3 main packages: data, logic and UI.  
 
-#### Data
+#### Data package
 This package has all classes responsible for storing data and all logic closely related to the said data. It has the abstract `Unit` class, all unit subclasses, `Army` class and `UnitFactory` class.  
 Below, you can see the data package class diagram with inheritance.  
 ![datapackageinheritance.png](/images/datapackageinheritance.png)  
@@ -59,7 +59,7 @@ Below, you can see the data package class diagram with inheritance.
 Army class represents a collection of units and an army name.  
 `Unit Factory` is a factory design pattern. It is used to simplify creation of units, allows creation of multiple units at the same time.  
 
-#### Logic
+#### Logic package
 This package has the following classes: `Battle`, `ArmyFileHandler`, `TerrainType`, `BattleStillInProgressException`, `IllegalUnitsFileException`.  
 `TerrainType` is an enum, and both exception classes are just self-defined exceptions.  
 `Battle` takes the responsibility of simulating a battle between two armies.  
@@ -73,19 +73,33 @@ At the moment the simulation is rather simple:
 
 `ArmyFileHandler` is responsible for loading and saving army files, it throws `IllegalUnitsFileException` when trying to load a file that has either incorrect format or is corrupt in some way. Exception messages are detailed enough to pinpoint the error.  
 
-#### UI
+#### UI package
 This package has the `Controller`, `WarGames` and `WarGaemsApplication`.  
 `WarGames` is the starting point for JavaFX application, it creates the main window.  
 `Controller` is responsible for displaying data in the tables and text fields, as well as handling button inputs.  
+In order to separate the responsibility, `Controller` only deals with inputs and updating the GUI, and `WarGaemsApplication` class takes care of the logic.
 
-UI package has a sub-package **dialogs**. This package has all custom dialogs: `ArmySetupDialog, UnitDialog, MultipleUnitsDialog` and it has `DialogFactory`.  
+UI package has a sub-package **dialogs**. This package has all custom dialogs: `ArmySetupDialog`, `UnitDialog`, `MultipleUnitsDialog` and it has `DialogFactory`.  
 `DialogFactory` is used to create all types of dialogs used in the application. This is a second use of a factory design pattern in the application. The purpose is to simplify creation of dialogs, and standardization.  
 For instance, the same looking error dialogs can be created from different parts of the GUI by simply calling create methods in the `DialogFactory`, avoiding code duplication.
 
 ## Implementation
+The graphical user interface for WarGames is built on [JavaFX](https://openjfx.io/) framework The main stage (primary stage) is loaded from a `fxml` file at the start of the program, and the `Controller` class mentioned earlier connects it to the backend (underlying logic), `WarGaemsApplication`, thus dividing responsibility.
 
+Another example of responsibility driven design can be found in the `Unit` class's, `attack(Unit unit)` method.  
+When a unit attacks another unit, instead of calculating final health for the opponent and setting it, it calculates how much damage it can deal (taking the attack bonus to the account), and calls `takeDamage(int attackDamage)` on the opponent. The opponent then calculates how much damage it should receive, taking the armor and defense bonus in consideration, and sets its own health accordingly.  
+This way, the attacker only focuses on dealing damage, and the opponent only on defending itself.  
+
+Since `Unit` is an abstract class, no instances can be constructed. For the purpose of implementing unit tests for this class, `UnitDummy` subclass was implemented (it's in the test folder of the project).  
+Generally, we could get an instinct to use a subclass that already exists, such as `RangedUnit` for purposes of testing `Unit` class. But if `RangedUnit` was either removed or edited in the future, the tests could fail, even though `Unit` class itself was not changed.
 
 ## Process
+The work on the project was carried out in the spring semester of 2022, with a varying intensity. Work was directed and motivated mainly by mandatory assignments in the course. In addition, own notes and to-do lists were made along the way.  
+
+Version control was kept with [Git](https://git-scm.com/) from the begging. In addition, later in the semester in a different project we have started using conventional commit messages. They were later used in this project as well, as a form of a good practice. To make generation of conventional commits easier, [Commitizen](https://commitizen-tools.github.io/commitizen/). Additionally, Commitizen enforces descriptive commit messages, making review of commits easier.  
+
+As mentioned before, the graphical user interface is [JavaFX](https://openjfx.io/) framework, and the applicaiton loads the GUI from a `fxml` file. Said file was created with [Scene Builder](https://gluonhq.com/products/scene-builder/).
+
 
 
 ## Reflection
