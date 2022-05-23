@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,9 +21,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import no.ntnu.kacperln.wargames.data.Army;
 import no.ntnu.kacperln.wargames.data.Unit;
+import no.ntnu.kacperln.wargames.data.UnitFactory;
 import no.ntnu.kacperln.wargames.logic.IllegalUnitsFileException;
 import no.ntnu.kacperln.wargames.logic.TerrainType;
-import no.ntnu.kacperln.wargames.data.UnitFactory;
 import no.ntnu.kacperln.wargames.ui.dialogs.ArmySetupDialog;
 import no.ntnu.kacperln.wargames.ui.dialogs.DialogFactory;
 
@@ -96,6 +97,9 @@ public class Controller {
 
   @FXML
   private TextField army2NumberOfInfantryUnitsField;
+
+  @FXML
+  public MenuItem showBattleLoggerButton;
 
   private WarGamesApplication warGamesApplication;
   private DialogFactory dialogFactory;
@@ -176,7 +180,7 @@ public class Controller {
 
       this.army2NameField.setText(this.warGamesApplication.getArmyTwo().getName());
 
-        // update number of units
+      // update number of units
       this.army2NumberOfUnitsField.setText(String.valueOf(
           this.warGamesApplication.getArmyTwo().getUnitCount()));
       this.army2NumberOfCommanderUnitsField.setText(String.valueOf(
@@ -452,8 +456,24 @@ public class Controller {
         """;
 
     Alert alert = this.dialogFactory.createInformationDialog("About War Games", textBlock);
-
     alert.showAndWait();
+  }
+
+  /**
+   * Shows an information dialog with information about Battle Logger.
+   *
+   * @param actionEvent event
+   */
+  @FXML
+  private void handleShowBattleLogger(ActionEvent actionEvent) {
+    String textBlock = """
+        This feature is not available yet!
+        Coming in a future version...
+        """;
+
+    Alert alert = this.dialogFactory.createInformationDialog("Not available!", textBlock);
+    alert.showAndWait();
+    this.showBattleLoggerButton.setDisable(true);
   }
 
 }
