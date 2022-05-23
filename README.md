@@ -5,6 +5,7 @@ Author: [Kacper Łukasz Nowicki](https://github.com/nokacper24)
 ## Table of Contents
 - [Introduction](#Introduction)
 - [Functional requirements](#Functional-requirements)
+	- [Description of the diagram](#Description-of-the-diagram)
 - [Design](#Design)
 - [Implementation](#Implementation)
 - [Process](#Process)
@@ -19,7 +20,7 @@ War Games is a simple battle simulator. It is an assignment in IDATX2001 at NTNU
 The application offers a graphical user interface, showing the user details of both armies, before and after a battle was simulated. It allows the user to set up both armies and choose terrain for the battle.  
 All functionality is depicted in the use case diagram below.  
 ![usecase diagram](/images/usecasewargames.png)  
-##### Description of the diagram
+### Description of the diagram
 As shown, there are 4 main use cases. The user can:
 - Start a simulation
 	- one extension (optional):
