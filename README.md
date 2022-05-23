@@ -2,6 +2,15 @@
 Programming project in [IDATA2001](https://www.ntnu.no/studier/emner/IDATA2001#tab=omEmnet) at NTNU.  
 Author: [Kacper Łukasz Nowicki](https://github.com/nokacper24)
 
+## Table of Contents
+- [Introduction](#Introduction)
+- [Functional requirements](#Functional-requirements)
+- [Design](#Design)
+- [Implementation](#Implementation)
+- [Process](#Process)
+- [Reflection](#Reflection)
+- [Conclusion](#Conclusion)
+
 ## Introduction
 War Games is a simple battle simulator. It is an assignment in IDATX2001 at NTNU. The application has a rather basic user interface. The main focus was not a pretty GUI, but well written software along with usable and robust GUI.  
 ![main window](/images/mainwindow.png)  
