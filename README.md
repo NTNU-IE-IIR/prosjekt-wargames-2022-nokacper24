@@ -17,7 +17,7 @@ Author: [Kacper Lukasz Nowicki](https://github.com/nokacper24)
 - [Conclusion](#Conclusion)
 
 ## Introduction
-War Games is a simple battle simulator. It is an assignment in IDATX2001 at NTNU. The application has a rather basic user interface. The main focus was not a pretty GUI, but well written software along with usable and robust GUI.  
+War Games is a simple battle simulator. It is an assignment in IDATX2001 at NTNU. The application has a rather basic user interface. The main focus was not a pretty looking GUI, but well written backend along with usable and robust GUI.  
 ![main window](/images/mainwindow.png)  
 
 ## Functional requirements
@@ -103,7 +103,7 @@ Version control was kept with [Git](https://git-scm.com/) from the begging. In a
 
 As mentioned before, the graphical user interface is [JavaFX](https://openjfx.io/) framework, and the application loads the GUI from a `fxml` file. Said file was created with [Scene Builder](https://gluonhq.com/products/scene-builder/).  
 
-Under the development, [Checkstyle](https://checkstyle.sourceforge.io/) with Google checks was used to ensure standard style and readability of code. Additionally, [SonarLint](https://www.sonarlint.org/) was used to ensure quality and security.
+Under the development, [Checkstyle](https://checkstyle.sourceforge.io/) with Google Checks was used to ensure standard style and readability of code. Additionally, [SonarLint](https://www.sonarlint.org/) was used to ensure quality and security.
 
 ## Reflection
 In general the project went well, there were no major issues on the way. Something that definitely could use some improvement was regularity of work. Due to other projects with closer deadlines, as well as some personal matters, the project was completed in a number of "sprints".  
@@ -116,7 +116,7 @@ Although, there is an example of high coupling to be found. Namely, if we were t
 
 The first two points are inevitable, but the last one could be addressed. For instance, instead of displaying all different counts in separate text fields, display one table view, with rows for each unit type and its count. This way, the GUI would not need to know about all different unit types.
 
-Lastly, the user interface surely does not look the most appealing, as it does not use any CSS stylesheets. The focus was to make it user-friendly and robust, and it is that. It is realitevly easy to use, and it gives sensible error messages in response to unexpected behavior.  
+Lastly, the user interface surely does not look the most appealing, as it does not use any CSS stylesheets. The focus was to make it user-friendly and robust, and it is that. It is relatively easy to use, and it gives sensible error messages in response to unexpected behavior.  
 
 Even though, the `Battle` class simulates the battle in a rather primitive way now, this could quite easily be changed in the future. Due to loose coupling and high cohesion in the code, `Battle` class could be replaced with for instance a battlefield, with a grid and different terrain types on different parts of the map. Making such changes would not need to effect other parts of the code, unless we would like to display the grid to the user, of course.
 
