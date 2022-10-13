@@ -276,6 +276,10 @@ public class Controller {
    */
   @FXML
   private void handleSaveArmy1ToFile(ActionEvent actionEvent) {
+    if (this.warGamesApplication.getArmyOne() == null) {
+      this.showNoArmyDataToSaveError();
+      return;
+    }
     String armyName = this.warGamesApplication.getArmyOne().getName();
     FileChooser fileChooser = this.dialogFactory.createFileChooserSaving(armyName);
     File file = fileChooser.showSaveDialog(null);
@@ -295,6 +299,10 @@ public class Controller {
    */
   @FXML
   private void handleSaveArmy2ToFile(ActionEvent actionEvent) {
+    if (this.warGamesApplication.getArmyOne() == null) {
+      this.showNoArmyDataToSaveError();
+      return;
+    }
     String armyName = this.warGamesApplication.getArmyTwo().getName();
     FileChooser fileChooser = this.dialogFactory.createFileChooserSaving(armyName);
     File file = fileChooser.showSaveDialog(null);
@@ -328,6 +336,15 @@ public class Controller {
   private void showFileErrorDialog(IOException e) {
     Alert alert = this.dialogFactory.createErrorDialog(
         "File error!", "Details:\n" + e.getMessage());
+    alert.showAndWait();
+  }
+
+  /**
+   * Shows an error dialog when there is no army data to save to file.
+   */
+  private void showNoArmyDataToSaveError() {
+    Alert alert = this.dialogFactory.createErrorDialog(
+        "Error!", "Details: No army data to save!");
     alert.showAndWait();
   }
 
